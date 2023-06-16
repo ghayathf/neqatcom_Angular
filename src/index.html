@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Neqatcom.</title>
+	<base href="/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="assets/HomeAssets/images/506.png">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Eduport- LMS, Education and Course Theme">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'dark'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+			var el = document.querySelector('.theme-icon-active');
+			if (el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+					const activeThemeIcon = document.querySelector('.theme-icon-active use')
+					const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+					const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+					document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+						element.classList.remove('active')
+					})
+
+					btnToActive.classList.add('active')
+					activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+				}
+
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+					if (storedTheme !== 'light' || storedTheme !== 'dark') {
+						setTheme(getPreferredTheme())
+					}
+				})
+
+				showActiveTheme(getPreferredTheme())
+
+				document.querySelectorAll('[data-bs-theme-value]')
+					.forEach(toggle => {
+						toggle.addEventListener('click', () => {
+							const theme = toggle.getAttribute('data-bs-theme-value')
+							localStorage.setItem('theme', theme)
+							setTheme(theme)
+							showActiveTheme(theme)
+						})
+					})
+
+			}
+		})
+
+	</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="assets/HomeAssets/images/506.png">
+	<!-- PayPal -->
+	<script
+		src="https://www.paypal.com/sdk/js?client-id=ATJUcWORBuGbdyff53gJrvvrokG_EFKOqgKqkrUBcjf1X6XNzEkWgEA3j17bHCFtCiX1bUIQXY98PzOz"></script>
+	<!-- <script>
+	// Render the PayPal button
+	paypal.Buttons({
+	  createOrder: function(data, actions) {
+		return actions.order.create({
+			purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: this.monthly,
+            breakdown: {
+              item_total: {
+                currency_code: "USD",
+                value: this.monthly,
+              },
+            },
+          },
+          tax_total: {
+            currency_code: "USD",
+            value: "0",
+          },
+          shipping: {
+            name: {
+              full_name: localStorage.getItem("LoaneeName") + " " + localStorage.getItem("LoaneeLastName"),
+            },
+          },
+        },
+      ],
+		});
+	  },
+	  onApprove: function(data, actions) {
+		return actions.order.capture().then(function(details) {
+		  alert('Transaction completed by ' + details.payer.name.given_name);
+		});
+	  }
+	}).render('#paypal-button-container');
+  </script> -->
+
+	<!-- Google Font -->
+	<script src="https://www.google.com/recaptcha/api.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/HomeAssets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/HomeAssets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="assets/HomeAssets/vendor/tiny-slider/tiny-slider.css">
+	<link rel="stylesheet" type="text/css" href="assets/HomeAssets/vendor/glightbox/css/glightbox.css">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/HomeAssets/css/style.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-7N7LGGGWT1');
+	</script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+	<!-- <script src="sweetalert2.all.min.js"></script> -->
+	<link rel="stylesheet" href="@sweetalert2/theme-wordpress-admin/wordpress-admin.css">
+
+	<script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
+</head>
+
+<body class="mat-typography">
+
+
+	<app-root></app-root>
+
+	<script src="assets/HomeAssets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Vendors -->
+	<script src="assets/HomeAssets/vendor/tiny-slider/tiny-slider.js"></script>
+	<script src="assets/HomeAssets/vendor/glightbox/js/glightbox.js"></script>
+	<script src="assets/HomeAssets/vendor/purecounterjs/dist/purecounter_vanilla.js"></script>
+
+	<!-- Template Functions -->
+	<script src="assets/HomeAssets/js/functions.js"></script>
+
+
+	<script src="assets/HomeAssets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Vendors -->
+	<script src="assets/HomeAssets/vendor/choices/js/choices.min.js"></script>
+	<script src="assets/HomeAssets/vendor/aos/aos.js"></script>
+	<script src="assets/HomeAssets/vendor/quill/js/quill.min.js"></script>
+	<script src="assets/HomeAssets/vendor/stepper/js/bs-stepper.min.js"></script>
+
+	<!-- Template Functions -->
+	<script src="assets/HomeAssets/js/functions.js"></script>
+
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script>
+		AOS.init();
+	</script>
+
+</body>
+
+</html>

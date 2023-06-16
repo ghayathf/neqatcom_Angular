@@ -1,0 +1,475 @@
+<!-- <div id="myPaypalButtons"></div> -->
+
+<app-loaneeheader></app-loaneeheader>
+<!-- =======================
+Page Banner START -->
+<section class="py-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bg-dark p-4 text-center rounded-3">
+					<h1 class="text-white m-0">My Loans list</h1>
+					<!-- Breadcrumb -->
+					<div class="d-flex justify-content-center">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
+								<li class="breadcrumb-item"><a routerLink="/Loanee">Home</a></li>
+								<li class="breadcrumb-item"><a (click)="startTour()" style="cursor: pointer; ">Start Tour?</a></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<hr>
+<!-- =======================
+
+Page Banner END -->
+
+<section class="pt-0">
+	<div class="container justify-content" *ngFor="let item of loans">
+
+		<div class="container" style="margin-bottom: 5%;">
+			<div class="row justify-content-center">
+
+				<div class="col-xl-9">
+					<div class="card card-body bg-transparent border rounded-3" data-aos="fade-right">
+
+						<!-- Update plan START -->
+						<div class="row g-4">
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3" joyrideStep="thirdstep" title="دليل المستخدم" text="هنا ستظهر حالة قرضك و التحديث عليها باستمرار">
+								<span>Loan Activation</span>
+								<h4>{{ Stat[item.loanstatus] }}</h4>
+							</div>
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>Duration</span>
+								<h4>{{ item.totalmonths }} month/s</h4>
+							</div>
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>Cost</span>
+								<h4>${{ item.monthlyamount }}/Month</h4>
+							</div>
+
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>End Date</span>
+								<h4>{{ item.enddate|slice:0:10 }}</h4>
+							</div>
+						</div>
+						<!-- Update plan END -->
+
+						<!-- Progress bar -->
+						<div class="overflow-hidden my-4">
+							<div class="progress progress-sm bg-primary bg-opacity-10">
+								<mat-progress-bar mode="determinate"
+									[value]="getPercentage(item.totalprice,item.totalprice-item.estimatedprice)"></mat-progress-bar>
+
+							</div>
+						</div>
+
+						<!-- Button -->
+						<div class="d-sm-flex justify-content-sm-between align-items-center">
+							<div>
+								<!-- Switch Content -->
+
+								<p class="mb-0 small">Your plan will automatically renew on: {{
+									item.startdate|slice:0:10 }}. Payment Amount: ${{ item.monthlyamount }}</p>
+							</div>
+							<!-- Buttons -->
+							<div class="btn-group mt-2 mt-sm-0" *ngIf="item.loanstatus==3">
+								<button type="button" class="btn btn-sm btn-danger-soft me-2 mb-0"
+									(click)="OpenCreateDialog(item.lenderid,item.loaneeid,item.firstname)"  joyrideStep="reportstep" title="دليل المستخدم" text="هنا يمكنك رفع شكوى ضد الشركة المقرضة ، سوف تصل الى المعني لتنفيذ عقوبة ما بحقه ">Report
+									Store</button>
+								<button type="button" class="btn btn-sm btn-info-soft me-2 mb-0"
+									(click)="ShowPaymentsDialog(item.loanid,item.bankaccount,item.loanstatus)" joyrideStep="paymentstep" title="دليل المستخدم" text="  'Pay Pal 'بإمكانك من هنا الاطلاع على الفواتير و الاقساط التي سددتها ، و أيضا الدفع من خلال حساب ">Show
+									Payments</button>
+								<button type="button" class="btn btn-sm btn-warning-soft me-2 mb-0"
+									*ngIf="item.loanstatus !=4"
+									(click)="RequestPostponeDialog(item.loanid,item.loaneeid)" joyrideStep="postponestep" title="دليل المستخدم" text="من هنا يمكنك طلب تأجيل الدفعة للشهر الحالي ، علما أن هذا سيؤثر على تقييمك ">Request Postpone</button>
+
+							</div>
+							<div class="btn-group mt-2 mt-sm-0" *ngIf="item.loanstatus==4">
+								<button type="button" class="btn btn-sm btn-danger-soft me-2 mb-0"
+									(click)="OpenCreateDialog(item.lenderid,item.loaneeid,item.firstname)" >Report
+									Store</button>
+								<button type="button" class="btn btn-sm btn-info-soft me-2 mb-0"
+									(click)="ShowPaymentsDialog(item.loanid,item.bankaccount,item.loanstatus)" >Show
+									Payments</button>
+
+
+							</div>
+							<div class="btn-group mt-2 mt-sm-0" *ngIf="item.loanstatus==0">
+								<button type="button" class="btn btn-sm btn-danger-soft me-2 mb-0"
+									(click)="CancelSelectedLoan(item.loanid,item.lenderid,item.firstname,item.email)" joyrideStep="canclestep" title="دليل المستخدم" text="في حالة انه لم تتم الموافقة على القرض بعد من قبل الشركة المقرضة ، يمكنك من هنا التراجع عن طلب القرض">Cancel
+									Request</button>
+
+							</div>
+							<!-- <div class="btn-group mt-2 mt-sm-0" *ngIf="item.loanstatus==2">
+								<button type="button" class="btn btn-sm btn-danger-soft me-2 mb-0"
+									(click)="CancelSelectedLoan(item.loanid,item.lenderid,item.firstname,item.email)" >Cancel
+									Request</button>
+
+
+
+							</div> -->
+						</div>
+
+						<!-- Divider -->
+						<hr>
+
+						<!-- Plan Benefits -->
+						<div class="row">
+							<h6 class="mb-3">The plan includes</h6>
+							<div class="col-md-6">
+								<ul class="list-unstyled">
+									<li class="mb-3 h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Category : {{
+										item.categoryname }}</li>
+									<li class="mb-3 h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Lender Store : <a
+											[href]="item.siteurl" target="_blank">{{ item.firstname }}</a></li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<ul class="list-unstyled">
+
+									<li class="mb-3 h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Phone Number : {{
+										item.phonenum }}</li>
+									<li class="h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Address : {{
+										item.address }}</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<ul class="list-unstyled">
+								<li class="mb-3 h6 fw-light"><i class="bi bi-patch-check-fill text-success me-2"></i>{{
+									item.descriptions }}</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<!-- Main content END -->
+			</div> <!-- Row END -->
+		</div>
+
+	</div>
+	<div class="container justify-content" *ngFor="let item of ConfirmationLoans">
+
+		<div class="container">
+			<div class="row justify-content-center">
+
+				<!-- Left sidebar START -->
+
+				<!-- Left sidebar END -->
+
+				<!-- Main content START -->
+				<div class="col-xl-9">
+					<div class="card card-body bg-transparent border rounded-3">
+
+						<!-- Update plan START -->
+						<div class="row g-4">
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>Loan Activation</span>
+								<h4>{{ Stat[item.loanstatus] }}</h4>
+							</div>
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>Duration</span>
+								<h4>{{ item.totalmonths }} month/s</h4>
+							</div>
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>Cost</span>
+								<h4>${{ item.monthlyamount }}/Month</h4>
+							</div>
+
+							<!-- Update plan item -->
+							<div class="col-6 col-lg-3">
+								<span>End Date</span>
+								<h4>{{ item.enddate|slice:0:10 }}</h4>
+							</div>
+						</div>
+						<!-- Update plan END -->
+
+						<!-- Progress bar -->
+						<div class="overflow-hidden my-4">
+							<div class="progress progress-sm bg-primary bg-opacity-10">
+								<mat-progress-bar mode="determinate"
+									[value]="getPercentage(item.totalprice,item.totalprice-item.estimatedprice)"></mat-progress-bar>
+
+							</div>
+						</div>
+
+						<!-- Button -->
+						<div class="d-sm-flex justify-content-sm-between align-items-center">
+							<div>
+								<!-- Switch Content -->
+
+								<p class="mb-0 small">Your plan will automatically renew on: {{
+									item.startdate|slice:0:10 }}. Payment Amount: ${{ item.monthlyamount }}</p>
+							</div>
+							<!-- Buttons -->
+
+
+							<div class="btn-group mt-2 mt-sm-0"  *ngIf="item.loanstatus==2">
+								<button type="button" class="btn btn-sm btn-success-soft me-2 mb-0"
+									(click)="OpenConfirm(item.email,item.firstname,item.loanid,item.meetingid)" joyrideStep="confrimstep" title="دليل المستخدم" text="  من هنا يمكنك تأكيد عملية القرض و الموافقة على تفاصيل القرض مثل تاريخ البدء بالدفع و تاريخ الانتهاء من القرض ، اضافة لفترة التسديد و قيمة القسط في كل شهر ">Confirm
+									Loan</button>
+
+							</div>
+							<div class="btn-group mt-2 mt-sm-0" *ngIf="item.loanstatus==1">
+								<button type="button" class="btn btn-sm btn-warning-soft me-2 mb-0"
+									 joyrideStep="confrimstep" title="دليل المستخدم" text="  من هنا يمكنك تتبع المقابلة التي نظمتها الشركة المقرضة ، سوف يتم توجيهك الى الاجتماع "><a [href]="item.meetingurl">Join Meeting</a>
+									</button>
+
+							</div>
+						</div>
+
+						<!-- Divider -->
+						<hr>
+
+						<!-- Plan Benefits -->
+						<div class="row">
+							<h6 class="mb-3">The plan includes</h6>
+							<div class="col-md-6">
+								<ul class="list-unstyled">
+									<li class="mb-3 h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Category : {{
+										item.categoryname }}</li>
+									<li class="mb-3 h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Lender Store : <a
+											[href]="item.siteurl" target="_blank">{{ item.firstname }}</a></li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<ul class="list-unstyled">
+
+									<li class="mb-3 h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Phone Number : {{
+										item.phonenum }}</li>
+									<li class="h6 fw-light"><i
+											class="bi bi-patch-check-fill text-success me-2"></i>Address : {{
+										item.address }}</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<ul class="list-unstyled">
+								<li class="mb-3 h6 fw-light"><i class="bi bi-patch-check-fill text-success me-2"></i>{{
+									item.descriptions }}</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<!-- Main content END -->
+			</div> <!-- Row END -->
+		</div>
+
+	</div>
+	<!--  -->
+</section>
+<footer class="footer">
+<app-lender-footer></app-lender-footer>
+</footer>
+
+<ng-template #Payments>
+
+
+	<div class="container" style="background-color: #3e3e40; width: 400px;">
+		<!-- Billing history START -->
+		<div class="card bg-transparent border rounded-3">
+			<!-- Card header START -->
+			<div class="card-header bg-transparent border-bottom">
+				<h3 class="mb-0">Billing history</h3>
+
+			</div>
+			<!-- Card header END -->
+
+			<!-- Card body START -->
+			<div class="card-body">
+
+				<!-- Title and select START -->
+
+				<!-- Title and select END -->
+
+				<!-- Student list table START -->
+				<div class="table-responsive border-0">
+					<button class="btn btn-danger" style="margin-left: 20px;" (click)="MakePDF()"><i
+							class="bi bi-file-earmark-pdf-fill"></i>Download
+						PDF</button>
+					<table class="table table-dark-gray align-middle p-4 mb-0 table-hover" id="excel-table">
+						<!-- Table head -->
+						<thead>
+							<tr>
+								<th scope="col" class="border-0 rounded-start">Date</th>
+								<th scope="col" class="border-0">Amount</th>
+								<th scope="col" class="border-0">Status</th>
+							</tr>
+						</thead>
+						<!-- Table body -->
+						<tbody>
+							<!-- Table item -->
+							<tr *ngFor="let item of AllPayments">
+								<!-- Date item -->
+								<td>{{ item.paymentdate|slice:0:10 }}</td>
+								<td>{{ item.paymentAmount }}JD</td>
+								<!-- Status item -->
+								<td>
+									<span class="badge bg-success bg-opacity-10 text-success"
+										*ngIf="item.paymenttype == 1">{{ PaymentType[item.paymenttype] }}</span>
+
+									<span class="badge bg-warning bg-opacity-10 text-warning"
+										*ngIf="item.paymenttype == 2">{{ PaymentType[item.paymenttype] }}</span>
+
+									<span class="badge bg-info bg-opacity-10 text-info" *ngIf="item.paymenttype == 3">{{
+										PaymentType[item.paymenttype] }}</span>
+
+									<span class="badge bg-danger bg-opacity-10 text-danger"
+										*ngIf="item.paymenttype == 5">{{ PaymentType[item.paymenttype] }}</span>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- Student list table END -->
+
+
+			</div>
+			<!-- Card body START -->
+		</div>
+		<!-- Billing history END -->
+		<div id="myPaypalButtons" *ngIf="this.ffflagprogeress"></div>
+		<div *ngIf="this.ffflagcompleted">Your loan has been successfully repaid</div>
+
+	</div>
+</ng-template>
+<ng-template #Report>
+	<div style="background-color: #3e3e40;">
+
+		<section class="py-0">
+			<div class="bg-dark p-6 text-center rounded-3 ">
+				<h1 class="text-white m-0">Report {{this.name}}</h1>
+				<!-- Title -->
+
+			</div>
+		</section>
+
+		<section>
+			<div class="container">
+				<div class="card bg-transparent border rounded-3 mb-5">
+					<div id="stepper" class="bs-stepper stepper-outline">
+						<div class="card-body">
+							<div class="bs-stepper-content">
+								<div id="step-1" role="tabpanel" class="content" aria-labelledby="steppertrigger1">
+									<form [formGroup]="GiveComplaintForm">
+
+
+
+										<div class="row">
+											<!-- <div class="col-md-6">
+											<mat-form-field appearance="fill">
+												<mat-label>Start Date</mat-label>
+												<input matInput [matDatepicker]="picker3" formControlName='dateofcomplaints'
+													name="dateofcomplaints">
+												<mat-datepicker-toggle matSuffix
+													[for]="picker3"></mat-datepicker-toggle>
+												<mat-datepicker #picker3></mat-datepicker>
+											</mat-form-field>
+										</div> -->
+
+
+											<div class="row">
+
+
+												<div class="col-lg-12">
+
+													<div class="input-group">
+														<span class="input-group-text bg-light">With textarea</span>
+														<textarea class="form-control border-0 bg-light rounded-end"
+															aria-label="With textarea"
+															formControlName="compliantnotes"></textarea>
+													</div>
+												</div>
+												<div class="form-text text-danger"
+													*ngIf="compliant.errors?.['required'] && compliant.touched">
+													compliant is required
+												</div>
+
+												<div class="d-flex justify-content-end mt-3">
+													<button class="btn btn-primary" mat-dialog-close value="Create"
+														(click)="CreateComplaint()">Send</button>
+
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</ng-template>
+<ng-template #Postpone>
+	<!-- <div style="background-color: #3e3e40;">
+		<h2 mat-dialog-content style="color: white;">Request Postpone for this Loan ?</h2>
+		<div mat-dialog-actions>
+			<input type="button" mat-dialog-close class="btn btn-success" value="Yes" (click)="RequestPostpone()">
+			<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+		</div>
+	</div> -->
+</ng-template>
+<ng-template #CancelLoan>
+	<!-- <div style="background-color: #3e3e40;">
+		<h2 mat-dialog-content style="color: white;">Do you want to DELETE this loan request?</h2>
+		<div mat-dialog-actions>
+			<input type="button" mat-dialog-close class="btn btn-success" value="Yes" (click)="RequestCancelation()">
+			<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+		</div>
+	</div> -->
+</ng-template>
+<ng-template #Reject>
+	<div style="background-color: #3e3e40;">
+		<h2 mat-dialog-content style="color: white;"> Cacncle Loan ?</h2>
+		<div mat-dialog-actions>
+			<input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="RejectLoan()">
+			<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+		</div>
+	</div>
+</ng-template>
+<ng-template #Confirm>
+	<div style="background-color: #3e3e40;">
+		<h2 mat-dialog-content style="color: white;">Confrim Loan ?</h2>
+		<div mat-dialog-actions>
+			<input type="button" mat-dialog-close class="btn btn-success" value="Yes" (click)="ConfirmLoan()">
+			<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+		</div>
+	</div>
+</ng-template>
+<ng-template #Feedback>
+	<div style="background-color: #3e3e40; text-align: center;">
+		<h2 mat-dialog-content style="color: white;">Do you want to share your feedback for this LenderStore</h2>
+		<ngb-rating style="color: yellow; font-size: 30px; display: inline-block;" [max]="5" [(rate)]="feedbackk"
+			[readonly]="false" [(ngModel)]="feedbackk"></ngb-rating>
+		<div style="margin-top: 20px;">
+			<input type="button" mat-dialog-close class="btn btn-success" value="Done"
+				(click)="Givefeedback(feedbackk)">
+			<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+		</div>
+	</div>
+
+</ng-template>

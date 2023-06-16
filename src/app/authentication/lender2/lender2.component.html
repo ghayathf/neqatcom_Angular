@@ -1,0 +1,197 @@
+<main>
+    <section class="p-0 d-flex align-items-center position-relative overflow-hidden">
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left -->
+                <div class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10  "
+                    height="100%">
+                    <div class="p-3 p-lg-5">
+                        <!-- Title -->
+                        <div class="text-center">
+                            <h2 class="fw-bold">Welcome to our largest community</h2>
+                            <p class="mb-0 h6 fw-light">Let's deal with new offer today!</p>
+                        </div>
+                        <!-- SVG Image -->
+                        <img src="../../../assets/HomeAssets/images/element/05.svg" class="mt-5" alt="">
+                        <!-- Info -->
+                        <div class="d-sm-flex mt-5 align-items-center justify-content-center">
+                            <!-- Avatar group -->
+                            <ul class="avatar-group mb-2 mb-sm-0">
+                                <li class="avatar avatar-sm">
+                                    <img class="avatar-img rounded-circle"
+                                        src="https://media.istockphoto.com/id/1407759041/photo/confident-happy-beautiful-hispanic-student-girl-indoor-head-shot-portrait.webp?b=1&s=170667a&w=0&k=20&c=--Ei0owZ8KqwVppB5o0bMRG4aNV8VA0HHnsH1YfuxAw="
+                                        alt="avatar">
+                                </li>
+                                <li class="avatar avatar-sm">
+                                    <img class="avatar-img rounded-circle"
+                                        src="https://media.istockphoto.com/id/1406197730/photo/portrait-of-a-young-handsome-indian-man.webp?b=1&s=170667a&w=0&k=20&c=KtmKHyOE6MJV0w2DiGX8P4399KHNbZ3p8lCjTEabGcY="
+                                        alt="avatar">
+                                </li>
+                                <li class="avatar avatar-sm">
+                                    <img class="avatar-img rounded-circle"
+                                        src="https://media.istockphoto.com/id/1296338881/photo/young-smiling-muslim-sports-woman-with-hijab-indoors.webp?b=1&s=170667a&w=0&k=20&c=NHKdbGr2ntoXtNz_QnhDq4tDtncwR-OG_I9ZXBjWZGM="
+                                        alt="avatar">
+                                </li>
+                                <li class="avatar avatar-sm">
+                                    <img class="avatar-img rounded-circle"
+                                        src="https://media.istockphoto.com/id/1434687322/photo/portrait-of-serious-and-successful-doctor-man-in-medical-gown-looking-thoughtfully-at-camera.jpg?s=612x612&w=0&k=20&c=UeQDPORJz6_DYYzfufSoity1YZy0pyc48pMCzm9Kovk="
+                                        alt="avatar">
+                                </li>
+                            </ul>
+                            <!-- Content -->
+                            <p class="mb-0 h6 fw-light ms-0 ms-sm-3">4k+ Clients joined us, now it's your turn.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="col-12 col-lg-6 m-auto">
+                    <div class="row my-5">
+                        <div class="col-sm-10 col-xl-8 m-auto">
+                            <!-- Title -->
+                            <img src="assets/images/element/03.svg" class="h-40px mb-2" alt="">
+                            <h2>Sign up for your account!</h2>
+                            <p class="lead mb-4">Nice to see you! Please Sign up with your account.</p>
+
+                            <!-- Form START -->
+                            <form [formGroup]="CreateUserForm">
+                                <!--First Name-->
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Company Name *</label>
+                                    <div class="input-group input-group-lg">
+                                        <span
+                                            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                        <input type="text" class="form-control border-0 bg-light rounded-end ps-1"
+                                            placeholder="First Name" id="exampleInputEmail1"
+                                            formControlName="firstname">
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="FirstName.errors?.['required'] && FirstName.touched">
+                                        First Name is required
+                                    </div>
+                                </div>
+
+                                <!--Address-->
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Address *</label>
+                                    <div class="input-group input-group-lg">
+                                        <span
+                                            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                        <input type="text" class="form-control border-0 bg-light rounded-end ps-1"
+                                            placeholder="Address" id="exampleInputEmail1" formControlName="address">
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Address.errors?.['required'] && Address.touched">
+                                        Address is required
+                                    </div>
+                                </div>
+                                <!--Phone Number-->
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Phone Number *</label>
+                                    <div class="input-group input-group-lg">
+                                        <span
+                                            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                        <input type="text" class="form-control border-0 bg-light rounded-end ps-1"
+                                            placeholder="Phone Number" id="exampleInputEmail1"
+                                            formControlName="phonenum">
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Phone.errors?.['required'] && Phone.touched">
+                                        Phone Number is required
+                                    </div>
+                                    
+                                </div>
+                                <div *ngIf="CreateUserForm.get('phonenum')?.errors?.['minlength']" class="form-text text-danger">
+                                    Phone number should have a minimum of 9 digits.
+                                  </div>
+                                  <div *ngIf="CreateUserForm.get('phonenum')?.errors?.['maxlength']" class="form-text text-danger">
+                                    Phone number should have a maximum of 10 digits.
+                                  </div>
+                                  <div *ngIf="CreateUserForm.get('phonenum')?.errors?.['pattern']" class="form-text text-danger">
+                                    please enter a numbers 
+                                  </div>
+                                <!--Email-->
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email *</label>
+                                    <div class="input-group input-group-lg">
+                                        <span
+                                            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                        <input type="text" class="form-control border-0 bg-light rounded-end ps-1"
+                                            placeholder="Email" id="exampleInputEmail1" formControlName="email">
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+                                        Email is required
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
+                                        Email is Invalid
+                                    </div>
+                                    <div class="form-text text-danger" *ngIf="CreateUserForm.get('email')?.errors?.['emailExists']">
+                                        Email already exists
+                                      </div>
+                                  
+                                </div>
+                                <!--username-->
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">User Name *</label>
+                                    <div class="input-group input-group-lg">
+                                        <span
+                                            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                        <input type="text" class="form-control border-0 bg-light rounded-end ps-1"
+                                            placeholder="username" id="exampleInputEmail1" formControlName="username">
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Username.errors?.['required'] && Username.touched ">
+                                        user name is required
+                                    </div>
+
+                                </div>
+
+                                <!-- Password -->
+                                <div class="mb-4">
+                                    <label for="inputPassword5" class="form-label">Password *</label>
+                                    <div class="input-group input-group-lg">
+                                        <span
+                                            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i
+                                                class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control border-0 bg-light rounded-end ps-1"
+                                            placeholder="*********" id="inputPassword5" formControlName="password">
+
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Password.errors?.['required'] && Password.touched">
+                                        Password is required
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label>
+                                        <input type="checkbox" formControlName="termsAndConditions">
+                                        I accept the terms and conditions
+                                      </label>
+                                </div>
+
+                                <div class="align-items-center mt-0">
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary mb-0" type="button" (click)="CreateUser()"
+                                            [disabled]="CreateUserForm.invalid">Continue</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Form END -->
+
+
+                            <!-- Sign up link -->
+                            <div class=" mt-4 text-center">
+                                <span>Already have an account?<a href="#" routerLink="/login"> Sign in
+                                        here</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Row END -->
+            </div>
+        </div>
+    </section>
+</main>

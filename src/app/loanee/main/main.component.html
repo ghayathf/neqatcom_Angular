@@ -1,0 +1,283 @@
+<app-loaneeheader></app-loaneeheader>
+<!-- =======================
+Page Banner START -->
+
+<section class="py-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bg-dark p-4 text-center rounded-3">
+					<h1 class="text-white m-0">Offer list</h1>
+					<!-- Breadcrumb -->
+					<div class="d-flex justify-content-center">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
+								<li class="breadcrumb-item"><a routerLink="/Loanee">Home</a></li>
+								<li class="breadcrumb-item"><a style="cursor: pointer;" (click)="startTour()">Start Tour?</a></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<hr>
+<!-- =======================
+Page Banner END -->
+
+<!-- =======================
+Inner part START -->
+<section class="pt-4">
+	<div class="container">
+		<!-- Search option START -->
+		<div class="row mb-4 align-items-center">
+      <!-- Search bar -->
+      <div class="col-sm-6 col-xl-4">
+        <form class="border rounded p-2">
+          <div class="input-group input-borderless">
+            <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+            <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset"
+              type="submit"  joyrideStep="secondstep" title="دليل المستخدم" text="يمكنك هنا البحث عن القروض التي تحتاجها ، فقط اكتب اسم الفئة التي تبحث عنها ، مطابخ ، أثاث ، الخ">
+              <i class="fas fa-search fs-6"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col d-flex align-items-center" style="margin-top: 20px;">
+        <!-- <button class="btn btn-success-soft bi bi-mic mb-0" (click)="startRecognition()"  >
+        </button>
+        <button class="btn btn-danger-soft bi bi-mic-mute mb-0 ms-2" (click)="stopRecognition()">
+        </button> -->
+		<button class="btn btn-success-soft bi bi-mic mb-0"
+        (mousedown)="startRecognition()"
+        (mouseup)="stopRecognition()" joyrideStep="fifthstep" title="دليل المستخدم" text="يمكنك من هنا البحث باستخدام البحث الصوتي , قم بالنقر المطول أثناء التكلم"></button>
+		<button class="btn btn-danger-soft bi bi-mic-mute mb-0 ms-2" (click)="returnAllOffers()" joyrideStep="sixthstep" title="دليل المستخدم" text="عند النقر على هذا المفتاح سوف يتم عرض جميع العروض المتوفرة بدون تحديد">
+        </button>
+
+
+      </div>
+
+			<!-- <div>
+				<p>{{ transcription }}</p>
+			</div> -->
+		</div>
+
+
+
+		<!-- Search option END -->
+
+		<!-- Instructor list START -->
+		<div class="row g-4 justify-content-center">
+
+			<!-- Card item START -->
+			<section class="py-5 price-wrap">
+				<div class="container">
+					<div class="row g-4 position-relative mb-4">
+						<!-- SVG decoration -->
+						<figure class="position-absolute top-0 start-0 d-none d-sm-block">
+							<svg width="22px" height="22px" viewBox="0 0 22 22">
+								<polygon class="fill-purple"
+									points="22,8.3 13.7,8.3 13.7,0 8.3,0 8.3,8.3 0,8.3 0,13.7 8.3,13.7 8.3,22 13.7,22 13.7,13.7 22,13.7 ">
+								</polygon>
+							</svg>
+						</figure>
+
+						<!-- Title and Search -->
+						<div class="col-lg-10 mx-auto text-center position-relative">
+							<!-- SVG decoration -->
+							<figure class="position-absolute top-50 end-0 translate-middle-y d-none d-md-block">
+								<svg width="27px" height="27px">
+									<path class="fill-orange"
+										d="M13.122,5.946 L17.679,-0.001 L17.404,7.528 L24.661,5.946 L19.683,11.533 L26.244,15.056 L18.891,16.089 L21.686,23.068 L15.400,19.062 L13.122,26.232 L10.843,19.062 L4.557,23.068 L7.352,16.089 L-0.000,15.056 L6.561,11.533 L1.582,5.946 L8.839,7.528 L8.565,-0.001 L13.122,5.946 Z">
+									</path>
+								</svg>
+							</figure>
+							<!-- Title -->
+							<h1>Affordable Pricing Packages</h1>
+							<p class="mb-4 pb-1">Get the funds you need, when you need them.</p>
+
+							<!-- Switch START -->
+
+							<!-- Switch END -->
+						</div>
+					</div>
+					<!-- Pricing START -->
+					<div class="row g-4">
+
+						<!-- Pricing item START -->
+						<div class="col-md-6 col-xl-4" *ngFor="let item of Offers">
+
+							<!-- <div class="card border rounded-3 p-2 p-sm-4 h-100" data-aos="fade-right"
+								*ngIf="transcription === '' || item.categoryname.toLowerCase().includes(transcription)"> -->
+								<div class="card border rounded-3 p-2 p-sm-4 h-100" data-aos="fade-right"
+    *ngIf="(transcription === '' || item.categoryname.toLowerCase().includes(transcription)) &&
+           (searchText === '' || item.categoryname.toLowerCase().includes(searchText))">
+								<!-- Card Header -->
+								<div class="card-header p-0">
+									<!-- Price and Info -->
+									<div
+										class="d-flex justify-content-between align-items-center p-3 bg-light rounded-2">
+										<!-- Info -->
+										<div joyrideStep="forthstep" title="دليل المستخدم" text="يمكنك هنا النقر على اسم الشركة المقرضة لمزيد من التفاصيل">
+											<a class="mb-0 " style="cursor:pointer"
+												(click)="OpenDetailsDialog(item.lenderid)">Offered By: {{
+												item.firstname
+												}} </a><br>
+											<!-- <div class="badge text-bg-dark mb-0 rounded-pill">{{ item.categoryname }}
+											</div> -->
+										</div>
+										<!-- Price -->
+										<!-- <div>
+											<h4 class="text-success mb-0 plan-price" data-monthly-price="$20"
+												data-annual-price="$570">$20</h4>
+											<p class="small mb-0">/ per user</p>
+										</div> -->
+										<div class="badge text-bg-dark mb-0 rounded-pill">{{ item.categoryname }}
+										</div>
+									</div>
+								</div>
+
+								<!-- Divider -->
+								<div class="position-relative my-3 text-center">
+									<hr>
+									<p class="small position-absolute top-50 start-50 translate-middle bg-body px-3">
+										All
+										plans included</p>
+								</div>
+
+								<!-- Card Body -->
+								<div class="card-body pt-0">
+									<ul class="list-unstyled mt-2 mb-0">
+										<li class="mb-3 h6 fw-light"><i
+												class="bi bi-patch-check-fill text-success me-2"></i>Up to {{
+											item.minmonth }} monthls</li>
+										<li class="mb-3 h6 fw-light"><i
+												class="bi bi-patch-check-fill text-success me-2"></i><a>{{
+												item.descriptions }}</a></li>
+									</ul>
+								</div>
+								<!-- Card Footer -->
+								<div class="card-footer text-center d-grid pb-0">
+									<button type="button" class="btn btn-light mb-0"
+										(click)="RequestLoan(item.offerid,item.minmonth)" joyrideStep="thirdstep" title="دليل المستخدم" text="يمكنك هنا طلب هذا القرض وسوف يتم مراجعة طلبك في أقرب وقت">Request
+										Loan</button>
+								</div>
+							</div>
+						</div>
+						<!-- Pricing item END -->
+
+					</div> <!-- Row END -->
+					<!-- Pricing END -->
+				</div>
+			</section>
+
+		</div>
+		<!-- Instructor list END -->
+
+
+	</div>
+</section>
+
+
+<footer class="footer">
+	<!-- =======================
+Inner part END -->
+	<app-lender-footer></app-lender-footer>
+</footer>
+<ng-template #LenderInfo>
+	<div style="background-color: #3e3e40; overflow-x: hidden; padding: 1%;">
+		<div class="d-flex align-items-center justify-content-center">
+			<div class="text-center">
+				<span class="avatar avatar-xl">
+					<img src="{{ image }}" class="rounded-2" alt="Card image">
+				</span>
+				<h2 class="h1 mb-3">{{ name }}</h2>
+				<div class="star-rating" style="display: inline-block;">
+					<span class="star" style="color: gold; font-size: 2rem;" *ngFor="let star of getStarArray(rate)">
+						&#9733;
+					</span>
+				</div>
+
+				<ul class="list-inline">
+					<ng-container *ngFor="let star of getStarsArray(feedback)">
+						<li class="list-inline-item h6 fw-light me-3 mb-1 mb-sm-0"></li>
+					</ng-container>
+				</ul>
+
+
+
+				<div class="row">
+					<a *ngIf="followFlag"><button (click)="FollowLender()" class="btn btn-primary-soft btn-sm mb-0">
+							Follow </button></a>
+					<a *ngIf="UnFollowFlag"><button (click)="UnFollowLender()" class="btn btn-danger-soft btn-sm mb-0">
+							UnFollow </button></a>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row mt-5">
+
+			<!-- Live support box -->
+			<div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
+				<div class="card card-body shadow p-2 ">
+					<div
+						class="icon-lg bg-success text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5">
+						<i class="fas fa-envelope"></i>
+					</div>
+					<h6>Email</h6>
+					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ email }}</a></p>
+				</div>
+			</div>
+
+
+
+			<!-- Telephone box -->
+			<div class="col-sm-6 col-lg-12 col-xl-6 mb-5 mb-xl-0">
+				<div class="card card-body shadow">
+					<div
+						class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
+						<i class="fas fa-tty"></i>
+					</div>
+					<h6>Telephone</h6>
+					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ phonenum }}</a></p>
+				</div>
+			</div>
+
+			<!-- Address box -->
+			<div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
+				<div class="card card-body shadow">
+					<div
+						class="icon-lg bg-orange text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
+
+						<i class="fas fa-map-marker"></i>
+					</div>
+					<h6>Address</h6>
+					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ address }}</a></p>
+				</div>
+			</div>
+			<div class="col-sm-6 col-lg-12 col-xl-6 mb-5 mb-xl-0">
+				<div class="card card-body shadow">
+					<div
+						class="icon-lg bg-blue text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
+						<i class="fas fa-globe"></i>
+					</div>
+					<h6>Website</h6>
+					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link" [href]="url">Click
+							Here</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>
+<ng-template #ConfirmationBox>
+	<!-- <div style="background-color: #3e3e40;">
+		<h2 mat-dialog-content style="color: white;">Do You Want to Request This Offer?</h2>
+		<div mat-dialog-actions>
+			<input type="button" mat-dialog-close class="btn btn-success" value="Yes" (click)="RequestSelectedOffer()">
+			<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+		</div>
+	</div> -->
+</ng-template>

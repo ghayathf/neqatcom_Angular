@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Neqatcom - Company,Dashboard</title>
+
+</head>
+
+<body>
+
+  <!-- Header START -->
+  <app-lender-header></app-lender-header>
+  <!-- Header END -->
+
+  <!-- **************** MAIN CONTENT START **************** -->
+  <main>
+
+    <!-- =======================
+Page Banner START -->
+    <app-lender-banner></app-lender-banner><!-- =======================
+Page Banner END -->
+
+    <!-- =======================
+Page content START -->
+    <section class="pt-0">
+      <div class="container">
+        <div class="row">
+
+          <!-- Left sidebar START -->
+          <div class="col-xl-3">
+            <!-- Responsive offcanvas body START -->
+            <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+              <!-- Offcanvas header -->
+              <div class="offcanvas-header bg-light">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar"
+                  aria-label="Close"></button>
+              </div>
+              <!-- Offcanvas body -->
+              <div class="offcanvas-body p-3 p-xl-0">
+                <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+                  <!-- Dashboard menu -->
+                  <app-lender-side-bar></app-lender-side-bar>
+                </div>
+              </div>
+            </div>
+            <!-- Responsive offcanvas body END -->
+          </div>
+          <!-- Left sidebar END -->
+
+          <!-- Main content START -->
+          <div class="col-xl-9">
+
+            <!-- Counter boxes START -->
+            <div class="card border bg-transparent rounded-3 mt-4">
+              <!-- Card header START -->
+              <div class="card-header bg-transparent border-bottom">
+                <h3 class="mb-0">Postpone Requests</h3>
+              </div>
+              <!-- Card header END -->
+              <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
+                [fullScreen]="true">
+              </ngx-spinner>
+              <!-- Card body START -->
+              <div class="card-body">
+
+                <!-- Search and select START -->
+
+                <!-- Search and select END -->
+
+                <!-- Student list table START -->
+                <div class="table-responsive border-0">
+                  <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+                    <!-- Table head -->
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border-0 rounded-start">#Loan</th>
+                        <!-- <th scope="col" class="border-0">Course name</th> -->
+                        <th scope="col" class="border-0 ">Loanee</th>
+                        <!-- <th scope="col" class="border-0">Points</th> -->
+                        <th scope="col" class="border-0 rounded-end"></th>
+                      </tr>
+                    </thead>
+
+                    <!-- Table body START -->
+                    <tbody>
+
+                      <!-- Table item -->
+                      <tr *ngFor="let item of postponeRequests">
+                        <td>
+                          <h4 class="table-responsive-title mt-2 mt-md-0 mb-0"><a>{{ item.loanid }}</a></h4>
+                        </td>
+                        <!-- Table data -->
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <!-- Image -->
+
+                            <div>
+                              <!-- Title -->
+                              <a style="cursor: pointer;"
+                                (click)="OpenAccountInfo(item.userimage,item.email,item.firstname,item.lastname,item.creditscore,item.postponecounter,item.loaneeid)">{{item.firstname}}
+                                {{item.lastname}}</a>
+                            </div>
+                          </div>
+                        </td>
+
+                        <!-- Table data -->
+
+
+                        <td class="col-md-2"><button title="حذف" type="button"
+                            (click)="openRejectDialog(item.loanid,item.firstname,item.email,item.loaneeid,item.userid)"
+                            class="btn btn-sm btn-danger-soft me-2 mb-0"><i class="fa fa-times"
+                              aria-hidden="true"></i></button>
+                          <button title="قبول" type="button"
+                            (click)="openAcceptDialog(item.loanid,item.firstname,item.email,item.loaneeid,item.startdate,item.userid)"
+                            class="btn btn-sm btn-info-soft me-2 mb-0"><i class="fa fa-check"
+                              aria-hidden="true"></i></button>
+                        </td>
+
+                        <!-- Table data -->
+
+                      </tr>
+
+                    </tbody>
+                    <!-- Table body END -->
+                  </table>
+                </div>
+                <!-- Student list table END -->
+
+                <!-- Pagination START -->
+
+                <!-- Pagination END -->
+              </div>
+              <!-- Card body START -->
+            </div>
+            <!-- Chart END -->
+
+            <!-- Course List table START -->
+
+            <!-- Course List table END -->
+          </div>
+          <!-- Main content END -->
+        </div><!-- Row END -->
+      </div>
+    </section>
+    <!-- =======================
+Page content END -->
+
+  </main>
+  <!-- **************** MAIN CONTENT END **************** -->
+
+  <!-- =======================
+Footer START -->
+  <footer class="footer">
+    <app-lender-footer></app-lender-footer>
+  </footer>
+  <!-- =======================
+Footer END -->
+
+
+</body>
+
+</html>
+
+<ng-template #RejectPostpone>
+  <!-- <div style="background-color: #3e3e40;">
+    <h2 mat-dialog-content style="color: white;">Would you like to Reject this Postpone Request ?</h2>
+    <div mat-dialog-actions>
+      <input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="RejectRequest()">
+      <input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+    </div>
+  </div> -->
+</ng-template>
+<ng-template #AcceptPostpone>
+  <!-- <div style="background-color: #3e3e40;">
+    <h2 mat-dialog-content style="color: white;">Would you like to Accept this Postpone Request ?</h2>
+    <div mat-dialog-actions>
+      <input type="button" mat-dialog-close class="btn btn-success" value="Yes" (click)="AcceptRequest()">
+      <input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
+    </div>
+  </div> -->
+</ng-template>
+<!-- <ng-template #ViewLoaneeDetials>
+    <div class="account-info" style="background-color: #3e3e40; color: white;">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="avatar-wrapper">
+            <div class="avatar-content">
+              <label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+                <span class="avatar avatar-xl">
+                  <img id="uploadfile-1-preview" class="avatar-content" src="../../../assets/HomeAssets/images/{{LoaneeImage}}" alt="">
+                </span>
+              </label>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="account-content_wrapper">
+            <div class="account-content" id="general">
+              <form name="save__from" class="save__form">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="example-full-width">
+                      <mat-label>Full Name</mat-label>
+                      <div>{{LoaneeFname}} {{LoaneeLname}}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <div>{{LoaneeEmail}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="example-full-width">
+                      <mat-label>Loanee Credit Score</mat-label>
+                      <div>{{LoaneeCredit}}</div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="example-full-width">
+                      <mat-label>Number of Total Postpones</mat-label>
+                      <div>{{LoaneePostponeCounter}}</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template> -->
+<ng-template #ViewLoaneeDetials>
+  <div style="background-color: #3e3e40; overflow-x: hidden; padding: 1%;">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <span class="avatar avatar-xl">
+          <img src="../../../assets/HomeAssets/images/{{LoaneeImage}}" class="rounded-2" alt="Card image">
+        </span>
+        <div class="row">
+          <h2 class="h1 mb-3">{{LoaneeFname}} {{LoaneeLname}}</h2>
+
+          <div id='myChart'></div>
+        </div>
+        <div *ngIf="LoaneeCreditScoreStatus"> New Loanee </div>
+      </div>
+    </div>
+
+
+    <div class="row mt-5" style="width: 700px;">
+
+      <!-- Live support box -->
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
+        <div class="card card-body shadow ">
+          <div
+            class="icon-lg bg-success text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h6>Email</h6>
+          <p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{LoaneeEmail}}</a></p>
+        </div>
+      </div>
+
+
+
+      <!-- Telephone box -->
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
+        <div class="card card-body shadow">
+          <div
+            class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5">
+            <i class="fas fa-times">123</i>
+          </div>
+
+          <h6>Postpone Counter</h6>
+          <p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ LoaneePostponeCounter }}
+              times</a></p>
+        </div>
+      </div>
+
+      <!-- Address box -->
+
+
+    </div>
+  </div>
+</ng-template>

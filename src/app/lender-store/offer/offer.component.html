@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Neqatcom - Company,Dashboard</title>
+
+</head>
+
+<body>
+
+    <!-- Header START -->
+    <app-lender-header></app-lender-header>
+    <!-- Header END -->
+
+    <!-- **************** MAIN CONTENT START **************** -->
+    <main>
+
+        <!-- =======================
+Page Banner START -->
+        <app-lender-banner></app-lender-banner><!-- =======================
+Page Banner END -->
+
+        <!-- =======================
+Page content START -->
+        <section class="pt-0">
+            <div class="container">
+                <div class="row">
+                    <!-- Left sidebar START -->
+                    <div class="col-xl-3">
+                        <!-- Responsive offcanvas body START -->
+                        <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+                            <!-- Offcanvas header -->
+                            <div class="offcanvas-header bg-light">
+                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                    data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+                            </div>
+                            <!-- Offcanvas body -->
+                            <div class="offcanvas-body p-3 p-xl-0">
+                                <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+                                    <!-- Dashboard menu -->
+                                    <app-lender-side-bar></app-lender-side-bar>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Responsive offcanvas body END -->
+                    </div>
+                    <!-- Left sidebar END -->
+
+                    <!-- Main content START -->
+                    <div class="col-xl-9">
+
+                        <!-- Counter boxes START -->
+
+                        <!-- Counter boxes END -->
+                        <div class="card border bg-transparent rounded-3">
+                            <!-- Card header START -->
+                            <div
+                                class="card-header bg-transparent border-bottom d-flex justify-content-between align-items-center">
+                                <div class="col-md-3 order-2">
+                                    <!-- <button>Create A New Offer</button> -->
+                                    <button class="btn btn-sm btn-primary me-2 mb-0" title="أضف عرض جديد"
+                                        (click)="OpenCreateDialog()">Create
+                                        A New Offer</button>
+                                </div>
+                                <h3 class="mb-0 order-1 text-end">My Offers</h3>
+                            </div>
+
+                            <!-- Card header END -->
+
+                            <!-- Card body START -->
+                            <div class="card-body">
+
+                                <!-- Search and select START -->
+
+                                <!-- Search and select END -->
+
+                                <!-- Student list table START -->
+                                <div class="table-responsive border-0">
+                                    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+                                        <!-- Table head -->
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="border-0 rounded-start">Description</th>
+
+                                                <th scope="col" class="border-0">Min Month</th>
+
+                                                <th scope="col" class="border-0 rounded-end">Action</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <!-- Table body START -->
+                                        <tbody>
+                                            <!-- Table item -->
+                                            <tr *ngFor="let item of offers">
+                                                <!-- Table data -->
+
+                                                <!-- Table data -->
+                                                <td>
+                                                    <div class="d-flex align-items-center position-relative">
+                                                        <div class="cols-3" style="word-break: break-all;">
+                                                            {{item.descriptions}}</div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center position-relative">
+                                                        <div class="cols-3" style="word-break: break-all;">
+                                                            {{item.minmonth}}</div>
+                                                    </div>
+                                                </td>
+
+                                                <!-- Table data -->
+                                                <td>
+                                                    <div style="display: flex; flex-direction: row;">
+                                                        <button type="button" (click)="openDeleteDialog(item.offerid)"
+                                                            title="حذف" class="btn btn-sm btn-danger-soft me-2 mb-0"><i
+                                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        <button type="button" title="تعديل"
+                                                            (click)="OpenUpdateOfferDialog(item.offerid)"
+                                                            class="btn btn-sm btn-info-soft me-2 mb-0"><i
+                                                                class="fa fa-wrench" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- Table body END -->
+                                    </table>
+                                </div>
+                                <!-- Student list table END -->
+
+
+                            </div>
+                            <!-- Card body START -->
+                        </div>
+                        <!-- Chart START -->
+
+                        <!-- Chart END -->
+
+                        <!-- Course List table START -->
+
+                        <!-- Course List table END -->
+                    </div>
+                    <!-- Main content END -->
+                </div><!-- Row END -->
+            </div>
+        </section>
+        <!-- =======================
+Page content END -->
+
+    </main>
+    <!-- **************** MAIN CONTENT END **************** -->
+
+    <!-- =======================
+Footer START -->
+    <footer class="footer">
+        <app-lender-footer></app-lender-footer>
+    </footer>
+    <!-- =======================
+Footer END -->
+
+
+</body>
+
+</html>
+<ng-template #UpdateForm>
+    <div style=" overflow-y: hidden; background-color: #3e3e40; overflow: hidden;">
+
+        <section class="py-0">
+            <section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+                style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+                <!-- Main banner background image -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <!-- Title -->
+                            <h1 class="text-white">Update Offer</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">
+
+
+                <div class="card bg-transparent border rounded-3 mb-5">
+                    <div id="stepper" class="bs-stepper stepper-outline">
+
+
+                        <!-- Card body START -->
+                        <div class="card-body">
+                            <!-- Step content START -->
+                            <div class="bs-stepper-content">
+
+
+                                <!-- Step 1 content START -->
+                                <div id="step-1" role="tabpanel" class="content" aria-labelledby="steppertrigger1">
+
+                                    <!-- Basic information START -->
+                                    <!-- Course title -->
+
+                                    <form [formGroup]="UpdateOfferForm" class="example-form">
+
+                                        <div class="row mb-3">
+                                            <div class="input-group input-group-lg">
+                                                <span
+                                                    class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                                <input type="text"
+                                                    class="form-control border-0 bg-light rounded-end ps-1"
+                                                    placeholder="Description" id="exampleInputEmail1"
+                                                    formControlName="descriptions">
+                                            </div>
+                                            <div class="form-text text-danger"
+                                                *ngIf="Descriptions.errors?.['required'] && Descriptions.touched">
+                                                description is required
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+
+                                            <div class="input-group input-group-lg">
+                                                <span
+                                                    class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                                <input type="number"
+                                                    class="form-control border-0 bg-light rounded-end ps-1"
+                                                    placeholder="Minimum Mounth" id="exampleInputEmail1"
+                                                    formControlName="minmonth" min="1">
+                                            </div>
+                                            <div class="form-text text-danger"
+                                                *ngIf="MinMounth.errors?.['required'] && MinMounth.touched">
+                                                Minimum Mounth is required
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="input-group input-group-lg">
+
+                                                <select class="form-select bg-light" id="inputGroupSelect01"
+                                                    name="Catname" formControlName="categoryid"
+                                                    [(ngModel)]="selectedUpdatedCat">
+                                                    <option *ngFor="let cate of categoryService.categories"
+                                                        [value]="cate.categoryid"> {{cate.categoryname}}</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-text text-danger"
+                                                *ngIf="CategoryId.errors?.['required'] && CategoryId.touched">
+                                                Type of category is required
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+
+
+
+
+                                    <!-- Upload image END -->
+
+
+                                    <!-- Step 1 button -->
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button mat-dialog-close class="btn btn-primary next-btn mb-0"
+                                            [disabled]="UpdateOfferForm.invalid" (click)="UpdateOffer()"
+                                            class="btn btn-sm btn-primary me-2 mb-0">Update</button>
+
+                                    </div>
+
+                                    <!-- Basic information START -->
+                                </div>
+                                <!-- Step 1 content END -->
+
+                            </div>
+                        </div>
+                        <!-- Card body END -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</ng-template>
+
+<ng-template #DeleteForm>
+    <!-- <div style="background-color: #3e3e40;"><span class="swal2-icon swal2-warning"></span>
+        <h2 mat-dialog-content style="color: white;">
+            
+
+            Would you like to Delete this Offer ?
+        </h2>
+
+        <div mat-dialog-actions>
+            <input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="DeleteOffer()">
+            <input type="button" mat-dialog-close class="btn btn-error" value="No">
+        </div>
+    </div> -->
+</ng-template>
+
+<ng-template #CreateForm>
+    <div style=" overflow-y: hidden; background-color: #3e3e40; overflow: hidden;">
+
+        <section class="py-0">
+            <section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+                style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+                <!-- Main banner background image -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <!-- Title -->
+                            <h1 class="text-white">Create New Offer</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto text-center">
+                        <!-- Content -->
+                    </div>
+                </div>
+
+                <div class="card bg-transparent border rounded-3 mb-5">
+                    <div id="stepper" class="bs-stepper stepper-outline">
+
+
+                        <!-- Card body START -->
+                        <div class="card-body">
+                            <!-- Step content START -->
+                            <div class="bs-stepper-content">
+
+
+                                <!-- Step 1 content START -->
+                                <div id="step-1" role="tabpanel" class="content" aria-labelledby="steppertrigger1">
+                                    <!-- Title -->
+
+
+                                    <!-- Course title -->
+                                    <div class="col-12">
+                                        <form action="#" method="post" [formGroup]="CreateOfferForm">
+                                            <div class="row mb-3">
+                                                <div class="input-group input-group-lg">
+                                                    <span
+                                                        class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                                    <input type="text"
+                                                        class="form-control border-0 bg-light rounded-end ps-1"
+                                                        placeholder="Description" id="exampleInputEmail1"
+                                                        formControlName="descriptions">
+                                                </div>
+                                                <div class="form-text text-danger"
+                                                    *ngIf="Descriptions.errors?.['required'] && Descriptions.touched">
+                                                    description is required
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+
+                                                <div class="input-group input-group-lg">
+                                                    <span
+                                                        class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+                                                    <input type="number"
+                                                        class="form-control border-0 bg-light rounded-end ps-1"
+                                                        placeholder="Minimum Mounth" id="exampleInputEmail1"
+                                                        formControlName="minmonth" min="1">
+                                                </div>
+                                                <div class="form-text text-danger"
+                                                    *ngIf="MinMounth.errors?.['required'] && MinMounth.touched">
+                                                    Minimum Mounth is required
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="input-group input-group-lg">
+
+                                                    <select formControlName="categoryid" class="form-select bg-light"
+                                                        id="inputGroupSelect01">
+                                                        <option *ngFor="let cate of categoryService.categories"
+                                                            [value]="cate.categoryid"> {{cate.categoryname}}</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-text text-danger"
+                                                    *ngIf="CategoryId.errors?.['required'] && CategoryId.touched">
+                                                    Type of category is required
+                                                </div>
+
+                                            </div>
+                                            <button class="btn btn-primary next-btn mb-0" (click)="CreateOffer()"
+                                                class="btn btn-sm btn-primary me-2 mb-0">Create</button>
+                                        </form>
+                                    </div>
+
+
+
+                                </div>
+                                <!-- Upload image END -->
+
+
+
+
+                                <!-- Basic information START -->
+                            </div>
+                            <!-- Step 1 content END -->
+
+                        </div>
+                    </div>
+                    <!-- Card body END -->
+                </div>
+            </div>
+        </section>
+        <!-- =======================
+Steps END -->
+    </div>
+
+
+</ng-template>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">

@@ -1,0 +1,36 @@
+/* .credit-score-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .credit-score-digit {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+  }
+   */
+#myChart {
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+}
+
+.zc-ref {
+  display: none;
+}
+
+.page-content {
+  min-height: calc(100vh - (headerHeight + footerHeight));
+  /* Adjust the header and footer heights accordingly */
+}
+
+.footer {
+  /* Add appropriate styling for your footer */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,0 +1,280 @@
+<app-admin-side-bar></app-admin-side-bar>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+</ngx-spinner>
+<div class="page-content">
+
+  <!-- Top bar START -->
+  <app-admin-header></app-admin-header>
+  <!-- Top bar END -->
+
+  <!-- Page main content START -->
+  <div class="page-content-wrapper border">
+
+      <!-- Title -->
+      <div class="row">
+          <div class="col-12 mb-3">
+              <h1 class="h3 mb-2 mb-sm-0">Dashboard</h1>
+          </div>
+      </div>
+
+      <!-- Counter boxes START -->
+      <div class="row g-4 mb-4">
+          <!-- Counter item -->
+          <div class="col-md-6 col-xxl-3">
+              <div class="card card-body bg-warning bg-opacity-15 p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center">
+                      <!-- Digit -->
+                      <div>
+                          <h2 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
+                              data-purecounter-end="1958" data-purecounter-delay="200">{{this.lenders}}</h2>
+                          <span class="mb-0 h6 fw-light">Lenders</span>
+                      </div>
+                      <!-- Icon -->
+                      <div class="icon-lg rounded-circle bg-warning text-white mb-0"><i
+                              class="bi bi-shop fa-fw"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Counter item -->
+          <div class="col-md-6 col-xxl-3">
+              <div class="card card-body bg-purple bg-opacity-10 p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center">
+                      <!-- Digit -->
+                      <div>
+                          <h2 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
+                              data-purecounter-end="1600" data-purecounter-delay="200">{{this.loanees}}</h2>
+                          <span class="mb-0 h6 fw-light">Loanees</span>
+                      </div>
+                      <!-- Icon -->
+                      <div class="icon-lg rounded-circle bg-purple text-white mb-0"><i
+                              class="bi bi-person-heart fa-fw"></i></div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Counter item -->
+          <div class="col-md-6 col-xxl-3">
+              <div class="card card-body bg-primary bg-opacity-10 p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center">
+                      <!-- Digit -->
+                      <div>
+                          <h2 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
+                              data-purecounter-end="1235" data-purecounter-delay="200">{{this.TestimonialsLength}}</h2>
+                          <span class="mb-0 h6 fw-light">Testimonials</span>
+                      </div>
+                      <!-- Icon -->
+                      <div class="icon-lg rounded-circle bg-primary text-white mb-0"><i
+                              class="bi bi-envelope-paper-heart fa-fw"></i></div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Counter item -->
+          <div class="col-md-6 col-xxl-3">
+              <div class="card card-body bg-success bg-opacity-10 p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center">
+                      <!-- Digit -->
+                      <div>
+                          <div class="d-flex">
+                              <h2 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
+                                  data-purecounter-end="845" data-purecounter-delay="200">{{ this.complaintsLength}}</h2>
+                          </div>
+                          <span class="mb-0 h6 fw-light">Complaints</span>
+                      </div>
+                      <!-- Icon -->
+                      <div class="icon-lg rounded-circle bg-success text-white mb-0"><i
+                              class="bi bi-flag-fill fa-fw"></i></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Counter boxes END -->
+
+      <!-- Chart and Ticket START -->
+      <div class="row g-4 mb-4">
+
+          <!-- Chart START -->
+          <div class="col-xxl-8">
+            <div class="card shadow h-100">
+
+              <!-- Card header -->
+              <div class="card-header p-4 border-bottom">
+                <h3 class="card-header-title">Charts</h3>
+              </div>
+              <button class="btn btn-danger" style="margin-left: 20px;" (click)="generatePDF()">
+                <i class="bi bi-file-earmark-pdf-fill"></i> Download PDF
+              </button>
+
+              <!-- Card body -->
+              <div class="card-body row">
+                <!-- Apex chart -->
+                <div class="col">
+                  <div style="display: block;" id="chartContainer">
+                    <canvas baseChart width="300" height="300" *ngIf="creditmap"
+                      [datasets]="scatterChartDatasets"
+                      [options]="scatterChartOptions"
+                      [type]="'scatter'">
+                    </canvas>
+                  </div>
+                </div>
+                <div class="col" id="chart-container2">
+                  <canvas baseChart width="350" height="350"
+                    [type]="'pie'"
+                    [datasets]="pieChartDatasets"
+                    [labels]="pieChartLabels"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart END -->
+
+          <!-- Ticket START -->
+          <div class="col-xxl-4">
+              <div class="card shadow h-100">
+                  <!-- Card header -->
+                  <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4">
+                      <h3 class="card-header-title">Testimonials</h3>
+                  </div>
+
+                  <!-- Card body START -->
+                  <div class="card-body p-4">
+
+                      <!-- Ticket item START -->
+                      <div class="d-flex justify-content-between position-relative" *ngFor="let item of testimonials">
+                          <div class="d-sm-flex">
+                              <!-- Avatar -->
+
+                              <!-- Info -->
+                              <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
+                                  <h6 class="mb-0"><a  class="stretched-link">{{ item.firstname }}</a></h6>
+                                  <p class="mb-0">{{ item.message }}</p>
+                                  <span class="small">{{ item.phonenum }}</span>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Ticket item END -->
+
+                      <hr><!-- Divider -->
+                  </div>
+                  <!-- Card body END -->
+              </div>
+          </div>
+          <!-- Ticket END -->
+      </div>
+      <!-- Chart and Ticket END -->
+
+      <!-- Top listed Cards START -->
+      <div class="row g-4">
+
+          <!-- Top instructors START -->
+          <div class="col-lg-6 col-xxl-4">
+              <div class="card shadow h-100">
+
+                  <!-- Card header -->
+                  <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4">
+                      <h3 class="card-header-title">Loanees</h3>
+                  </div>
+
+                  <!-- Card body START -->
+                  <div class="card-body p-4">
+
+                      <!-- Instructor item START -->
+                      <div class="d-sm-flex justify-content-between align-items-center"
+                          *ngFor="let item of AllLoanees">
+                          <!-- Avatar and info -->
+                          <div class="d-sm-flex align-items-center mb-1 mb-sm-0">
+                              <!-- Avatar -->
+                              <div class="avatar avatar-md flex-shrink-0">
+                                  <img class="avatar-img rounded-circle"
+                                      src="{{item.imagename}}" alt="">
+                              </div>
+                              <!-- Info -->
+                              <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
+                                  <h3 class="mb-1">{{ item.username }}<i
+                                          class="bi bi-patch-check-fill text-info small ms-1"></i></h3>
+                                  <ul class="list-inline mb-0 small">
+                                      <li class="list-inline-item fw-light me-2 mb-1 mb-sm-0"><i
+                                              class="fas fa-envelope text-purple me-1"></i>{{ item.email }}</li>
+                                      <li class="list-inline-item fw-light me-2 mb-1 mb-sm-0">
+                                          <i class="fas fa-phone text-warning me-1"></i>{{ item.phonenumber }}
+                                      </li>
+                                  </ul>
+                                  <hr>
+                              </div>
+                          </div>
+                          <!-- Button -->
+
+
+                      </div>
+                      <!-- Instructor item END -->
+                      <!-- Divider -->
+
+                  </div>
+
+                  <!-- Card body END -->
+              </div>
+          </div>
+          <!-- Top instructors END -->
+
+          <!-- Notice Board START -->
+          <div class="col-lg-6 col-xxl-4">
+            <div class="card shadow h-100">
+              <!-- Card header -->
+              <div class="card-header border-bottom p-4">
+                <h3 class="card-header-title">Complaints For Loanees</h3>
+              </div>
+
+              <!-- Card body START -->
+              <div class="card-body p-4">
+                <div class="custom-scrollbar h-300px" style="overflow-y: scroll;">
+
+                  <!-- Notice Board item START -->
+                  <ng-container *ngFor="let item of complaints; let i = index">
+                    <div class="d-flex justify-content-between position-relative">
+                      <!-- Course item -->
+                      <div class="course-item d-flex align-items-center">
+                        <div class="icon-lg bg-orange bg-opacity-10 text-orange rounded-2 flex-shrink-0">
+                          <img class="avatar-img rounded" src="{{item.userimage}}" alt="">
+                        </div>
+                        <div class="course-info ms-0 ms-sm-2 mt-2 mt-sm-0">
+                          <h3 class="mb-1">{{ item.firstname }} {{ item.lastname }}</h3>
+                          <ul class="list-inline mb-0 small">
+                            <li class="list-inline-item fw-light me-2 mb-1 mb-sm-0">{{ item.compliantnotes }}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <hr><!-- Horizontal line -->
+                    <br><!-- Line break -->
+                  </ng-container>
+                  <!-- Notice Board item END -->
+
+                </div>
+              </div>
+
+
+
+              <!-- Card body END -->
+            </div>
+          </div>
+
+          <!-- Notice Board END -->
+
+          <!-- Traffic sources START -->
+
+          <!-- Traffic sources END -->
+
+      </div>
+      <!-- Top listed Cards END -->
+
+  </div>
+  <!-- Page main content END -->
+</div>
+

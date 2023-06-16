@@ -1,0 +1,47 @@
+.leaflet-map {
+  height: 500px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+::ng-deep .backdropBackground {
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+::ng-deep .mat-dialog-container {
+  border-radius: 15px !important;
+  overflow: hidden;
+}
+
+#myChart {
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+}
+
+/* #myChart {
+    min-height: 50px;
+    width: 50%;
+    margin: 0 auto;
+    max-width: 400px;
+    height: 50px;
+  } */
+.page-content {
+  min-height: calc(100vh - (headerHeight + footerHeight));
+  /* Adjust the header and footer heights accordingly */
+}
+
+.footer {
+  /* Add appropriate styling for your footer */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

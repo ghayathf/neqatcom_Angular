@@ -1,0 +1,20 @@
+table td:last-child button {
+  margin-left: 1rem;
+}
+
+::ng-deep .backdropBackground {
+  backdrop-filter: blur(20px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.page-content {
+  min-height: calc(100vh - (headerHeight + footerHeight));
+  /* Adjust the header and footer heights accordingly */
+}
+
+.footer {
+  /* Add appropriate styling for your footer */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

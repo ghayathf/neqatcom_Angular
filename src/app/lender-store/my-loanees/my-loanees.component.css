@@ -1,0 +1,38 @@
+.custom-textarea {
+  resize: none;
+  /* Prevent textarea resizing */
+  min-height: 150px;
+  /* Set a minimum height */
+  padding: 10px;
+  /* Add some padding */
+  border: 1px solid #ccc;
+  /* Add a border */
+  border-radius: 8px;
+  /* Add border radius */
+}
+
+.curved-dialog {
+  border-radius: 10px;
+}
+
+#myChart {
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+}
+
+.zc-ref {
+  display: none;
+}
+
+.page-content {
+  min-height: calc(100vh - (headerHeight + footerHeight));
+  /* Adjust the header and footer heights accordingly */
+}
+
+.footer {
+  /* Add appropriate styling for your footer */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

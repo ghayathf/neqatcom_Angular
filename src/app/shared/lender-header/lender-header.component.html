@@ -1,0 +1,148 @@
+<header class="navbar-light navbar-sticky">
+  <!-- Logo Nav START -->
+  <nav class="navbar navbar-expand-xl">
+    <div class="container">
+      <!-- Logo START -->
+      <a class="navbar-brand" href="index.html">
+        <img class="light-mode-item navbar-brand-item" src="../../../assets/HomeAssets/images/506.png" alt="logo" width="200px" height="200px">
+        <img class="dark-mode-item navbar-brand-item" src="../../../assets/HomeAssets/images/506.png" alt="logo"
+        width="200px" height="200px">
+      </a>
+      <!-- Logo END -->
+
+      <!-- Responsive navbar toggler -->
+      <button class="navbar-toggler ms-sm-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-animation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <!-- Main navbar START -->
+      <div class="navbar-collapse collapse" id="navbarCollapse">
+        <!-- Nav Search START -->
+
+        <!-- Nav Search END -->
+
+        <!-- Nav Main menu START -->
+        <ul class="navbar-nav navbar-nav-scroll ms-auto">
+          <!-- Nav item 1 Demos -->
+
+
+
+
+          <!-- Nav item 3 Components -->
+          <!-- <li class="nav-item"><a class="nav-link" routerLink="/Loanee/Testimonial">Testimonial</a></li> -->
+          <li class="nav-item ms-2 ms-md-3 dropdown">
+            <a class="btn btn-light btn-round mb-0" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" data-bs-auto-close="outside">
+              <i class="bi bi-bell fa-fw"></i>
+            </a>
+            <!-- Notification dote -->
+            <span class="notif-badge animation-blink"></span>
+
+            <div
+              class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg border-0">
+              <div class="card bg-transparent">
+                <div
+                  class="card-header bg-transparent border-bottom py-4 d-flex justify-content-between align-items-center">
+                  <h6 class="m-0">Notifications <span class="badge bg-danger bg-opacity-10 text-danger ms-2"></span>
+                  </h6>
+                  <a class="small" (click)="delete()">Clear all</a>
+                </div>
+                <div class="card-body p-0">
+                  <ul class="list-group list-unstyled list-group-flush" *ngFor="let item of notification.
+                                      Notifications">
+                    <li>
+                      <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
+
+                        <div>
+                          <p class="text-body small m-0">{{item.notificationsmessage}}
+                          </p>
+                          <u class="small">{{item.notificationsdate| slice:0:10}}</u>
+                        </div>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+
+          <!-- <li class="nav-item"><a class="nav-link" routerLink="/Loanee/EditProfile">Welcome {{firstname}}
+                          {{lastname}}</a></li> -->
+
+
+        </ul>
+        <!-- Nav Main menu END -->
+      </div>
+
+
+      <!-- Main navbar END -->
+
+
+
+      <!-- Profile and notification START -->
+      <ul class="navbar-nav flex-row align-items-center">
+
+        <!-- Notification dropdown START -->
+
+        <!-- Notification dropdown END -->
+
+        <!-- Profile dropdown START -->
+        <li class="nav-item ms-2 ms-md-3 " ngbDropdown>
+          <!-- Avatar -->
+          <a dropdownMenuButton class="avatar avatar-sm p-0" id="profileDropdown" role="button"
+            data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="true">
+            <img ngbDropdownToggle class="avatar-img rounded-circle"
+              src="{{this.userImage}}" alt="avatar">
+          </a>
+
+          <!-- Profile dropdown START -->
+          <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton"
+            class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+            <!-- Profile info -->
+            <li class="px-3">
+              <div class="d-flex align-items-center">
+                <!-- Avatar -->
+                <div class="avatar me-3 mb-3">
+                  <img class="avatar-img rounded-circle shadow"
+                    src="{{this.userImage}}" alt="avatar">
+                </div>
+                <div>
+                  <a class="h6 mt-2 mt-sm-0" >{{ firstName }} {{ lastName }}</a>
+                  <p class="small m-0">{{ Email }}</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <!-- Links -->
+            <li><a title="الصفحة الرئيسية" class="dropdown-item" routerLink="/lenderstore/"><i class="bi bi-house fa-fw me-2"></i>Main</a></li>
+            <li><a title="الإعدادات" class="dropdown-item" routerLink="/lenderstore/Edit-Profile"><i
+                  class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+            <li><a title="تسجيل الخروج" class="dropdown-item bg-danger-soft-hover" href="" (click)="logout()"><i
+                  class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <!-- Dark mode options START -->
+
+            <!-- Dark mode options END-->
+          </ul>
+          <!-- Profile dropdown END -->
+        </li>
+        <!-- Profile dropdown END -->
+      </ul>
+      <!-- Profile and notification END -->
+
+    </div>
+  </nav>
+  <!-- Logo Nav END -->
+</header>

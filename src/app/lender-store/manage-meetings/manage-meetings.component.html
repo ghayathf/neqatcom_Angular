@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Neqatcom - Company,Meetings</title>
+
+</head>
+
+<body>
+
+	<!-- Header START -->
+	<app-lender-header></app-lender-header>
+	<!-- Header END -->
+
+	<!-- **************** MAIN CONTENT START **************** -->
+	<main>
+
+		<!-- =======================
+Page Banner START -->
+		<app-lender-banner></app-lender-banner><!-- =======================
+Page Banner END -->
+
+		<!-- =======================
+Page content START -->
+		<section class="pt-0">
+			<div class="container">
+				<div class="row">
+					<!-- Left sidebar START -->
+					<div class="col-xl-3">
+						<!-- Responsive offcanvas body START -->
+						<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+							<!-- Offcanvas header -->
+							<div class="offcanvas-header bg-light">
+								<h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+									data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+							</div>
+							<!-- Offcanvas body -->
+							<div class="offcanvas-body p-3 p-xl-0">
+								<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+									<!-- Dashboard menu -->
+									<app-lender-side-bar></app-lender-side-bar>
+								</div>
+							</div>
+						</div>
+						<!-- Responsive offcanvas body END -->
+					</div>
+					<!-- Left sidebar END -->
+
+					<!-- Main content START -->
+					<div class="col-xl-9">
+
+						<!-- Counter boxes START -->
+
+						<!-- Counter boxes END -->
+						<div class="card border bg-transparent rounded-3">
+							<!-- Card header START -->
+							<div class="card-header bg-transparent border-bottom">
+								<h3 class="mb-0">Upcoming Meetings</h3>
+							</div>
+							<!-- Card header END -->
+
+							<!-- Card body START -->
+							<div class="card-body">
+
+								<!-- Search and select START -->
+
+								<!-- Search and select END -->
+
+								<!-- Student list table START -->
+								<div class="table-responsive border-0">
+									<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+										<!-- Table head -->
+										<thead>
+											<tr>
+												<th scope="col" class="border-0 rounded-start">Description</th>
+
+												<th scope="col" class="border-0">URL</th>
+
+												<th scope="col" class="border-0 ">Contact Loanee</th>
+												<th scope="col" class="border-0 rounded-end"></th>
+											</tr>
+										</thead>
+
+										<!-- Table body START -->
+										<tbody>
+											<!-- Table item -->
+											<tr *ngFor="let item of loanMeeting">
+												<!-- Table data -->
+												<td>
+													<div class="d-flex align-items-center position-relative cols-3"
+														style="word-break: break-all;">
+														{{ item.descriptions }}
+													</div>
+												</td>
+
+												<!-- Table data -->
+												<td>
+													<h5><a href="{{item.meetingurl}}" target="_blank">Attend </a>
+													</h5>
+												</td>
+												<td>
+													<h6><a href="mailto:{{item.email}}">{{item.email}}</a></h6>
+												</td>
+												<!-- Table data -->
+												<td>
+													<div style="display: flex; flex-direction: row;">
+														<a type="button"
+															(click)="openDeleteDialog(item.loanid,item.firstname,item.email,item.userid)"
+															class="btn btn-sm btn-danger-soft me-2 mb-0"><i
+																class="fa fa-trash" aria-hidden="true"></i></a>
+														<a type="button"
+															(click)="fillFormDialog(item.loanid,item.loaneeid,item.totalmonths,item.email,item.firstname,item.userid)"
+															class="btn btn-sm btn-info-soft me-2 mb-0"><i
+																class="fa fa-wrench" aria-hidden="true"></i></a>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+										<!-- Table body END -->
+									</table>
+								</div>
+								<!-- Student list table END -->
+
+								<!-- Pagination START -->
+
+								<!-- Pagination END -->
+							</div>
+							<!-- Card body START -->
+						</div>
+						<!-- Chart START -->
+
+						<!-- Chart END -->
+
+						<!-- Course List table START -->
+
+						<!-- Course List table END -->
+					</div>
+					<!-- Main content END -->
+				</div><!-- Row END -->
+			</div>
+		</section>
+		<!-- =======================
+Page content END -->
+
+	</main>
+	<!-- **************** MAIN CONTENT END **************** -->
+
+	<!-- =======================
+Footer START -->
+	<footer class="footer">
+		<app-lender-footer></app-lender-footer>
+	</footer>
+	<!-- =======================
+Footer END -->
+
+
+</body>
+
+</html>
+<ng-template #DeleteRequest>
+	<!-- <div style="background-color: #3e3e40;">
+		<h2 mat-dialog-content style="color: white;">Cancel this loan before it starts?</h2>
+		<div mat-dialog-actions>
+			<input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="DeleteLoan()">
+			<input type="button" mat-dialog-close class="btn btn-error" value="No">
+		</div>
+	</div> -->
+</ng-template>
+<ng-template #FillForm>
+	<div style="background-color: #3e3e40; overflow-x: hidden;">
+		<section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+			style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+			<!-- Main banner background image -->
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<!-- Title -->
+						<h1 class="text-white">Loan Details Form</h1>
+					</div>
+
+					<div class="d-flex justify-content-center">
+						<nav aria-label="breadcrumb">
+							<!-- <p>Use the form below to Fill the important information </p> -->
+							<ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
+								<li class="breadcrumb-item"><a>Use the form below to Fill the important information</a>
+								</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<form [formGroup]="LoanForm">
+			<br>
+			<div class="justify-content-center">
+				<div class="container">
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">Total Loan Price *</label>
+						<div class="input-group input-group-lg">
+
+							<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+							<input type="number" class="form-control border-0 bg-light rounded-end ps-1"
+								id="exampleInputEmail1" formControlName="totalprice">
+						</div>
+						<div class="form-text text-danger"
+							*ngIf="TotalPrice.errors?.['required'] && TotalPrice.touched">
+							Total Price is required
+						</div>
+
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">Total Months *</label>
+						<div class="input-group input-group-lg">
+
+							<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+							<input type="number" class="form-control border-0 bg-light rounded-end ps-1"
+								id="exampleInputEmail1" formControlName="totalmonths">
+						</div>
+						<div class="form-text text-danger"
+							*ngIf="TotalMonths.errors?.['required'] && TotalMonths.touched">
+							Total Months is required
+						</div>
+
+					</div>
+
+
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">Start Date *</label>
+						<div class="input-group input-group-lg">
+
+							<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
+							<input type="date" class="form-control border-0 bg-light rounded-end ps-1"
+								id="exampleInputEmail1" formControlName="startdate">
+						</div>
+						<div class="form-text text-danger"
+							*ngIf="LoanForm.get('startdate')?.errors?.['required'] && LoanForm.get('startdate')?.touched">
+							Start date is required
+						</div>
+
+						<div style="color:red" *ngIf="LoanForm.get('startdate')?.errors?.['checkDateInvalid']">
+							Please select a date that is not earlier than the current date.
+						</div>
+					</div>
+
+					<div class="justify-content-center d-flex">
+						<button class="btn btn-primary next-btn mb-0" (click)="Calculate()"
+							style="background-color: gray; color: white;">Calculate</button>
+						<button *ngIf="flag" class="btn btn-primary next-btn mb-0" (click)="Confirm()"
+							style="background-color: gray; color: white;">Confirm</button>
+					</div>
+
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+</ng-template>
+<ng-template #MonthlyAmount>
+
+
+	<div style="background-color: #3e3e40;">
+		<div class="text-center p-4 bg-light rounded-3">
+			<h6 class="text-body">To Be paid Monthly
+				<a tabindex="0" class="h6 " role="button" data-bs-toggle="popover" data-bs-trigger="focus"
+					data-bs-placement="top">
+					<!-- <i class="bi bi-info-circle-fill small"></i> -->
+				</a>
+			</h6>
+			<h2 class=" fs-1">${{this.monthlyPayment}}/month</h2>
+			<p>For {{this.loanTerm}} months duration</p>
+		</div>
+	</div>
+	<!-- </div> -->
+</ng-template>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">

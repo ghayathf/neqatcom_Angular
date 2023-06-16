@@ -1,0 +1,17 @@
+{
+  "/api": {
+    "target": "https://neqatcomapi.azurewebsites.net",
+    "secure": true,
+    "changeOrigin": true
+  },
+  "/api/*": {
+    "target": "https://api.zoom.us/v2",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlFsNm1WSHJEU0lHeWJXUTlMWTcyUXciLCJleHAiOjE2ODMwNjkwNjIsImlhdCI6MTY4MzA2MzY2Mn0.iwuPyMa8OFXlrzKYmj90yxSZe4rP8DP3bqdzlvh8wX8",
+      "Content-Type": "application/json"
+    }
+  }
+}

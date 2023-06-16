@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/3b12367d-f60d-45fe-be34-2378aea7c66b/resourceGroups/NeqatcomAngular/providers/Microsoft.Web/sites/neqatcom-angular",
+    "appService.deploySubpath": "dist\\neqatcom-angular"
+}
