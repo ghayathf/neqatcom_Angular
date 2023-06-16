@@ -33,7 +33,7 @@ export class MainComponent {
       this.recognition.continuous = false;
       this.recognition.maxAlternatives = 1;
       this.recognition.interimResults = false;
-  
+
       this.recognition.onresult = (event: any) => {
         const transcript = event.results[event.results.length - 1][0].transcript;
         this.transcription += transcript;
@@ -110,17 +110,19 @@ export class MainComponent {
     dialogConfig.panelClass = 'mat-dialog-container';
     await this.dialog.open(this.LendInfo, dialogConfig);
   }
-  async FollowLender() {
-    await this.userService.AddFollower(this.lenderId, localStorage.getItem('Loaneeid'))
-    this.UnFollowFlag = false
+  async toggleFollow() {
+    if (this.followFlag) {
+      await this.userService.AddFollower(this.lenderId, localStorage.getItem('Loaneeid'));
+      console.log("Followed")
+    } else {
+      await this.userService.DeleteFollower(this.lenderId, localStorage.getItem('Loaneeid'));
+      console.log("UnFollowed")
+    }
 
-    await this.OpenDetailsDialog(this.lenderId)
+    this.followFlag = !this.followFlag;
+    this.UnFollowFlag = !this.UnFollowFlag;
   }
-  async UnFollowLender() {
-    await this.userService.DeleteFollower(this.lenderId, localStorage.getItem('Loaneeid'))
-    this.followFlag = false
-    await this.OpenDetailsDialog(this.lenderId)
-  }
+
 
   // searchText: string = '';
   // onSearchTextEntered(searchValue: string) {
@@ -190,7 +192,7 @@ await this.ngOnInit()
   //   this.transcription = '';
   //   this.recognition.start();
   // }
-  
+
   // stopRecognition(): void {
   //   console.log(this.transcription);
   //   this.recognition.stop();

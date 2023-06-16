@@ -209,11 +209,13 @@ Inner part END -->
 
 
 				<div class="row">
-					<a *ngIf="followFlag"><button (click)="FollowLender()" class="btn btn-primary-soft btn-sm mb-0">
-							Follow </button></a>
-					<a *ngIf="UnFollowFlag"><button (click)="UnFollowLender()" class="btn btn-danger-soft btn-sm mb-0">
-							UnFollow </button></a>
-				</div>
+          <button *ngIf="followFlag" (click)="toggleFollow()" class="btn btn-primary-soft btn-sm mb-0">
+            Follow
+          </button>
+          <button *ngIf="UnFollowFlag" (click)="toggleFollow()" class="btn btn-danger-soft btn-sm mb-0">
+            Unfollow
+          </button>
+        </div>
 			</div>
 		</div>
 

@@ -24,10 +24,16 @@ export class TestimonialComponent {
   async ngOnInit() {
     this.userid_ = this.auth.userId;
   }
+  testimonialSent: boolean = false;
   async CreateNewTestimonial() {
     await this.TestimonialFrom.controls['userid'].setValue(this.userid_);
     this.TestimonialService.CreateTestimonial(this.TestimonialFrom.value);
-await this.ngOnInit()
+    this.testimonialSent = true;
+    this.TestimonialFrom.reset(); // Clear the form controls
+    await this.ngOnInit();
+    setTimeout(() => {
+      this.testimonialSent = false;
+    }, 3000); // Display the feedback message for 3 seconds
   }
 
 }
