@@ -173,17 +173,17 @@
                                         Password is required
                                     </div>
                                 </div>
-                                <!-- <div class="mb-4">
+                                <div class="mb-4">
                                     <label>
                                         <input type="checkbox" formControlName="termsAndConditions">
-                                        I accept the terms and conditions
+                                        I accept the <a (click)="Openusermanual()" style="color: rgb(75, 147, 209);"> terms and conditions</a>
                                       </label>
-                                </div> -->
+                                </div>
 
                                 <div class="align-items-center mt-0">
                                     <div class="d-grid">
-                                        <a class="btn btn-primary mb-0" (click)="CreateUser()"
-                                            >Continue</a>
+                                        <button class="btn btn-primary mb-0" (click)="CreateUser()"   [disabled]="CreateUserForm.invalid"
+                                        >Continue</button>
                                     </div>
                                 </div>
                             </form>
@@ -205,3 +205,8 @@
 
 
 
+<ng-template #ViewUsermanual>
+    <div style="width: 800%; overflow-y: hidden; overflow-x: hidden;" class="overflow-hidden">
+      <iframe src="https://scribehow.com/embed/Neqatcom__Loanee__H6rr_Wp4Q0OYuHTCIDrJTg?as=scrollable" width="800" height="640" allowfullscreen frameborder="0"></iframe>
+    </div>
+  </ng-template>
