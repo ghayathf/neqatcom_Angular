@@ -82,7 +82,7 @@ export class MyLoaneesComponent {
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.panelClass = 'mat-dialog-container';
     await this.dialog.open(this.Details, dialogConfig)
-   
+
   }
 
 
@@ -281,7 +281,7 @@ await this.ngOnInit()
           }
         ]
       };
-  
+
   
       zingchart.render({
         id: 'myChart',
@@ -290,8 +290,8 @@ await this.ngOnInit()
         width: '100%'
       });
     });
- 
-  
+
+
     this.pagesService.CreditScoreStatus(this.loaneeid);
     this.LoaneeCreditScoreStatus = this.pagesService.LoaneeCreditStatus[0];
   }
