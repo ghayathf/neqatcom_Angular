@@ -12,5 +12,7 @@ export class TestimonialHomeComponent {
   async ngOnInit() {
     await this.testimonials.GetAcceptedTestimonialsHome();
     this.tests = this.testimonials.AccetpedTestimonialsHome;
+    console.log(this.tests);
+
   }
 }
