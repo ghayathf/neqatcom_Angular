@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactusService } from 'src/app/contactus.service';
-
+import * as L from 'leaflet';
+import { EmailsService } from 'src/app/emails.service';
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
   styleUrls: ['./contactus.component.css']
 })
 export class ContactusComponent {
-  constructor(public messageSerivce: ContactusService) { }
+  constructor(public messageSerivce: ContactusService,public EmailService:EmailsService) { }
   CreateMessageForm: FormGroup = new FormGroup(
     {
       firstnamee: new FormControl('', Validators.required),
@@ -18,7 +19,10 @@ export class ContactusComponent {
       phonenumber: new FormControl('', Validators.required)
     }
   )
-
+async ngOnInit()
+{
+  await this.EmailService.openmap();
+}
   get FirstName(): FormControl {
     return this.CreateMessageForm.get("firstnamee") as FormControl;
   }
