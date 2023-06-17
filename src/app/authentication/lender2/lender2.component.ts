@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { RegisterService } from 'src/app/register.service';
 
@@ -11,9 +11,8 @@ import { RegisterService } from 'src/app/register.service';
 })
 export class Lender2Component {
   @ViewChild("ViewUsermanual") Usermanual:any
-  dialog: any;
 
-  constructor(public userService: RegisterService, private router: Router) { }
+  constructor(public userService: RegisterService, private router: Router, private dialog: MatDialog) { }
   CreateUserForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
