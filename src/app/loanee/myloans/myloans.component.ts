@@ -367,35 +367,14 @@ await this.ngOnInit()
     this.m = "We would like to inform you that " + this.loaneefName + " " + this.loaneeLName + " confirm the loan!"
     await this.loanService.updateLoanStatus(this.loanId, 3)
     await this.sendEmail(this.lenderEmail, this.lenderName, this.m, this.s);
-    await this.dialog.closeAll();
+    // await this.dialog.closeAll();
     const dialogConfig = new MatDialogConfig();
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.panelClass = 'mat-dialog-container';
     await this.dialog.open(this.FeedBackDialog, dialogConfig);
-    Swal.fire({
-      title: '<h1 style="color: white;">Confirming?</h1>',
-      html: '<span style="color: white;">Would you like to confirm this loan depending on its information></span>',
-
-      icon: 'success',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
-      customClass: {
-        popup: 'swal-custom-popup',
-        confirmButton: 'swal-custom-confirm-button',
-        cancelButton: 'swal-custom-cancel-button',
-      }, confirmButtonColor: '#a5dc86',
-      background: '#3e3e40',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // DeleteOffer() logic goes here
-        this.ConfirmLoan();
-      } else {                         
-        this.dialog.closeAll();
-      }
-    });
+  
     
-await this.ngOnInit()
+// await this.ngOnInit()
   }
   async Givefeedback(feedback: any) {
     await this.loaneeService.GiveRateForLender(this.meetingID, feedback);

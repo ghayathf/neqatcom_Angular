@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { RegisterService } from 'src/app/register.service';
 
@@ -11,9 +11,8 @@ import { RegisterService } from 'src/app/register.service';
 })
 export class LoaneeComponent {
   @ViewChild("ViewUsermanual") Usermanual:any
-  dialog: any;
 
-  constructor(public userService: RegisterService, private router: Router) { }
+  constructor(public userService: RegisterService, private router: Router, private dialog: MatDialog) { }
   CreateUserForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
@@ -74,13 +73,13 @@ debugger
 
     return null;
   }
-  Openusermanual() {
+  async Openusermanual() {
     const dialogConfig = new MatDialogConfig();
   
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.width = '800px'; // Adjust the width as per your requirement
   
-    this.dialog.open(this.Usermanual, dialogConfig);
+   await this.dialog.open(this.Usermanual, dialogConfig);
   }
   
 }
