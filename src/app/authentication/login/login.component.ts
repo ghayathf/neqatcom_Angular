@@ -31,7 +31,7 @@ export class LoginComponent {
   siteKey: any;
 
   ngOnInit() {
-    this.siteKey = "6LfrkMolAAAAAI2Dbxk89es6dO_qGmCaUJ2eEB-y";
+    this.siteKey = "6LcAVagmAAAAAE8b5gCxb4tSE4Bh57fhTOPdplm-";
 
   }
   // Login() {
