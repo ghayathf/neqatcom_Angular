@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 
@@ -21,7 +21,7 @@ export class ChangePasswordComponent {
       Validators.required,
       Validators.pattern(/^\d+$/),
     ]),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', [Validators.required,this.checkPassword.bind(this)])
     }
   )
 
@@ -40,4 +40,26 @@ export class ChangePasswordComponent {
     }
 await this.ngOnInit()
   }
+  checkPassword(control: AbstractControl): ValidationErrors | null {
+    const password = control.value;
+    
+    if (password.length < 8) {
+      return { passwordTooShort: true };
+    }
+  
+    if (!/[A-Z]/.test(password)) {
+      return { passwordNoCapitalLetter: true };
+    }
+  
+    if (!/[a-z]/.test(password)) {
+      return { passwordNoSmallLetter: true };
+    }
+  
+    if (!/\d/.test(password)) {
+      return { passwordNoDigit: true };
+    }
+  
+    return null; // Password is valid
+  }
+  
 }

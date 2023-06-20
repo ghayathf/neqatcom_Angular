@@ -16,7 +16,7 @@ export class LoaneeComponent {
   CreateUserForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, this.checkPassword.bind(this)]),
       email: new FormControl('', [Validators.required, Validators.email,this.checkEmailExists.bind(this)]),
       phonenum: new FormControl('', [Validators.required, Validators.minLength(9),
         Validators.maxLength(10),Validators.pattern('^[0-9]+$')]),
@@ -81,6 +81,26 @@ debugger
   
    await this.dialog.open(this.Usermanual, dialogConfig);
   }
+  checkPassword(control: AbstractControl): ValidationErrors | null {
+    const password = control.value;
+    
+    if (password.length < 8) {
+      return { passwordTooShort: true };
+    }
   
+    if (!/[A-Z]/.test(password)) {
+      return { passwordNoCapitalLetter: true };
+    }
+  
+    if (!/[a-z]/.test(password)) {
+      return { passwordNoSmallLetter: true };
+    }
+  
+    if (!/\d/.test(password)) {
+      return { passwordNoDigit: true };
+    }
+  
+    return null; // Password is valid
+  }
 }
 
