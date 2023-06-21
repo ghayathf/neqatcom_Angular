@@ -18,6 +18,9 @@ export class ContactMessagesComponent {
     this.AllContacts = this.contactService.AllContactUs
     this.Length = this.AllContacts.length
   }
+  async ngOnDestroy(){
+    this.contactService.progressBarVisible = true
+  }
   selectedItem = 0
   async openDeleteDialog(messageId: number) {
     this.selectedItem = messageId

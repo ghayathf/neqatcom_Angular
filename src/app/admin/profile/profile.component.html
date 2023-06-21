@@ -5,9 +5,12 @@
     <div class="row mt-4" style="margin-left: 200px;">
 
       <!-- Left sidebar START -->
-      <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
+      <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
         [fullScreen]="true">
-      </ngx-spinner>
+      </ngx-spinner> -->
+      <div *ngIf="userService.progressBarVisible" class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
       <!-- Left sidebar END -->
 <app-admin-side-bar></app-admin-side-bar>
       <!-- Main content START -->

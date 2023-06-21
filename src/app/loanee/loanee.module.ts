@@ -20,7 +20,7 @@ import { JoyrideStepsContainerService } from 'ngx-joyride';
 import { LoggerService } from 'ngx-joyride';
 import { StepDrawerService } from 'ngx-joyride';
 @NgModule({
-  
+
   declarations: [
     MainComponent,
     EditProfileComponent,

@@ -49,6 +49,9 @@ export class MainComponent {
     console.log(this.Offers);
     // this.tour()
   }
+  async ngOnDestroy(){
+    this.offerService.progressBarVisible = true;
+  }
   // Name = 'Angular';
   tour(){
     this.joyride.startTour(

@@ -37,13 +37,18 @@ export class ManageLoaneeComplaintsComponent {
   FromLender: any
   async ngOnInit() {
     await this.adminService.GetAllComplaints();
-    this.complaints = this.adminService.complaints;
     await this.adminService.CheckFiveDays();
-    this.Length = this.complaints.Length
     await this.adminService.GetComplaintsStatistics()
+    this.complaints = this.adminService.complaints;
+
+    this.Length = this.complaints.Length
+
     this.loaneetoLender = this.adminService.ComplaintsStats.loaneetolendercount
     this.FromLender = this.adminService.ComplaintsStats.lendertoloaneecount
     this.FromSystem = this.adminService.ComplaintsStats.systemtoloaneecount
+  }
+  async ngOnDestroy(){
+    this.adminService.progressBarVisible = true;
   }
   CreateNotificationForm = new FormGroup(
     {

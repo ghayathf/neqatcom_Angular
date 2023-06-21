@@ -1,6 +1,9 @@
 <app-admin-side-bar></app-admin-side-bar>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
-</ngx-spinner>
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+</ngx-spinner> -->
+<div *ngIf="adminService.progressBarVisible" class="progress-container">
+  <div class="progress-bar"></div>
+</div>
 <div class="page-content">
 
 	<!-- Top bar START -->

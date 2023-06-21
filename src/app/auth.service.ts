@@ -14,6 +14,7 @@ export class AuthService {
   random: any;
   m: any
   s: any
+  progressBarVisible: boolean = true;
   constructor(public EmailService: EmailsService, public http: HttpClient, public router: Router, public toastr: ToastrService, private spinner: NgxSpinnerService) { }
   login(user: any, randomsystem: number, randomuser: number) {
     return new Promise<void>((resolve, reject) => {
@@ -26,15 +27,14 @@ export class AuthService {
       const Options = {
         headers: new HttpHeaders(header)
       }
-      this.spinner.show()
       this.http.post(`${environment.apiUrl}/User/login`, user, Options).subscribe({
         next: (res: any) => {
-           
+
           let data: any = jwt_decode(res)
           localStorage.setItem('token', res)
           localStorage.setItem('user', JSON.stringify(data))
 
-          this.spinner.hide()
+          this.progressBarVisible = false;
           if (randomsystem == randomuser) {
             if (data.Role == 'Admin') {
               localStorage.setItem('AdminFname', JSON.stringify(data.Firstname))

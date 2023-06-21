@@ -55,6 +55,10 @@ export class Lender2Component {
   {
     this.userService.getAllUsers();
   }
+  async ngOnDestroy(){
+    this.userService.progressBarVisible = true;
+  }
+
   checkEmailExists(control: AbstractControl): ValidationErrors | null {
     const email = control.value as string;
 
@@ -66,10 +70,10 @@ export class Lender2Component {
   }
   Openusermanual() {
     const dialogConfig = new MatDialogConfig();
-  
+
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.width = '800px'; // Adjust the width as per your requirement
-  
+
     this.dialog.open(this.Usermanual, dialogConfig);
   }
 }

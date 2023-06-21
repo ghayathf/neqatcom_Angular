@@ -9,7 +9,7 @@ import { environment } from '.././environments/environment.prod';
   providedIn: 'root'
 })
 export class PurchasingService {
-
+  progressBarVisible: boolean = true;
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private router: Router, private toaster: ToastrService) {}
   Payments: any = [];
   flag:any

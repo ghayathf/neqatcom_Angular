@@ -1,8 +1,14 @@
 <app-admin-side-bar></app-admin-side-bar>
 
 <div class="page-content">
-    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
-    </ngx-spinner>
+    <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+    </ngx-spinner> -->
+    <!-- <p-progressBar *ngIf="categoriesService.progressBarVisible" mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar> -->
+    <div *ngIf="categoriesService.progressBarVisible" class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+
+
     <!-- Top bar START -->
     <app-admin-header></app-admin-header>
     <!-- Top bar END -->

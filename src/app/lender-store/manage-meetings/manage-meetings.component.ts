@@ -55,6 +55,9 @@ export class ManageMeetingsComponent {
     await this.loanService.GetAllRequestedLoans(this.lenderid, 1);
     this.loanMeeting = this.loanService.LaonRequests;
   }
+  async ngOnDestroy(){
+    this.loanService.progressBarVisible = true;
+  }
   m: any
   s: any
   async sendEmail(email: string, receiver: string, mess: string, sub: string) {
@@ -117,9 +120,9 @@ export class ManageMeetingsComponent {
     await this.loanService.deleteLoan(this.selectedItem)
     await this.sendEmail(this.Email, this.first_name, this.m, this.s);
     await   this.notification.CreateNotification(this.CreateNotificationForm.value);
-     
+
     this.dialog.closeAll();
-    await this.ngOnInit()  
+    await this.ngOnInit()
   }
   loan: any
   selectedLoaneeid: any
@@ -194,7 +197,7 @@ export class ManageMeetingsComponent {
     await this.notification.CreateNotification(this.CreateNotificationForm.value);
 
     this.dialog.closeAll();
-    await this.ngOnInit()  
+    await this.ngOnInit()
   }
 
   async calculateLoanTermAndPayment(loaneeid: any, price: any, salary: any, familymembers: any, months: any, Maxmonth: any) {

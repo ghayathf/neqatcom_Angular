@@ -1,4 +1,7 @@
 <main>
+  <div *ngIf="userService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
     <section class="p-0 d-flex align-items-center position-relative overflow-hidden">
 
         <div class="container-fluid">
@@ -117,7 +120,7 @@
                                         Phone Number is required
                                     </div>
                                     <div *ngIf="CreateUserForm.get('phonenum')?.errors?.['pattern']" class="form-text text-danger">
-                                        please enter a numbers 
+                                        please enter a numbers
                                       </div>
                                 </div>
                                 <!--Email-->

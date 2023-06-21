@@ -30,6 +30,9 @@ export class MainComponent {
 async ngAfterViewInit(){
    await this.adminService.GetCreditScoreCounterCharts();
    await this.adminService.GetActorCounterCharts();
+   await this.loaneeService.GetAllLoanees()
+   await this.adminService.GetAllComplaints()
+   await this.testimonialService.GetAllTestimonials()
    this.Actors=this.adminService.ActorCounter;
    this.credit=this.adminService.CreditScoreCounter;
    this.creditmap = this.credit.map((elem: { creditscore: number, count: number; }) => ({x:elem.creditscore,  y:elem.count}));
@@ -46,9 +49,7 @@ console.log(this.lenders +"  "+this.loanees);
 await (this.actormap = this.Actors.map(function(elem: { count: any; }) { return elem.count}).slice(1))
 this.pieChartDatasets[0].data=this.actormap;
 
-await this.loaneeService.GetAllLoanees()
-await this.adminService.GetAllComplaints()
-await this.testimonialService.GetAllTestimonials()
+
 this.testimonials = this.testimonialService.Testimonials
 this.complaints = this.adminService.complaints
 this.AllLoanees = this.loaneeService.Loanees
@@ -56,6 +57,9 @@ this.TestimonialsLength = this.testimonials.length
 this.complaintsLength = this.complaints.length
 console.log(this.AllLoanees);
 
+}
+async ngOnDestroy(){
+  this.testimonialService.progressBarVisible = true
 }
 
 title = 'ng2-charts-demo';

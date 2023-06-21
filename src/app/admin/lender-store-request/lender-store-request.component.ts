@@ -26,6 +26,9 @@ this.Total = this.adminService.LenderStats.totallenderscount
 await (this.Requests=this.LenderService.Requests);
 this.Length = this.Requests.Length
 }
+async ngOnDestroy(){
+  this.adminService.progressBarVisible = true
+}
 async sendEmail(email: string,receiver: string,mess:string,sub:string) {
   const emailParams = {
     toemail: email,

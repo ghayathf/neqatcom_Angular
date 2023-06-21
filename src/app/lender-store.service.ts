@@ -11,7 +11,7 @@ import { environment } from '.././environments/environment.prod';
 export class LenderStoreService {
 
   constructor(public http: HttpClient, public router: Router, private spinner: NgxSpinnerService, public toastr: ToastrService) { }
-
+  progressBarVisible: boolean = true;
   Requests: any = []
   GetLenderStoreRequest() {
     this.spinner.show()
@@ -122,34 +122,30 @@ export class LenderStoreService {
   }
   loaneesLender: any
   GetAllLoaneesForLenderStore(id: any) {
-    this.spinner.show()
     return new Promise<void>((resolve, reject) => {
       this.http.get(`${environment.apiUrl}/LenderStore/LoaneesForLenders/` + id).subscribe({
         next: (res) => {
           this.loaneesLender = res;
-          this.spinner.hide()
+          this.progressBarVisible = false;
           resolve();
         },
         error: (err) => {
-          ;
-          this.spinner.hide()
+          this.progressBarVisible = false;
         }
       });
     });
   }
   Followers: any
   GetAllFollowers(id: any) {
-    this.spinner.show()
     return new Promise<void>((resolve, reject) => {
       this.http.get(`${environment.apiUrl}/User/GetAllFollower/` + id).subscribe({
         next: (res) => {
           this.Followers = res;
-          this.spinner.hide()
+          this.progressBarVisible = false;
           resolve();
         },
         error: (err) => {
-          ;
-          this.spinner.hide()
+          this.progressBarVisible = false;
         }
       });
     });
@@ -211,7 +207,6 @@ export class LenderStoreService {
 }
 LenderCounters:any=[]
 GetLenderCounters(lenderid:any){
-    this.spinner.show()
     return new Promise<void>((resolve, reject) => {
     this.http.get(`${environment.apiUrl}/LenderStore/GetLenderCounters/`+lenderid).subscribe(
       {
@@ -219,11 +214,11 @@ GetLenderCounters(lenderid:any){
         next:(res)=>{
           this.LenderCounters=res
 
-        this.spinner.hide()
+        this.progressBarVisible=false
         resolve()
                     },
         error:(err)=>{
-        this.spinner.hide()
+        this.progressBarVisible=false
 
           }
         }

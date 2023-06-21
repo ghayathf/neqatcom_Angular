@@ -1,7 +1,9 @@
 <app-admin-side-bar></app-admin-side-bar>
 <!-- Page content START -->
 <div class="page-content">
-
+<div *ngIf="contactService.progressBarVisible" class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
     <!-- Top bar START -->
     <app-admin-header></app-admin-header>
     <!-- Top bar END -->
@@ -148,5 +150,3 @@
     </div> -->
 </ng-template>
 
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
-</ngx-spinner>

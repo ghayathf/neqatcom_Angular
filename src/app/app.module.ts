@@ -15,7 +15,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { LoaneeModule } from './loanee/loanee.module';
 import { SharedModule } from './shared/shared.module';
 import { LenderStoreModule } from './lender-store/lender-store.module';
-
+import { ProgressBarModule } from 'primeng/progressbar';
 // import { TestzoomComponent } from './lender/testzoom/testzoom.component';
 
 
@@ -42,6 +42,7 @@ import { LenderStoreModule } from './lender-store/lender-store.module';
     NgChartsModule,
     LenderStoreModule,
     LoaneeModule,
+    ProgressBarModule,
 
   ],
   providers: [

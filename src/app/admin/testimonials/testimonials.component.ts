@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { tr } from 'date-fns/locale';
 import { TestimonialsService } from 'src/app/testimonials.service';
 import Swal from 'sweetalert2';
 
@@ -15,6 +16,9 @@ export class TestimonialsComponent {
   async ngOnInit() {
     await this.TestimonialService.GetAllTestimonials();
     this.testimonials = await this.TestimonialService.Testimonials;
+  }
+  async ngOnDestroy(){
+    this.TestimonialService.progressBarVisible = true;
   }
   async ChangeStatus(message: any) {
     await this.TestimonialService.UpdateRequest(message);

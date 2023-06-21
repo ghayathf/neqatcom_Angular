@@ -29,6 +29,9 @@ async ngOnInit()
   console.log(this.loaneeService.LoansConfirmation)
   console.log(parseInt(this.loaneeid));
 }
+async ngOnDestroy(){
+  this.loaneeService.progressBarVisible = true;
+}
 lenderEmail:any
 lenderName:any
 monthlyAmount:any

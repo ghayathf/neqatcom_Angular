@@ -58,11 +58,14 @@ export class LoaneeComponent {
 debugger
    await this.userService.CreateLoaneeUser(this.CreateUserForm.value);
    debugger
-   
+
   }
   async ngOnInit()
   {
     this.userService.getAllUsers();
+  }
+  async ngOnDestroy(){
+    this.userService.progressBarVisible = true;
   }
   checkEmailExists(control: AbstractControl): ValidationErrors | null {
     const email = control.value as string;
@@ -75,12 +78,12 @@ debugger
   }
   async Openusermanual() {
     const dialogConfig = new MatDialogConfig();
-  
+
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.width = '800px'; // Adjust the width as per your requirement
-  
+
    await this.dialog.open(this.Usermanual, dialogConfig);
   }
-  
+
 }
 

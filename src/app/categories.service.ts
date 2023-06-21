@@ -4,34 +4,33 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '.././environments/environment.prod';
-
+import { ProgressBar } from 'primeng/progressbar';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
-  constructor(public http:HttpClient,public router:Router, private spinner: NgxSpinnerService,public toastr:ToastrService) { }
+  constructor(public http:HttpClient,public router:Router,
+     private spinner: NgxSpinnerService,public toastr:ToastrService) { }
   categories:any
-  GetAllCategories(){
-    this.spinner.show()
+  progressBarVisible: boolean = true;
+  GetAllCategories(): Promise<void> {
+    this.progressBarVisible = true;
     return new Promise<void>((resolve, reject) => {
-    this.http.get(`${environment.apiUrl}/Category/GetAllCategories`).subscribe(
-      {
-        next:(res)=>{
-                      this.categories=res
-                      this.spinner.hide()
-                      resolve()
-
-                    },
-        error:(err)=>{
-                        this.spinner.hide()
-                        ;
-                     }
+      this.http.get(`${environment.apiUrl}/Category/GetAllCategories`).subscribe(
+        (res: any) => {
+          this.categories = res;
+          this.progressBarVisible = false; // Set progressBarVisible to false when response is received
+          resolve();
+        },
+        (err: any) => {
+          // Handle error
+          reject();
         }
-      )
-    }
-  )
+      );
+    });
   }
+
   Category:any
   GetCategoryById(id:number){
     this.spinner.show()

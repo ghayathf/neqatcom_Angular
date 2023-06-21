@@ -31,6 +31,7 @@ import { EventListenerService } from 'ngx-joyride';
 import { JoyrideStepsContainerService } from 'ngx-joyride';
 import { LoggerService } from 'ngx-joyride';
 import { StepDrawerService } from 'ngx-joyride';
+import { ProgressBarModule } from 'primeng/progressbar';
 @NgModule({
   declarations: [
     AdminHeaderComponent,
@@ -58,7 +59,7 @@ import { StepDrawerService } from 'ngx-joyride';
     NgbDropdownModule,
     MatDatepickerModule,
     MatSelectModule,
-
+    ProgressBarModule ,
 
   ],
   exports: [
@@ -83,6 +84,7 @@ import { StepDrawerService } from 'ngx-joyride';
     LenderBannerComponent,
     MatDatepickerModule,
     MatSelectModule,
+    ProgressBarModule ,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

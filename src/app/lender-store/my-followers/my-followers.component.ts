@@ -19,11 +19,13 @@ length:any
   async ngOnInit() {
 
     await this.userService.GetFollowers(localStorage.getItem('Lenderid'))
-
     await this.lenderService.GetAllFollowers(localStorage.getItem('Lenderid'))
     this.Followers = this.lenderService.Followers
     this.length = this.Followers.length
     console.log(this.Followers);
 
+  }
+  async ngOnDestroy(){
+    this.lenderService.progressBarVisible = true;
   }
 }

@@ -1,6 +1,9 @@
 <app-home-header></app-home-header>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
-</ngx-spinner>
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+</ngx-spinner> -->
+<div *ngIf="EmailService.progressBarVisible" class="progress-container">
+  <div class="progress-bar"></div>
+</div>
 <main>
 
     <!-- =======================
@@ -17,7 +20,7 @@
             </div>
 
             <!-- Contact info box -->
-           
+
         </div>
     </section>
     <!-- =======================

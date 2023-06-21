@@ -54,6 +54,9 @@ export class EditProfileComponent {
     console.log(this.userImage);
 
   }
+  async ngOnDestroy(){
+    this.userService.progressBarVisible = true;
+  }
   encodeImageURL(userImage: string): string {
     return encodeURIComponent(userImage);
   }

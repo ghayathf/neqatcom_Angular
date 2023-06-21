@@ -45,6 +45,9 @@ export class EditProfileComponent {
   }
   userId: any
   userImage: any
+  async ngOnDestroy(){
+    this.userService.progressBarVisible = true;
+  }
   async ngOnInit() {
     let user: any = await localStorage.getItem('user')
     user = await JSON.parse(user)

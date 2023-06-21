@@ -7,7 +7,9 @@
 </head>
 
 <body>
-
+  <div *ngIf="loaneeService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
 	<!-- Header START -->
 	<app-loaneeheader></app-loaneeheader>
 	<!-- Header END -->
@@ -22,9 +24,9 @@ Page content START -->
 		<section class="pt-0">
 			<div class="container">
 				<div class="row">
-					<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
+					<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
         [fullScreen]="true">
-      </ngx-spinner>
+      </ngx-spinner> -->
 					<!-- Left sidebar START -->
 					<div class="col-xl-3">
 						<!-- Responsive offcanvas body START -->
