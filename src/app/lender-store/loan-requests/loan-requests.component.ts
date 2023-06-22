@@ -231,7 +231,7 @@ await this.ngOnInit()
     await this.sendEmail(this.lenderEmail, this.lenderName, this.m, this.s);
 
     this.CreateNotificationForm.controls['userid'].setValue(this.selectedLoaneeuserid);
-    this.CreateNotificationForm.controls['notificationsmessage'].setValue("New Online Meeting");
+    this.CreateNotificationForm.controls['notificationsmessage'].setValue("New Onsite Meeting");
     await this.notification.CreateNotification(this.CreateNotificationForm.value);
 
     this.MeetingForm.controls['meetingurl'].setValue(googleMapsUrl);
