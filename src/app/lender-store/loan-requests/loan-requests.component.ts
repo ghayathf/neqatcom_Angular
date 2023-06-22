@@ -354,7 +354,7 @@ await this.ngOnInit()
       series: [
         {
           values: [credit],
-          backgroundColor: 'white',
+          backgroundColor: 'black',
           indicator: [10, 10, 10, 10, 0.75],
           animation: {
             effect: 2,
@@ -374,8 +374,10 @@ await this.ngOnInit()
       width: '100%'
     });
   });
-  this.pagesService.CreditScoreStatus(loaneeid);
+  await this.pagesService.CreditScoreStatus(loaneeid);
   this.LoaneeCreditScoreStatus = this.pagesService.LoaneeCreditStatus[0];
+  console.log(this.LoaneeCreditScoreStatus);
+
   // const dialogRef = this.dialog.open(this.ViewDetails, dialogConfig);
   }
 

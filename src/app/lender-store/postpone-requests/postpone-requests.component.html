@@ -245,10 +245,10 @@ Footer END -->
         </span>
         <div class="row">
           <h2 class="h1 mb-3">{{LoaneeFname}} {{LoaneeLname}}</h2>
-
+<div *ngIf="LoaneeCreditScoreStatus" class="text text-warning"><span>New</span></div>
           <div id='myChart'></div>
         </div>
-        <div *ngIf="LoaneeCreditScoreStatus"> New Loanee </div>
+
       </div>
     </div>
 

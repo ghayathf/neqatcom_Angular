@@ -138,10 +138,11 @@ Footer END -->
       </div>
       <div class="text-center mt-3">
         <h2 class="h1 mb-3">{{LoaneeFname}} {{LoaneeLname}}</h2>
+        <div *ngIf="LoaneeCreditScoreStatus" class="text text-warning"><span>New</span></div>
+
         <div id="myChart" class="chart"></div>
       </div>
     </div>
-
     <div class="row ">
 
       <!-- Live support box -->

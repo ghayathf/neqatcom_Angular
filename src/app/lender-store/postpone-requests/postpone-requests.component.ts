@@ -195,7 +195,7 @@ export class PostponeRequestsComponent {
         series: [
           {
             values: [credit],
-            backgroundColor: 'white',
+            backgroundColor: 'black',
             indicator: [10, 10, 10, 10, 0.75],
             animation: {
               effect: 2,

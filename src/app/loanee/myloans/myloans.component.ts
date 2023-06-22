@@ -168,6 +168,21 @@ await this.ngOnInit()
     console.log(parseInt(this.loaneeid));
 // this.tour()
   }
+  isSameMonthAndYear(startDate: Date | string, currentDate: Date): boolean {
+    if (typeof startDate === 'string') {
+      startDate = new Date(startDate);
+    }
+
+    return (
+      startDate instanceof Date &&
+      startDate.getMonth() === currentDate.getMonth() &&
+      startDate.getFullYear() === currentDate.getFullYear()
+    );
+  }
+
+  getCurrentDate(): Date {
+    return new Date();
+  }
   async ngOnDestroy(){
     this.loaneeService.progressBarVisible = true;
   }
@@ -326,7 +341,7 @@ await this.ngOnInit()
     this.lenderName = firstname
     this.loanId = loanid
     this.meetingID = meetingid
-     
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.panelClass = 'mat-dialog-container';
@@ -349,7 +364,7 @@ await this.ngOnInit()
       if (result.isConfirmed) {
         // DeleteOffer() logic goes here
         this.ConfirmLoan();
-      } else {                         
+      } else {
         this.dialog.closeAll();
       }
     });
@@ -361,7 +376,7 @@ await this.ngOnInit()
     this.m = "We would like to inform you that " + this.loaneefName + " " + this.loaneeLName + " cancled the loan!"
     await this.loanService.deleteLoan(this.loanId)
     await this.sendEmail(this.lenderEmail, this.lenderName, this.m, this.s);
-     
+
     this.dialog.closeAll();
 await this.ngOnInit()
   }
@@ -375,15 +390,15 @@ await this.ngOnInit()
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.panelClass = 'mat-dialog-container';
     await this.dialog.open(this.FeedBackDialog, dialogConfig);
-  
-    
+
+
 // await this.ngOnInit()
   }
   async Givefeedback(feedback: any) {
     await this.loaneeService.GiveRateForLender(this.meetingID, feedback);
    await this.dialog.closeAll();
 await this.ngOnInit()
-     
+
   }
 
   startTour()

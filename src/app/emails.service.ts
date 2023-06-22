@@ -70,6 +70,7 @@ export class EmailsService {
 
       // Resolve the promise
       resolve();
+      this.progressBarVisible = false;
     });
   }
 // setVariable(clientid:any): Promise<void> {

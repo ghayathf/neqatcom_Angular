@@ -34,7 +34,8 @@ export class MyLoaneesComponent {
   selectedLendId: any
   selectedLoaneId: any
   OpenCreateDialog(lendid: any, loaId: any) {
-    this.selectedLendId = lendid
+    this.selectedLendId = localStorage.getItem('Lenderid')
+
     this.selectedLoaneId = loaId
     const dialogConfig = new MatDialogConfig();
     dialogConfig.maxWidth = '900px';
@@ -170,7 +171,7 @@ await this.ngOnInit()
   lname:any
   address:any
   Pnumber:any
-  async viewLoaneeDetials(userimage: any, email: any, creditscore: any, postponecounter: any, userid_: any,firstname:any,lastname:any,address:any,phonenumber:any) {
+  async viewLoaneeDetials(userimage: any, email: any, creditscore: any, postponecounter: any, userid_: any,firstname:any,lastname:any,address:any,phonenumber:any,loaneeid:any) {
     this.loaneeImg = userimage
     this.loaneeEmail =  email
     this.userid = userid_;
@@ -273,7 +274,7 @@ await this.ngOnInit()
         series: [
           {
             values: [creditscore],
-            backgroundColor: 'white',
+            backgroundColor: 'black',
             indicator: [10, 10, 10, 10, 0.75],
             animation: {
               effect: 2,
@@ -295,7 +296,8 @@ await this.ngOnInit()
     });
 
 
-    this.pagesService.CreditScoreStatus(this.loaneeid);
+    await this.pagesService.CreditScoreStatus(loaneeid);
+
     this.LoaneeCreditScoreStatus = this.pagesService.LoaneeCreditStatus[0];
   }
   get compliant(): FormControl {

@@ -56,7 +56,7 @@ export class EditProfileComponent {
     console.log(this.userService.userById.creditscore);
     await this.UpdateForm.patchValue(this.userService.userById)
     this.userImage = this.userService.userById.userimage
-    
+
     this.creditS=localStorage.getItem('CreditScore')
     const myConfig = {
       type: 'gauge',
@@ -141,7 +141,7 @@ export class EditProfileComponent {
       series: [
         {
           values: [parseInt(this.creditS)],
-          backgroundColor: 'white',
+          backgroundColor: 'black',
           indicator: [10, 10, 10, 10, 0.75],
           animation: {
             effect: 2,
@@ -166,7 +166,7 @@ export class EditProfileComponent {
     this.UpdateForm.controls['userid'].setValue(this.userId)
     this.UpdateForm.controls['role'].setValue("Loanee")
     this.userService.UpdateUser(this.UpdateForm.value)
-   
+
 this.ngOnInit()
   }
   UploadImage(input: any) {

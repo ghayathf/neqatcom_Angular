@@ -15,12 +15,11 @@ export class ContactusService {
     this.http.post(`${environment.apiUrl}/ContactUs/CreateContactUs`, message).subscribe(
       {
         next: () => {
-
-          this.spinner.hide();
+this.progressBarVisible=false
+this.toaster.success("Message Sent Successfully")
         },
         error: (err) => {
-          this.spinner.hide();
-
+          this.progressBarVisible = false;
         }
       }
     )

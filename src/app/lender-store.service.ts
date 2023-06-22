@@ -172,6 +172,7 @@ export class LenderStoreService {
 
 
   GiveComplaintForLoanee(Complaint:any) {
+    Complaint.leid = parseInt(Complaint.leid)
     return new Promise<void>((resolve, reject) => {
       this.spinner.show();
       this.http.post(`${environment.apiUrl}/LenderStore/giveComplaintForLoanee`,Complaint).subscribe(

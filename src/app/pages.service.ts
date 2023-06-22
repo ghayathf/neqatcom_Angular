@@ -253,10 +253,10 @@ LoaneeCreditStatus: any = [];
 CreditScoreStatus(laoneeid: any) {
     return new Promise<void>((resolve, reject) => {
       this.spinner.show();
-      this.http.get("https://localhost:44397/api/Home/CreditScoreStatus/" + laoneeid).subscribe(
+      this.http.get(`${environment.apiUrl}/Home/CreditScoreStatus/`+laoneeid).subscribe(
         (res) => {
           this.LoaneeCreditStatus = res
-
+resolve()
         },
         (err) => {
           console.log(err);

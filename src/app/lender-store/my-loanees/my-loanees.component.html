@@ -101,9 +101,10 @@ Page content START -->
 														<div class="mb-0 ms-2">
 															<!-- Title -->
 															<h4 class="mb-0"><a
-																	(click)="viewLoaneeDetials(item.userimage,item.email,item.creditscore,item.postponecounter,item.userid,item.firstname,item.lastname,item.address,item.phonenum)"
+																	(click)="viewLoaneeDetials(item.userimage,item.email,item.creditscore,item.postponecounter,item.userid,item.firstname,item.lastname,item.address,item.phonenum,item.loaneeid)"
 																	class="stretched-link">{{ item.firstname }} {{
 																	item.lastname }}</a></h4>
+
 															<!-- Address -->
 															<!-- <span class="text-body small"><i
 																	class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>Mumbai</span> -->
@@ -337,9 +338,8 @@ Footer END -->
 				</span>
 				<div class="row">
 					<h2 class="h1 mb-3">{{fname}} {{lname}}</h2>
-
+          <div *ngIf="LoaneeCreditScoreStatus" class="text text-warning"><span>New</span></div>
 					<div id='myChart'></div>
-					<div *ngIf="LoaneeCreditScoreStatus"> New Loanee </div>
 				</div>
 			</div>
 		</div>

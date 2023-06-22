@@ -43,7 +43,9 @@ async ngOnDestroy(){
   }
 
   async CreateMessage() {
-    this.messageSerivce.CreateMessage(this.CreateMessageForm.value);
-    location.reload();
+
+    await this.messageSerivce.CreateMessage(this.CreateMessageForm.value);
+debugger
+    this.ngOnInit()
   }
 }

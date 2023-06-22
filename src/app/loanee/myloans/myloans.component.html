@@ -90,9 +90,11 @@ Page Banner END -->
 								<button type="button" class="btn btn-sm btn-info-soft me-2 mb-0"
 									(click)="ShowPaymentsDialog(item.loanid,item.bankaccount,item.loanstatus)" joyrideStep="paymentstep" title="دليل المستخدم" text="  'Pay Pal 'بإمكانك من هنا الاطلاع على الفواتير و الاقساط التي سددتها ، و أيضا الدفع من خلال حساب ">Show
 									Payments</button>
-								<button type="button" class="btn btn-sm btn-warning-soft me-2 mb-0"
-									*ngIf="item.loanstatus !=4"
-									(click)="RequestPostponeDialog(item.loanid,item.loaneeid)" joyrideStep="postponestep" title="دليل المستخدم" text="من هنا يمكنك طلب تأجيل الدفعة للشهر الحالي ، علما أن هذا سيؤثر على تقييمك ">Request Postpone</button>
+                  <button type="button" class="btn btn-sm btn-warning-soft me-2 mb-0"
+                  *ngIf="item.loanstatus != 4 && isSameMonthAndYear(item.startdate, getCurrentDate())"
+                  (click)="RequestPostponeDialog(item.loanid, item.loaneeid)" joyrideStep="postponestep"
+                  title="دليل المستخدم" text="من هنا يمكنك طلب تأجيل الدفعة للشهر الحالي ، علما أن هذا سيؤثر على تقييمك">Request Postpone
+                </button>
 
 							</div>
 							<div class="btn-group mt-2 mt-sm-0" *ngIf="item.loanstatus==4">
@@ -216,8 +218,7 @@ Page Banner END -->
 							<div>
 								<!-- Switch Content -->
 
-								<p class="mb-0 small">Your plan will automatically renew on: {{
-									item.startdate|slice:0:10 }}. Payment Amount: ${{ item.monthlyamount }}</p>
+								<p class="mb-0 small">Your meeting will be at {{ item.startdate|slice:0:10 }} on {{ item.meetingtime }}</p>
 							</div>
 							<!-- Buttons -->
 

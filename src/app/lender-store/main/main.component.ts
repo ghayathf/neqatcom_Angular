@@ -76,7 +76,7 @@ chartContainer2:any
   const chartImage1 = canvas1.toDataURL('image/png');
 
 
-  pdf.addImage(chartImage1, 'PNG', 10, 10, 300, 100);
+  pdf.addImage(chartImage1, 'PNG', 10, 10, 300, 200);
 
   pdf.save('charts.pdf');
 }
