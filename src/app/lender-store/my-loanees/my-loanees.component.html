@@ -181,7 +181,6 @@ Footer END -->
 					<th scope="col" class="border-0 ">Estimate Price</th>
 					<th scope="col" class="border-0 ">Start Date</th>
 					<th scope="col" class="border-0 ">End Date</th>
-					<th scope="col" class="border-0 ">Estimated price</th>
 					<th scope="col" class="border-0 ">Monthly Amount</th>
 					<th scope="col" class="border-0 rounded-end"></th>
 
@@ -204,25 +203,19 @@ Footer END -->
 					<td>
 						<div class="d-flex align-items-center position-relative">
 							<div class="cols-3" style="word-break: break-all;">
-								{{ item.totalmonths }}</div>
+								{{ item.totalmonths }} month/s</div>
 						</div>
 					</td>
 					<td>
 						<div class="d-flex align-items-center position-relative">
 							<div class="cols-3" style="word-break: break-all;">
-								{{ item.totalprice }}</div>
+								${{ item.totalprice }}</div>
 						</div>
 					</td>
 					<td>
 						<div class="d-flex align-items-center position-relative">
 							<div class="cols-3" style="word-break: break-all;">
-								{{ item.estimatedprice }}</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								{{item.startdate | slice:2:10}}</div>
+								${{ item.estimatedprice }}</div>
 						</div>
 					</td>
 					<td>
@@ -234,13 +227,13 @@ Footer END -->
 					<td>
 						<div class="d-flex align-items-center position-relative">
 							<div class="cols-3" style="word-break: break-all;">
-								{{item.startdate | slice:2:10}}</div>
+								{{item.Enddate | slice:2:10}}</div>
 						</div>
 					</td>
 					<td>
 						<div class="d-flex align-items-center position-relative">
 							<div class="cols-3" style="word-break: break-all;">
-								{{item.monthlyamount}}</div>
+								${{item.monthlyamount}}</div>
 						</div>
 					</td>
 
