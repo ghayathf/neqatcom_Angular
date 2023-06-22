@@ -77,6 +77,9 @@ export class OfferComponent {
     this.length = this.offers.length
     await this.categoryService.GetAllCategories()
   }
+  async ngOnDestroy() {
+    this.categoryService.progressBarVisible = true
+  }
 
   offer: any
   selectedUpdatedCat: any
@@ -190,7 +193,7 @@ export class OfferComponent {
       this.CreateNotificationForm.controls['notificationsmessage'].setValue(lenderName + " has offered a new offer");
       await this.notification.CreateNotification(this.CreateNotificationForm.value)
     }
-    
+
     this.dialog.closeAll();
 await this.ngOnInit()
   }

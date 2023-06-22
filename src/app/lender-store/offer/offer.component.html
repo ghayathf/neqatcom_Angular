@@ -7,7 +7,9 @@
 </head>
 
 <body>
-
+  <div *ngIf="categoryService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
     <!-- Header START -->
     <app-lender-header></app-lender-header>
     <!-- Header END -->
@@ -281,7 +283,7 @@ Footer END -->
 <ng-template #DeleteForm>
     <!-- <div style="background-color: #3e3e40;"><span class="swal2-icon swal2-warning"></span>
         <h2 mat-dialog-content style="color: white;">
-            
+
 
             Would you like to Delete this Offer ?
         </h2>
@@ -410,4 +412,4 @@ Steps END -->
 
 
 </ng-template>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true"> -->

@@ -23,6 +23,9 @@ async ngOnInit()
 {
   await this.EmailService.openmap();
 }
+async ngOnDestroy(){
+  this.EmailService.progressBarVisible = true;
+}
   get FirstName(): FormControl {
     return this.CreateMessageForm.get("firstnamee") as FormControl;
   }

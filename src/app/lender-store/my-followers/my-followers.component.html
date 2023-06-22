@@ -7,7 +7,9 @@
 </head>
 
 <body>
-
+  <div *ngIf="lenderService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
 	<!-- Header START -->
 	<app-lender-header></app-lender-header>
 	<!-- Header END -->

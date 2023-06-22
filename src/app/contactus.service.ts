@@ -8,7 +8,7 @@ import { environment } from '.././environments/environment.prod';
   providedIn: 'root'
 })
 export class ContactusService {
-
+  progressBarVisible: boolean = true;
   constructor(private http: HttpClient, private toaster: ToastrService, private spinner: NgxSpinnerService) { }
   CreateMessage(message: any) {
     this.spinner.show();
@@ -27,19 +27,18 @@ export class ContactusService {
   }
   AllContactUs:any
   GetAllContactUs(){
-    this.spinner.show()
+
     return new Promise<void>((resolve, reject) => {
     this.http.get(`${environment.apiUrl}/ContactUs/GetAllContactUs`).subscribe(
       {
         next:(res)=>{
                       this.AllContactUs=res
-                      this.spinner.hide()
+                      this.progressBarVisible=false
                       resolve()
 
                     },
         error:(err)=>{
-                        this.spinner.hide()
-                        ;
+                        this.progressBarVisible=false
                      }
         }
       )

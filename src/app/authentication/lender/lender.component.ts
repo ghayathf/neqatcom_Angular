@@ -33,6 +33,9 @@ export class LenderComponent {
     console.log(this.registerService.lastid);
 
   }
+  async ngOnDestroy(){
+    this.registerService.progressBarVisible = true;
+  }
 
   get Commercial(): FormControl {
     return this.CreateLenderStore.get('commercialregister') as FormControl;

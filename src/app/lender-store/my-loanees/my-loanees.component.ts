@@ -62,6 +62,9 @@ export class MyLoaneesComponent {
 
 
   }
+  async ngOnDestroy(){
+    this.lenderService.progressBarVisible = true;
+  }
 
   loanss: any;
   loaneeid: any;
@@ -282,7 +285,7 @@ await this.ngOnInit()
         ]
       };
 
-  
+
       zingchart.render({
         id: 'myChart',
         data: myConfig,

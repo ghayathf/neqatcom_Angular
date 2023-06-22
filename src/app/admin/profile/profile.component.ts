@@ -64,6 +64,9 @@ export class ProfileComponent {
     await this.UpdateForm.patchValue(this.userService.userById)
     this.userImage = this.userService.userById.userimage
   }
+  async ngOnDestroy(){
+    this.userService.progressBarVisible = true
+  }
  async updateInfo() {
     this.UpdateForm.controls['userid'].setValue(this.userId)
     this.UpdateForm.controls['role'].setValue("Admin")

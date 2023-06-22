@@ -168,6 +168,9 @@ await this.ngOnInit()
     console.log(parseInt(this.loaneeid));
 // this.tour()
   }
+  async ngOnDestroy(){
+    this.loaneeService.progressBarVisible = true;
+  }
   tour(){
     this.joyride.startTour(
       { steps: [

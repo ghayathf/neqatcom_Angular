@@ -69,6 +69,9 @@ export class PostponeRequestsComponent {
 
 
   }
+  async ngOnDestroy(){
+    this.loanService.progressBarVisible = true;
+  }
 
 
   LoaneeImage: any
@@ -203,8 +206,8 @@ export class PostponeRequestsComponent {
           }
         ]
       };
-  
-  
+
+
       zingchart.render({
         id: 'myChart',
         data: myConfig,
@@ -323,7 +326,7 @@ export class PostponeRequestsComponent {
       if (result.isConfirmed) {
         // DeleteOffer() logic goes here
         this.AcceptRequest();
-      } else {                         
+      } else {
         this.dialog.closeAll();
       }
     });
@@ -341,7 +344,7 @@ export class PostponeRequestsComponent {
     const month = DD.toLocaleString('default', { month: 'long' });
     const year = DD.getFullYear();
     const formattedDate = `${day} ${dayOfMonth} ${month} ${year}`;
-     
+
     //change postpone status from pending to reject
     this.loanService.updatePostponeStatus(this.selectedItem, 0, this.loaneeid);
     this.lenderName = localStorage.getItem('lenderName')

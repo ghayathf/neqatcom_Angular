@@ -16,7 +16,7 @@ export class LoaneeComponent {
   CreateUserForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, this.checkPassword.bind(this)]),
       email: new FormControl('', [Validators.required, Validators.email,this.checkEmailExists.bind(this)]),
       phonenum: new FormControl('', [Validators.required, Validators.minLength(9),
         Validators.maxLength(10),Validators.pattern('^[0-9]+$')]),
@@ -58,11 +58,14 @@ export class LoaneeComponent {
 debugger
    await this.userService.CreateLoaneeUser(this.CreateUserForm.value);
    debugger
-   
+
   }
   async ngOnInit()
   {
     this.userService.getAllUsers();
+  }
+  async ngOnDestroy(){
+    this.userService.progressBarVisible = true;
   }
   checkEmailExists(control: AbstractControl): ValidationErrors | null {
     const email = control.value as string;
@@ -75,12 +78,32 @@ debugger
   }
   async Openusermanual() {
     const dialogConfig = new MatDialogConfig();
-  
+
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.width = '800px'; // Adjust the width as per your requirement
-  
+
    await this.dialog.open(this.Usermanual, dialogConfig);
   }
+  checkPassword(control: AbstractControl): ValidationErrors | null {
+    const password = control.value;
+    
+    if (password.length < 8) {
+      return { passwordTooShort: true };
+    }
   
+    if (!/[A-Z]/.test(password)) {
+      return { passwordNoCapitalLetter: true };
+    }
+  
+    if (!/[a-z]/.test(password)) {
+      return { passwordNoSmallLetter: true };
+    }
+  
+    if (!/\d/.test(password)) {
+      return { passwordNoDigit: true };
+    }
+  
+    return null; // Password is valid
+  }
 }
 

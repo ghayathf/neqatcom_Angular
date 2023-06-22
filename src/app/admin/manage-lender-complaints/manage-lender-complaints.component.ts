@@ -37,13 +37,17 @@ export class ManageLenderComplaintsComponent {
   FromLender: any
   async ngOnInit() {
     await this.adminService.GetLendeComplaints()
+    await this.adminService.GetComplaintsStatistics()
     this.complaints = this.adminService.Lendercomplaints;
 
     this.Length = this.complaints.Length
-    await this.adminService.GetComplaintsStatistics()
+
     this.loaneetoLender = this.adminService.ComplaintsStats.loaneetolendercount
     this.FromLender = this.adminService.ComplaintsStats.lendertoloaneecount
     this.FromSystem = this.adminService.ComplaintsStats.systemtoloaneecount
+  }
+  async ngOnDestroy(){
+    this.adminService.progressBarVisible = true
   }
   deleteComplaintId: any
 

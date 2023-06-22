@@ -67,6 +67,9 @@ export class LoanRequestsComponent {
     });
 
   }
+  async ngOnDestroy(){
+    this.loanService.progressBarVisible = true;
+  }
 
   m: any
   s: any
@@ -421,7 +424,7 @@ await this.ngOnInit()
     this.m = "We are sorry to let you know that your Loan request in Neqatcom has been rejected!"
     await this.loanService.deleteLoan(this.selectedItem)
     await this.sendEmail(this.Email, this.first_name, this.m, this.s);
-     
+
     this.dialog.closeAll();
     await this.ngOnInit()  }
 

@@ -24,124 +24,22 @@ export class MainComponent {
   Offers: any;
   async ngOnInit() {
 
-    // window.feed = function(callback: (arg0: string) => void) {
-    //   var tick = {};
-    //   tick.plot0 = 60;
-    //   callback(JSON.stringify(tick));
-    // };
-
-    // const myConfig = {
-    //   type: 'gauge',
-    //   globals: {
-    //     fontSize: 25
-    //   },
-    //   plotarea: {
-    //     marginTop: 80
-    //   },
-    //   plot: {
-    //     size: '100%',
-    //     valueBox: {
-    //       placement: 'center',
-    //       text: '%v',
-    //       fontSize: 35,
-    //       rules: [
-    //         {
-    //           rule: '%v >= 8',
-    //           text: '%v<br>Green'
-    //         },
-    //         {
-    //           rule: '%v >= 4 && %v < 8',
-    //           text: '%v<br>Yellow'
-    //         },
-    //         {
-    //           rule: '%v < 4',
-    //           text: '%v<br>Red'
-    //         }
-    //       ]
-    //     }
-    //   },
-    //   tooltip: {
-    //     borderRadius: 5
-    //   },
-    //   scaleR: {
-    //     aperture: 180,
-    //     minValue: 0,
-    //     maxValue: 10,
-    //     step: 1,
-    //     center: {
-    //       visible: false
-    //     },
-    //     tick: {
-    //       visible: false
-    //     },
-    //     item: {
-    //       offsetR: 0,
-    //       rules: [
-    //         {
-    //           rule: '%i == 9',
-    //           offsetX: 15
-    //         }
-    //       ]
-    //     },
-    //     labels: ['0', '', '', '', '', '', '', '', '', '', '10'],
-    //     ring: {
-    //       size: 50,
-    //       rules: [
-    //         {
-    //           rule: '%v <= 3',
-    //           backgroundColor: 'red'
-    //         },
-    //         {
-    //           rule: '%v > 3 && %v <= 7',
-    //           backgroundColor: 'yellow'
-    //         },
-    //         {
-    //           rule: '%v >= 8',
-    //           backgroundColor: 'green'
-    //         }
-    //       ]
-    //     }
-    //   },
-    //   refresh: {
-    //     type: 'feed',
-    //     transport: 'js',
-    //     url: 'feed()',
-    //     interval: 1500,
-    //     resetTimeout: 1000
-    //   },
-    //   series: [
-    //     {
-    //       values: [5],
-    //       backgroundColor: 'black',
-    //       indicator: [10, 10, 10, 10, 0.75],
-    //       animation: {
-    //         effect: 2,
-    //         method: 1,
-    //         sequence: 4,
-    //         speed: 900
-    //       }
-    //     }
-    //   ]
-    // };
-
-
-    // zingchart.render({
-    //   id: 'myChart',
-    //   data: myConfig,
-    //   height: 500,
-    //   width: '100%'
-    // });
-
-    // Update the chart with a sample value
-    // this.updateChartValue(5);
     await this.Testimonials.GetAcceptedTestimonials();
+    await this.offerService.GetRandomlyOffer();
+    await this.pagesService.CalculateCreditScores();
+    await this.pagesService.GetLoaneestoRemind();
+    await this.pagesService.UpdateBeforeReminder()
+    await this.pagesService.GetLoaneesInPayDaytoRemind();
+    await this.pagesService.UpdateInPayDateReminder();
+    await this.pagesService.GetLoaneeslatePayDaytoRemind()
+    await this.pagesService.UpdateLatePayDateReminder()
+    await this.pagesService.CancleLoanAutomatically();
+
     this.Accepted = this.Testimonials.AccetpedTestimonials;
     console.log(this.Accepted);
 
-    await this.offerService.GetRandomlyOffer();
     this.Offers = this.offerService.Randomlyoffers;
-    await this.pagesService.CalculateCreditScores();
-    await this.pagesService.GetLoaneestoRemind();
+
 
     for (var i = 0; i < this.pagesService.BeforeReminder.length; i++) {
       console.log(new Date());
@@ -162,8 +60,7 @@ export class MainComponent {
         console.log("some error occure !")
       }
     }
-    await this.pagesService.UpdateBeforeReminder()
-    await this.pagesService.GetLoaneesInPayDaytoRemind();
+
     for (var i = 0; i < this.pagesService.InPayDayReminder.length; i++) {
       console.log(new Date());
       const date = new Date(this.pagesService.InPayDayReminder[i].startdate)
@@ -183,30 +80,32 @@ export class MainComponent {
         console.log("some error occure !")
       }
     }
-    await this.pagesService.UpdateInPayDateReminder();
-    await this.pagesService.GetLoaneeslatePayDaytoRemind()
+
     console.log(this.pagesService.LateDayReminder)
-    for (var i = 0; i < this.pagesService.LateDayReminder.length; i++) {
+    const currentDate = new Date();
+
+  // Check if it's 12 PM
+  if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
+    for (let i = 0; i < this.pagesService.LateDayReminder.length; i++) {
       console.log(new Date());
-      const date = new Date(this.pagesService.LateDayReminder[i].startdate)
+      const date = new Date(this.pagesService.LateDayReminder[i].startdate);
       const DD = new Date(date);
       const day = DD.toLocaleString('default', { weekday: 'long' });
       const dayOfMonth = DD.getDate();
       const month = DD.toLocaleString('default', { month: 'long' });
       const year = DD.getFullYear();
       const formattedDate = `${day} ${dayOfMonth} ${month} ${year}`;
-      this.s = "Reminder Payment Email"
-      this.m = "Please note that your repayment date for this loan #" + this.pagesService.LateDayReminder[i].loanid + " that was on " + formattedDate + " with " + this.pagesService.LateDayReminder[i].monthlyamount + " amount , has passed, hurry up and pay it off !"
+      this.s = "Reminder Payment Email";
+      this.m = "Please note that your repayment date for this loan #" + this.pagesService.LateDayReminder[i].loanid + " that was on " + formattedDate + " with " + this.pagesService.LateDayReminder[i].monthlyamount + " amount, has passed. Hurry up and pay it off!";
       try {
-        await this.sendEmail(this.pagesService.LateDayReminder[i].email, this.pagesService.LateDayReminder[i].firstname, this.m, this.s)
-        console.log(this.pagesService.LateDayReminder[i].email)
-      }
-      catch {
-        console.log("some error occure !")
+        await this.sendEmail(this.pagesService.LateDayReminder[i].email, this.pagesService.LateDayReminder[i].firstname, this.m, this.s);
+        console.log(this.pagesService.LateDayReminder[i].email);
+      } catch {
+        console.log("Some error occurred!");
       }
     }
-    await this.pagesService.UpdateLatePayDateReminder()
-    await this.pagesService.CancleLoanAutomatically();
+  }
+
     for (var i = 0; i < this.pagesService.CancleAuto.length; i++) {
 
       this.s = "Automatic Loan Cancelation "
@@ -222,6 +121,9 @@ export class MainComponent {
 
     }
 
+  }
+  async ngOnDestroy(){
+    this.pagesService.progressBarVisible = true;
   }
 
   async sendEmail(email: string, receiver: string, mess: string, sub: string) {

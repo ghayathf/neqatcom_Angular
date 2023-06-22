@@ -7,7 +7,7 @@ import { environment } from '.././environments/environment.prod';
   providedIn: 'root'
 })
 export class AdminService {
-
+  progressBarVisible: boolean = true;
   constructor(private http: HttpClient, private toaster: ToastrService, private spinner: NgxSpinnerService) { }
   complaints:any=[]
   GetAllComplaints(){
@@ -31,17 +31,16 @@ export class AdminService {
 }
 LoaneeStats:any=[]
 GetLoaneesStatistics(){
-  this.spinner.show()
   return new Promise<void>((resolve, reject) => {
   this.http.get(`${environment.apiUrl}/Admin/AdminStatisticsLoanee`).subscribe(
     {
       next:(res)=>{
+        this.progressBarVisible = false;
         this.LoaneeStats=res
-      this.spinner.hide()
       resolve()
                   },
       error:(err)=>{
-      this.spinner.hide()
+      this.progressBarVisible = false;
 
         }
       }
@@ -57,11 +56,11 @@ GetLendersStatistics(){
     {
       next:(res)=>{
         this.LenderStats=res
-      this.spinner.hide()
+      this.progressBarVisible = false;
       resolve()
                   },
       error:(err)=>{
-      this.spinner.hide()
+      this.progressBarVisible = false;
 
         }
       }
@@ -71,17 +70,16 @@ GetLendersStatistics(){
 }
 ComplaintsStats:any=[]
 GetComplaintsStatistics(){
-  this.spinner.show()
   return new Promise<void>((resolve, reject) => {
   this.http.get(`${environment.apiUrl}/Admin/complaintsStatistics`).subscribe(
     {
       next:(res)=>{
         this.ComplaintsStats=res
-      this.spinner.hide()
+      this.progressBarVisible = false;
       resolve()
                   },
       error:(err)=>{
-      this.spinner.hide()
+      this.progressBarVisible = false;
 
         }
       }

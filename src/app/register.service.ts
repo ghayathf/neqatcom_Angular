@@ -12,6 +12,7 @@ import { environment } from '.././environments/environment.prod';
 export class RegisterService {
   tr: any;
   tr2: any;
+  progressBarVisible: boolean = true;
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private router: Router, private toaster: ToastrService,
     private userService:UserService) {
     this.tr = []

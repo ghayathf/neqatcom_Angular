@@ -7,7 +7,9 @@
 </head>
 
 <body>
-
+  <div *ngIf="loanService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
   <!-- Header START -->
   <app-lender-header></app-lender-header>
   <!-- Header END -->
@@ -58,9 +60,9 @@ Page content START -->
                 <h3 class="mb-0">Postpone Requests</h3>
               </div>
               <!-- Card header END -->
-              <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
+              <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
                 [fullScreen]="true">
-              </ngx-spinner>
+              </ngx-spinner> -->
               <!-- Card body START -->
               <div class="card-body">
 
@@ -191,7 +193,7 @@ Footer END -->
                   <img id="uploadfile-1-preview" class="avatar-content" src="../../../assets/HomeAssets/images/{{LoaneeImage}}" alt="">
                 </span>
               </label>
-              
+
             </div>
           </div>
         </div>

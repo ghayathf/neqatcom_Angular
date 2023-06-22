@@ -1,4 +1,7 @@
 <body>
+  <div *ngIf="TestimonialService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
     <app-lender-header></app-lender-header>
     <main>
 
@@ -6,9 +9,9 @@
         <!-- =======================
     Main part START -->
         <section class="pt-4 pt-sm-5">
-            <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
+            <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
                 [fullScreen]="true">
-            </ngx-spinner>
+            </ngx-spinner> -->
             <div class="container">
                 <div class="row g-4 g-md-5 justify-content-between">
 

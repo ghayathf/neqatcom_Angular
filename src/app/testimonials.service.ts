@@ -11,21 +11,20 @@ import { environment } from '.././environments/environment.prod';
 export class TestimonialsService {
 
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private router: Router, private toaster: ToastrService) { }
-
+  progressBarVisible: boolean = true;
   Testimonials: any
   GetAllTestimonials() {
-    this.spinner.show()
     return new Promise<void>((resolve, reject) => {
       this.http.get(`${environment.apiUrl}/Testimonial/GetAllTestimonials`).subscribe(
         {
           next: (res) => {
             this.Testimonials = res
-            this.spinner.hide()
+            this.progressBarVisible = false
             resolve()
 
           },
           error: (err) => {
-            this.spinner.hide()
+            this.progressBarVisible = false
           }
         }
       )
@@ -39,20 +38,19 @@ export class TestimonialsService {
 
   AccetpedTestimonialsHome: any
   GetAcceptedTestimonialsHome() {
-    this.spinner.show()
     return new Promise<void>((resolve, reject) => {
       this.http.get(`${environment.apiUrl}/Testimonial/GetTestimonialAccepted`).subscribe(
         {
 
           next: (res) => {
             this.AccetpedTestimonialsHome = res
-            this.spinner.hide()
+            this.progressBarVisible = false
 
             resolve()
 
           },
           error: (err) => {
-            this.spinner.hide()
+            this.progressBarVisible = false
           }
         }
       )
@@ -132,17 +130,16 @@ export class TestimonialsService {
 
 
   CreateTestimonial(message: any) {
-    this.spinner.show();
     message.testimonialstatus = 0;
     return new Promise<void>((resolve, reject) => {
       this.http.post(`${environment.apiUrl}/Testimonial/CreateTestimonial`, message).subscribe(
         {
           next: () => {
-            this.spinner.hide();
+            this.progressBarVisible = false
             resolve();
           },
           error: () => {
-            this.spinner.hide();
+            this.progressBarVisible = false
           }
         }
       )

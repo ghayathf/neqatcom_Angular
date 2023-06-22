@@ -40,23 +40,31 @@ export class MainComponent {
 length:any
   async ngOnInit() {
     await this.offerService.GetOffersForLenderMain(localStorage.getItem('Lenderid'))
-    this.offers = this.offerService.LenderOffers
     this.lenderID = localStorage.getItem('Lenderid');
     await this.lenderService.GetLenderPayments(parseInt(this.lenderID));
+    await this.userService.GetFollowers(localStorage.getItem('Lenderid'))
+    await this.lenderService.GetAllFollowers(localStorage.getItem('Lenderid'))
+    await this.lenderService.GetLenderCounters(localStorage.getItem('Lenderid'));
+
+    this.offers = this.offerService.LenderOffers
+
     // Extract labels and data from lenderService.LenderPayments
     this.doughnutChartLabels = this.lenderService.LenderPayments.map((elem: any) => elem.monthName);
     this.doughnutChartDatasets = [
       { data: this.lenderService.LenderPayments.map((elem: any) => elem.totalPayments) }
     ];
-    await this.userService.GetFollowers(localStorage.getItem('Lenderid'))
 
-    await this.lenderService.GetAllFollowers(localStorage.getItem('Lenderid'))
+
+
     this.Followers = this.lenderService.Followers
     this.length = this.Followers.length
     console.log(this.Followers);
-    await this.lenderService.GetLenderCounters(localStorage.getItem('Lenderid'));
-    
 
+
+
+  }
+  async ngOnDestroy(){
+    this.lenderService.progressBarVisible = true;
   }
   chartContainer1:any
 chartContainer2:any

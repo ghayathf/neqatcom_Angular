@@ -7,7 +7,9 @@
 </head>
 
 <body>
-
+  <div *ngIf="loanService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
 	<!-- Header START -->
 	<app-lender-header></app-lender-header>
 	<!-- Header END -->
@@ -275,4 +277,4 @@ Footer END -->
 	</div>
 	<!-- </div> -->
 </ng-template>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true"> -->

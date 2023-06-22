@@ -10,7 +10,7 @@ import { environment } from '.././environments/environment.prod';
 export class PagesService {
 
   constructor(private http: HttpClient, private toaster: ToastrService, private spinner: NgxSpinnerService) { }
-
+  progressBarVisible: boolean = true;
   Home:any
 GetAllHomeInfo(){
   this.spinner.show()
@@ -19,14 +19,13 @@ GetAllHomeInfo(){
     {
       next:(res)=>{
                     this.Home=res
-                    this.spinner.hide()
+                    this.progressBarVisible=false
 
                     resolve()
 
                   },
       error:(err)=>{
-                      this.spinner.hide()
-                      ;
+                      this.progressBarVisible=false
                    }
       }
     )
@@ -172,6 +171,7 @@ async UpdateLatePayDateReminder() {
     this.http.put(`${environment.apiUrl}/Home/UpdateLatePayDateReminder`, {}).subscribe({
       next: () => {
         resolve();
+        debugger
       },
       error: (err) => {
         ;
@@ -192,20 +192,18 @@ CalculateCreditScores() {
   })
 }CancleAuto:any
 CancleLoanAutomatically(){
-  this.spinner.show()
   return new Promise<void>((resolve, reject) => {
   this.http.get(`${environment.apiUrl}/Admin/CancleLoanAutomatically`).subscribe(
     {
       next:(res)=>{
                     this.CancleAuto=res
 
-                    this.spinner.hide()
+                    this.progressBarVisible=false
                     resolve()
 
                   },
       error:(err)=>{
-                      this.spinner.hide()
-                      ;
+                      this.progressBarVisible=false
                    }
       }
     )

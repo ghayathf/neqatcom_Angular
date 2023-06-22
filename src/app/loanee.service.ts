@@ -9,7 +9,7 @@ import { environment } from '.././environments/environment.prod';
   providedIn: 'root'
 })
 export class LoaneeService {
-
+  progressBarVisible: boolean = true;
   constructor(private http: HttpClient, private spinner: NgxSpinnerService, private router: Router, private toaster: ToastrService) { }
   Loanees:any = []
   GetAllLoanees() {
@@ -52,7 +52,7 @@ export class LoaneeService {
       this.http.get(`${environment.apiUrl}/Loanee/GetCurrentAndFinishedLoans/`+LID).subscribe(
         (res) => {
           this.CurrentAndFinishedLoans = res
-          
+
           this.spinner.hide();
           resolve()
         },
@@ -83,18 +83,14 @@ export class LoaneeService {
   GetConfirmLoans(loaneeid:any) {
     return new Promise<void>((resolve, reject) => {
 
-      this.spinner.show();
       this.http.get(`${environment.apiUrl}/Loanee/GetConfirmLoans/`+loaneeid).subscribe(
         (res) => {
           this.LoansConfirmation = res
-
-          this.spinner.hide();
+this.progressBarVisible = false
           resolve()
         },
         (err) => {
-          ;
-
-          this.spinner.hide();
+          this.progressBarVisible = false
         }
       )
     })

@@ -1,5 +1,7 @@
 <!-- <div id="myPaypalButtons"></div> -->
-
+<div *ngIf="loaneeService.progressBarVisible" class="progress-container">
+  <div class="progress-bar"></div>
+</div>
 <app-loaneeheader></app-loaneeheader>
 <!-- =======================
 Page Banner START -->

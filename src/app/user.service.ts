@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(public http: HttpClient, public router: Router, private spinner: NgxSpinnerService, public toastr: ToastrService) { }
 
-
+  progressBarVisible: boolean = true;
 
 
   DeleteUser(UID: any) {
@@ -63,18 +63,18 @@ export class UserService {
   }
   async UpdatePass(user: any) {
 
-  this.spinner.show()
+
   return new Promise<void>((resolve, reject) => {
   this.http.put(`${environment.apiUrl}/User/UpdatePassword`,user).subscribe(
     {
       next:()=>{
-      this.spinner.hide()
+      this.progressBarVisible = false;
       this.toastr.success("Password Updated Successfuly")
       resolve()
                    },
       error:(err)=>{
 
-      this.spinner.hide()
+      this.progressBarVisible = false;
       this.toastr.error("Something Wrong")
       ;
         }
@@ -85,18 +85,16 @@ export class UserService {
 }
 userById:any
 GetUserById(id:any){
-  this.spinner.show()
   return new Promise<void>((resolve, reject) => {
   this.http.get(`${environment.apiUrl}/User/GetUserById/`+id).subscribe(
     {
       next:(res)=>{
         this.userById=res
-      this.spinner.hide()
+      this.progressBarVisible = false;
       resolve()
                   },
       error:(err)=>{
-      this.spinner.hide()
-      ;
+      this.progressBarVisible = false;
         }
       }
     )

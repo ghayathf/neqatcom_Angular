@@ -49,12 +49,16 @@ export class CategoriesComponent {
   loans: any
   async ngOnInit() {
     await this.categoriesService.GetAllCategories()
+    await this.adminService.GetCategoriesStatistics()
     this.cats = this.categoriesService.categories
     this.Length = this.cats.length
-    await this.adminService.GetCategoriesStatistics()
+
     this.offers = this.adminService.CategoriesStats.totaloffers
     this.categories = this.adminService.CategoriesStats.totalcategories
     this.loans = this.adminService.CategoriesStats.totalloans
+  }
+  async ngOnDestroy(){
+    this.adminService.progressBarVisible = true
   }
   SelectedForDelete: any
   openDeleteDialog(catId: number) {
@@ -121,11 +125,11 @@ await this.ngOnInit()
     await this.registerService.getAllUsers();
     for (const lenderUser of this.registerService.lenderUsers) {
       const userId = lenderUser.userid;
-       
+
       this.CreateNotificationForm.controls['userid'].setValue(userId);
       this.CreateNotificationForm.controls['notificationsmessage'].setValue('Check out our new category');
       await this.notification.CreateNotification(this.CreateNotificationForm.value);
-       
+
     }
     await this.dialog.closeAll()
 await this.ngOnInit()

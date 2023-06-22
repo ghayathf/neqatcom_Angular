@@ -19,12 +19,16 @@ Loanees:any
 avg:any
 loans:any
 async ngOnInit(){
-await this.loaneeService.GetAllLoanees()
-await this.adminService.GetLoaneesStatistics()
+await this.loaneeService.GetAllLoanees();
+await this.adminService.GetLoaneesStatistics();
+
 this.AllLoanees = this.loaneeService.Loanees
 this.Loanees = this.adminService.LoaneeStats.loaneescount
 this.avg = this.adminService.LoaneeStats.averagecreditscore
 this.loans = this.adminService.LoaneeStats.totalloanscount
+}
+async ngOnDestroy(){
+  this.adminService.progressBarVisible = true;
 }
 fileName = 'ExcelSheet.xlsx';
   exportexcel() {

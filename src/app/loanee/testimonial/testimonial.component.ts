@@ -36,4 +36,7 @@ async CreateNewTestimonial() {
     this.testimonialSent = false;
   }, 3000); // Display the feedback message for 3 seconds
 }
+async ngOnDestroy(){
+  this.TestimonialService.progressBarVisible = true;
+}
 }

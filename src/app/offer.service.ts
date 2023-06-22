@@ -10,7 +10,7 @@ import { environment } from '.././environments/environment.prod';
   providedIn: 'root'
 })
 export class OfferService {
-
+  progressBarVisible: boolean = true;
   constructor(public AuthGuard: AuthGuard, private http: HttpClient, private spinner: NgxSpinnerService, private router: Router, private toaster: ToastrService) {
 
   }
@@ -123,16 +123,14 @@ export class OfferService {
   MainOffers: any = [];
   GetOffersForMain() {
     return new Promise<void>((resolve, reject) => {
-      this.spinner.show();
       this.http.get(`${environment.apiUrl}/Offer/GetLoaneeMain`).subscribe(
         (res) => {
           this.MainOffers = res
-          this.spinner.hide();
+          this.progressBarVisible = false;
           resolve()
         },
         (err) => {
-          ;
-          this.spinner.hide();
+          this.progressBarVisible = false;
         }
       )
     })

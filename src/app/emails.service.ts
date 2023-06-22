@@ -13,11 +13,11 @@ import { environment } from '.././environments/environment.prod';
 })
 export class EmailsService {
   mapContainer: any;
-
+  progressBarVisible: boolean = true;
   constructor(public http: HttpClient, public router: Router, public toastr: ToastrService) { }
 
   async SentEmail(object: any) {
- 
+
     return new Promise<void>((resolve, reject) => {
       emailjs.send('service_x4si89o', 'template_yw6n7gv', object, 'uQNPmbMJbnsEgcVAf')
         .then(
@@ -40,19 +40,19 @@ export class EmailsService {
     return new Promise<void>((resolve, reject) => {
       // Initialize the map
       const map = L.map('map').setView([31.9515694, 35.9239625], 13);
-  
+
       // Add the tile layer to the map
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
-  
+
       // Add a click event to the map
       map.on('click', (event: L.LeafletMouseEvent) => {
         // Remove the previous marker if it exists
         if (this.marker) {
           map.removeLayer(this.marker);
         }
-  
+
         // Create a red marker at the clicked location
         this.marker = L.marker(event.latlng, {
           icon: L.icon({
@@ -61,13 +61,13 @@ export class EmailsService {
             iconAnchor: [12, 41]
           })
         }).addTo(map);
-  
+
         // Store the coordinates
         this.lat = event.latlng.lat;
         this.lng = event.latlng.lng;
         console.log(`Clicked at ${this.lat}, ${this.lng}`);
       });
-  
+
       // Resolve the promise
       resolve();
     });

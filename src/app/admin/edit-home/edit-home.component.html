@@ -1,6 +1,9 @@
 <app-admin-header></app-admin-header>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
-</ngx-spinner>
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+</ngx-spinner> -->
+<div *ngIf="pagesService.progressBarVisible" class="progress-container">
+  <div class="progress-bar"></div>
+</div>
 <div class="dashboard__area">
     <div class="row">
     </div>

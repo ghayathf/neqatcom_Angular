@@ -25,6 +25,9 @@ export class EditHomeComponent {
     await this.pagesService.GetAllHomeInfo()
     this.UpdateData.patchValue(this.pagesService.Home[0])
   }
+  async ngOnDestroy(){
+    this.pagesService.progressBarVisible = true
+  }
   async UpdateHome() {
     this.UpdateData.controls['homeid'].setValue(this.pagesService.Home[0].homeid);
     await this.pagesService.UpdateHome(this.UpdateData.value);
