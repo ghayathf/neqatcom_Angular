@@ -5,6 +5,7 @@ import { OfferService } from 'src/app/offer.service';
 import { PagesService } from 'src/app/pages.service';
 import { TestimonialsService } from 'src/app/testimonials.service';
 import { Chart, registerables } from 'chart.js';
+import { AdminService } from 'src/app/admin.service';
 declare const feed: any;
 declare const zingchart: any;
 
@@ -17,7 +18,7 @@ export class MainComponent {
   @ViewChild('chartCanvas')
   chartCanvas!: ElementRef;
   chart!: Chart;
-  constructor(private Testimonials: TestimonialsService, public offerService: OfferService, public pagesService: PagesService, public EmailService: EmailsService, public loanService: LoanService) { }
+  constructor(public adminService:AdminService,private Testimonials: TestimonialsService, public offerService: OfferService, public pagesService: PagesService, public EmailService: EmailsService, public loanService: LoanService) { }
   m: any
   s: any
   Accepted: any;
@@ -29,6 +30,7 @@ export class MainComponent {
     await this.pagesService.CalculateCreditScores();
     await this.pagesService.GetLoaneestoRemind();
     await this.pagesService.UpdateBeforeReminder()
+    await this.adminService.CheckFiveDays();
     await this.pagesService.GetLoaneesInPayDaytoRemind();
     await this.pagesService.UpdateInPayDateReminder();
     await this.pagesService.GetLoaneeslatePayDaytoRemind()
@@ -111,6 +113,7 @@ export class MainComponent {
       this.s = "Automatic Loan Cancelation "
       this.m = "Please note that this loan #" + this.pagesService.CancleAuto[i].loanid + " has been canceled automatically from the system "
       await this.sendEmail(this.pagesService.CancleAuto[i]?.email, this.pagesService.CancleAuto[i]?.firstname, this.m, this.s)
+      await this.pagesService.deleteMeeting(this.pagesService.CancleAuto[i]?.meetingid)
       await this.loanService.deleteLoan(this.pagesService.CancleAuto[i]?.loanid);
     }
     await this.pagesService.CancleLoanAutoMsgForLender();

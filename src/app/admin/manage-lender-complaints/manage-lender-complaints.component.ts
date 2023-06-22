@@ -38,6 +38,7 @@ export class ManageLenderComplaintsComponent {
   async ngOnInit() {
     await this.adminService.GetLendeComplaints()
     await this.adminService.GetComplaintsStatistics()
+    
     this.complaints = this.adminService.Lendercomplaints;
 
     this.Length = this.complaints.Length

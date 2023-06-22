@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { JoyrideService }from 'ngx-joyride';
 import { DocumentService } from 'ngx-joyride';
 import { DomRefService } from 'ngx-joyride';
+import { AdminService } from 'src/app/admin.service';
 // import { SpeechClient } from '@google-cloud/speech';
 // const client = new SpeechClient({
 //   keyFilename: '/path/to/service-account-key.json' // Replace with the path to your service account key file
@@ -26,7 +27,7 @@ export class MainComponent {
   recognition: any;
   // transcription = '';
 
-  constructor(public joyride: JoyrideService,public offerService: OfferService, public loanservice: LoanService, public lenderService: LenderStoreService, public userService: UserService,
+  constructor(public joyride: JoyrideService,public adminService:AdminService,public offerService: OfferService, public loanservice: LoanService, public lenderService: LenderStoreService, public userService: UserService,
     public dialog: MatDialog) {
       this.recognition = new webkitSpeechRecognition();
       this.recognition.lang = 'en-US';
@@ -42,6 +43,7 @@ export class MainComponent {
   Offers: any
   loaneeid: any
   async ngOnInit() {
+    await this.adminService.CheckFiveDays();
     await this.offerService.GetOffersForMain()
     this.Offers = this.offerService.MainOffers
     this.loaneeid = await localStorage.getItem("Loaneeid")
