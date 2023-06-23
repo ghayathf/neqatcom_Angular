@@ -3,13 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactusService } from 'src/app/contactus.service';
 import * as L from 'leaflet';
 import { EmailsService } from 'src/app/emails.service';
-@Component({
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';@Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
   styleUrls: ['./contactus.component.css']
 })
 export class ContactusComponent {
-  constructor(public messageSerivce: ContactusService,public EmailService:EmailsService) { }
+  constructor(public messageSerivce: ContactusService,public EmailService:EmailsService,private sanitizer: DomSanitizer) { }
   CreateMessageForm: FormGroup = new FormGroup(
     {
       firstnamee: new FormControl('', Validators.required),
@@ -47,5 +47,8 @@ async ngOnDestroy(){
     await this.messageSerivce.CreateMessage(this.CreateMessageForm.value);
 debugger
     this.ngOnInit()
+  }
+  sanitizeHTML(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }
