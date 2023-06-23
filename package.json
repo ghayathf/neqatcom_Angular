@@ -57,7 +57,7 @@
     "ngx-tour-core": "^4.2.0",
     "nodemon": "^2.0.22",
     "primeicons": "^6.0.1",
-    "primeng": "^15.4.5",
+    "primeng": "^15.4.5-lts",
     "request-promise": "^4.2.6",
     "rxjs": "~7.8.0",
     "star-rating": "^0.0.1",
