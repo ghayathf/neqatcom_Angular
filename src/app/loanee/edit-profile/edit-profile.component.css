@@ -1,11 +1,11 @@
 #myChart {
-    height: 100%;
-    width: 100%;
-    min-height: 150px;
-  }
-  .zc-ref {
-    display: none;
-  }
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+}
+.zc-ref {
+  display: none;
+}
 .progress-container {
   position: relative;
   top: 0;

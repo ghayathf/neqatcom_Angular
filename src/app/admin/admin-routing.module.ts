@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LenderStoreRequestComponent } from './lender-store-request/lender-store-request.component';
 import { MainComponent } from './main/main.component';
 import { AllLoaneesComponent } from './all-loanees/all-loanees.component';
-import { ManageLoaneeComplaintsComponent } from './manage-loanee-complaints/manage-loanee-complaints.component'
+import { ManageLoaneeComplaintsComponent } from './manage-loanee-complaints/manage-loanee-complaints.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactMessagesComponent } from './contact-messages/contact-messages.component';
 import { EditHomeComponent } from './edit-home/edit-home.component';
@@ -14,53 +14,52 @@ import { ManageLenderComplaintsComponent } from './manage-lender-complaints/mana
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
   },
   {
     path: 'LenderStoreRequest',
-    component: LenderStoreRequestComponent
+    component: LenderStoreRequestComponent,
   },
   {
     path: 'loanees',
-    component: AllLoaneesComponent
+    component: AllLoaneesComponent,
   },
   {
     path: 'loaneeComplaints',
-    component: ManageLoaneeComplaintsComponent
+    component: ManageLoaneeComplaintsComponent,
   },
   {
     path: 'Edit-Profile',
-    component: ProfileComponent
+    component: ProfileComponent,
   },
   {
     path: 'ContactMessages',
-    component: ContactMessagesComponent
+    component: ContactMessagesComponent,
   },
   {
     path: 'EditHome',
-    component: EditHomeComponent
+    component: EditHomeComponent,
   },
   {
     path: 'Categories',
-    component: CategoriesComponent
+    component: CategoriesComponent,
   },
   {
     path: 'changePass',
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
   },
   {
     path: 'testimonials',
-    component: TestimonialsComponent
+    component: TestimonialsComponent,
   },
   {
-    path:'lenderComplaints',
-    component:ManageLenderComplaintsComponent
-  }
-
+    path: 'lenderComplaints',
+    component: ManageLenderComplaintsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

@@ -1,5 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth.service';
 import { EmailsService } from 'src/app/emails.service';
@@ -7,46 +12,47 @@ import { EmailsService } from 'src/app/emails.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   public aFormGroup!: FormGroup;
-  @ViewChild('TwoFactor') twofactor: any
-  constructor(private EmailService: EmailsService, public auth: AuthService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  @ViewChild('TwoFactor') twofactor: any;
+  constructor(
+    private EmailService: EmailsService,
+    public auth: AuthService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
+  ) { }
 
   LoginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    recaptcha: new FormControl('', [Validators.required])
-
-  })
+    recaptcha: new FormControl('', [Validators.required]),
+  });
 
   FactorForm: FormGroup = new FormGroup({
     code: new FormControl(''),
-
-
-  })
+  });
   code: number | any;
 
   siteKey: any;
 
   ngOnInit() {
-    this.siteKey = "6LcAVagmAAAAAE8b5gCxb4tSE4Bh57fhTOPdplm-";
-
+    this.siteKey = '6LcAVagmAAAAAE8b5gCxb4tSE4Bh57fhTOPdplm-';
   }
   // Login() {
   //   this.auth.login(this.LoginForm.value)
   // }
 
   get email(): FormControl {
-    return this.LoginForm.get("email") as FormControl;
+    return this.LoginForm.get('email') as FormControl;
   }
 
   get Password(): FormControl {
-    return this.LoginForm.get("password") as FormControl;
+    return this.LoginForm.get('password') as FormControl;
   }
   get Email(): FormControl {
-    return this.LoginForm.get("email") as FormControl;
+    return this.LoginForm.get('email') as FormControl;
   }
 
   random: any;
@@ -62,11 +68,14 @@ export class LoginComponent {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '30%';
     dialogConfig.height = '350px';
-  dialogConfig.backdropClass = 'backdropBackground';
-  dialogConfig.panelClass = 'mat-dialog-container';
-    this.s = "Two Factor Authentication "
-    this.m = "This is the 4 digits code is required to access your account " + this.random +",Thank you for your time."
-    this.dialog.open(this.twofactor, dialogConfig)
+    dialogConfig.backdropClass = 'backdropBackground';
+    dialogConfig.panelClass = 'mat-dialog-container';
+    this.s = 'Two Factor Authentication ';
+    this.m =
+      'This is the 4 digits code is required to access your account ' +
+      this.random +
+      ',Thank you for your time.';
+    this.dialog.open(this.twofactor, dialogConfig);
     this.selectedMail = this.LoginForm.get('email')?.value;
     await this.sendEmail(this.selectedMail, this.m, this.s);
   }
@@ -75,7 +84,7 @@ export class LoginComponent {
       toemail: email,
       subject: sub,
 
-      message: mess
+      message: mess,
     };
 
     await this.EmailService.SentEmail(emailParams);
@@ -85,8 +94,6 @@ export class LoginComponent {
     // this.code = this.FactorForm.get('code')?.value;
     await this.auth.login(this.LoginForm.value, this.random, this.code);
     await this.ngOnInit();
-    await this.dialog.closeAll()
+    await this.dialog.closeAll();
   }
-
-
 }

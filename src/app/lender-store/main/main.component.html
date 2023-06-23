@@ -1,6 +1,5 @@
 <head>
-	<title>Neqatcom - Company,Dashboard</title>
-
+  <title>Neqatcom - Company,Dashboard</title>
 </head>
 
 <div *ngIf="lenderService.progressBarVisible" class="progress-container">
@@ -12,172 +11,211 @@
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
-
-	<!-- =======================
+  <!-- =======================
 Page Banner START -->
-	<app-lender-banner></app-lender-banner><!-- =======================
+  <app-lender-banner></app-lender-banner
+  ><!-- =======================
 Page Banner END -->
 
-	<!-- =======================
+  <!-- =======================
 Page content START -->
 
-	<section class="pt-0 ">
-		<div class="container">
-			<div class="row">
-				<!-- Left sidebar START -->
-				<div class="col-xl-3">
-					<!-- Responsive offcanvas body START -->
-					<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
-						<!-- Offcanvas header -->
-						<div class="offcanvas-header bg-light">
-							<h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-								data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
-						</div>
-						<!-- Offcanvas body -->
-						<div class="offcanvas-body p-3 p-xl-0">
-							<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
-								<!-- Dashboard menu -->
-								<app-lender-side-bar></app-lender-side-bar>
-							</div>
-						</div>
-					</div>
-					<!-- Responsive offcanvas body END -->
+  <section class="pt-0">
+    <div class="container">
+      <div class="row">
+        <!-- Left sidebar START -->
+        <div class="col-xl-3">
+          <!-- Responsive offcanvas body START -->
+          <div
+            class="offcanvas-xl offcanvas-end"
+            tabindex="-1"
+            id="offcanvasSidebar"
+          >
+            <!-- Offcanvas header -->
+            <div class="offcanvas-header bg-light">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                My profile
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                data-bs-target="#offcanvasSidebar"
+                aria-label="Close"
+              ></button>
+            </div>
+            <!-- Offcanvas body -->
+            <div class="offcanvas-body p-3 p-xl-0">
+              <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+                <!-- Dashboard menu -->
+                <app-lender-side-bar></app-lender-side-bar>
+              </div>
+            </div>
+          </div>
+          <!-- Responsive offcanvas body END -->
+        </div>
+        <!-- Left sidebar END -->
 
-				</div>
-				<!-- Left sidebar END -->
+        <!-- Main content START -->
+        <div class="col-xl-9">
+          <!-- Counter boxes START -->
+          <div class="row g-4">
+            <!-- Counter item -->
+            <div class="col-sm-6 col-lg-4" title="عدد الاجتماعات">
+              <div
+                class="d-flex justify-content-center align-items-center p-4 bg-warning bg-opacity-15 rounded-3"
+              >
+                <span class="display-6 text-warning mb-0"
+                  ><i class="fas fa-handshake"></i
+                ></span>
+                <div class="ms-4">
+                  <div class="d-flex">
+                    <h5
+                      class="purecounter mb-0 fw-bold"
+                      data-purecounter-start="0"
+                      data-purecounter-end="25"
+                      data-purecounter-delay="200"
+                    >
+                      {{ lenderService.LenderCounters[1]?.tableLength }}
+                    </h5>
+                  </div>
+                  <span class="mb-0 h6 fw-light">Total Meetings</span>
+                </div>
+              </div>
+            </div>
+            <!-- Counter item -->
+            <div class="col-sm-6 col-lg-4" title="عدد العروض">
+              <div
+                class="d-flex justify-content-center align-items-center p-4 bg-purple bg-opacity-10 rounded-3"
+              >
+                <span class="display-6 text-purple mb-0"
+                  ><i class="fas fa-hand-holding-usd"></i
+                ></span>
+                <div class="ms-4">
+                  <div class="d-flex">
+                    <h5
+                      class="purecounter mb-0 fw-bold"
+                      data-purecounter-start="0"
+                      data-purecounter-end="25"
+                      data-purecounter-delay="200"
+                    >
+                      {{ lenderService.LenderCounters[2]?.tableLength }}
+                    </h5>
+                  </div>
+                  <span class="mb-0 h6 fw-light">Total Offers</span>
+                </div>
+              </div>
+            </div>
+            <!-- Counter item -->
+            <div class="col-sm-6 col-lg-4" title="عدد القروض">
+              <div
+                class="d-flex justify-content-center align-items-center p-4 bg-info bg-opacity-10 rounded-3"
+              >
+                <span class="display-6 text-info mb-0"
+                  ><i class="fas fa-money-bill-wave"></i
+                ></span>
+                <div class="ms-4">
+                  <div class="d-flex">
+                    <h5
+                      class="purecounter mb-0 fw-bold"
+                      data-purecounter-start="0"
+                      data-purecounter-end="12"
+                      data-purecounter-delay="300"
+                    >
+                      {{ lenderService.LenderCounters[0]?.tableLength }}
+                    </h5>
+                  </div>
+                  <span class="mb-0 h6 fw-light">Total Loans</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <hr />
+          <div style="display: flex">
+            <div style="display: flex; flex-direction: column; flex: 1">
+              <div style="margin-top: 10px">
+                <button
+                  title="قم بحفظ الرسم البياني"
+                  class="btn btn-sm btn-danger-soft me-2 mb-0"
+                  style="margin-left: 100px"
+                  (click)="generatePDF()"
+                >
+                  <i class="bi bi-file-earmark-pdf-fill"></i> Download PDF
+                </button>
+              </div>
+              <br />
+              <div style="margin-left: 20px">
+                <div row mt-5 id="chartContainer">
+                  <canvas
+                    baseChart
+                    [labels]="doughnutChartLabels"
+                    [datasets]="doughnutChartDatasets"
+                    [options]="doughnutChartOptions"
+                    [legend]="true"
+                    [type]="'doughnut'"
+                  >
+                  </canvas>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive border-0" style="flex: 1">
+              <table
+                class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+              >
+                <!-- Table head -->
+                <thead>
+                  <tr>
+                    <th scope="col" class="border-0 rounded-start">Follower</th>
 
-				<!-- Main content START -->
-				<div class="col-xl-9">
+                    <th scope="col" class="border-0">Email</th>
+                  </tr>
+                </thead>
 
-					<!-- Counter boxes START -->
-					<div class="row g-4">
-						<!-- Counter item -->
-						<div class="col-sm-6 col-lg-4" title="عدد الاجتماعات">
-							<div
-								class="d-flex justify-content-center align-items-center p-4 bg-warning bg-opacity-15 rounded-3">
-								<span class="display-6 text-warning mb-0"><i class="fas fa-handshake"></i></span>
-								<div class="ms-4">
-									<div class="d-flex">
-										<h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
-											data-purecounter-end="25" data-purecounter-delay="200">
-											{{lenderService.LenderCounters[1]?.tableLength}}</h5>
-									</div>
-									<span class="mb-0 h6 fw-light">Total Meetings</span>
-								</div>
-							</div>
-						</div>
-						<!-- Counter item -->
-						<div class="col-sm-6 col-lg-4" title="عدد العروض">
-							<div
-								class="d-flex justify-content-center align-items-center p-4 bg-purple bg-opacity-10 rounded-3">
-								<span class="display-6 text-purple mb-0"><i class="fas fa-hand-holding-usd"></i></span>
-								<div class="ms-4">
-									<div class="d-flex">
-										<h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
-											data-purecounter-end="25" data-purecounter-delay="200">
-											{{lenderService.LenderCounters[2]?.tableLength}}</h5>
-
-									</div>
-									<span class="mb-0 h6 fw-light">Total Offers</span>
-								</div>
-							</div>
-						</div>
-						<!-- Counter item -->
-						<div class="col-sm-6 col-lg-4" title="عدد القروض">
-							<div
-								class="d-flex justify-content-center align-items-center p-4 bg-info bg-opacity-10 rounded-3">
-								<span class="display-6 text-info mb-0"><i class="fas fa-money-bill-wave"></i></span>
-								<div class="ms-4">
-									<div class="d-flex">
-										<h5 class="purecounter mb-0 fw-bold" data-purecounter-start="0"
-											data-purecounter-end="12" data-purecounter-delay="300">
-											{{lenderService.LenderCounters[0]?.tableLength}}</h5>
-
-									</div>
-									<span class="mb-0 h6 fw-light">Total Loans</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-					<hr>
-					<div style="display: flex;">
-						<div style="display: flex; flex-direction: column; flex:1">
-							<div style="margin-top: 10px;">
-								<button title="قم بحفظ الرسم البياني" class="btn btn-sm btn-danger-soft me-2 mb-0"
-									style="margin-left: 100px;" (click)="generatePDF()">
-									<i class="bi bi-file-earmark-pdf-fill"></i> Download PDF
-								</button>
-							</div>
-							<br>
-							<div style="margin-left: 20px;">
-								<div row mt-5 id="chartContainer"> <canvas baseChart [labels]="doughnutChartLabels"
-										[datasets]="doughnutChartDatasets" [options]="doughnutChartOptions"
-										[legend]="true" [type]="'doughnut'">
-									</canvas></div>
-
-							</div>
-						</div>
-						<div class="table-responsive border-0" style="flex: 1;">
-							<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-								<!-- Table head -->
-								<thead>
-									<tr>
-										<th scope="col" class="border-0 rounded-start">Follower </th>
-
-										<th scope="col" class="border-0 ">Email </th>
-
-
-
-									</tr>
-								</thead>
-
-								<!-- Table body START -->
-								<tbody>
-									<!-- Table item -->
-									<tr *ngFor="let item of Followers">
-										<!-- Table data -->
-										<td>
-											<div class="d-flex align-items-center">
-												<div class="w-60px">
-													<img src="{{ item.userimage }}"
-														class="avatar-img rounded-circle border border-white border-0 shadow" alt="" style="width: 70px; height: 70px;">
-												</div>
-												<h6 class="mb-0 ms-2 table-responsive-title">
-													<a>{{item.firstname}} {{
-														item.lastname }}</a>
-												</h6>
-											</div>
-										</td>
-										<!-- <td>
+                <!-- Table body START -->
+                <tbody>
+                  <!-- Table item -->
+                  <tr *ngFor="let item of Followers">
+                    <!-- Table data -->
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="w-60px">
+                          <img
+                            src="{{ item.userimage }}"
+                            class="avatar-img rounded-circle border border-white border-0 shadow"
+                            alt=""
+                            style="width: 70px; height: 70px"
+                          />
+                        </div>
+                        <h6 class="mb-0 ms-2 table-responsive-title">
+                          <a>{{ item.firstname }} {{ item.lastname }}</a>
+                        </h6>
+                      </div>
+                    </td>
+                    <!-- <td>
 											<div class="d-flex align-items-center position-relative">
 												<div class="cols-3" style="word-break: break-all;">{{item.firstname}} {{
 													item.lastname }}</div>
 											</div>
 										</td> -->
 
-										<!-- Table data -->
+                    <!-- Table data -->
 
-										<td>
-											{{item.email}}
-										</td>
+                    <td>
+                      {{ item.email }}
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- Table body END -->
+              </table>
+            </div>
+          </div>
+          <!-- Counter boxes END -->
+          <div row mt-5 id="chartContainer">
+            <!-- Your other chart code here -->
+          </div>
 
-
-									</tr>
-								</tbody>
-								<!-- Table body END -->
-							</table>
-						</div>
-					</div>
-					<!-- Counter boxes END -->
-					<div row mt-5 id="chartContainer">
-						<!-- Your other chart code here -->
-					</div>
-
-
-
-					<!-- <div class="row mt-5">
+          <!-- <div class="row mt-5">
 						<div class="col-12">
 
 
@@ -187,88 +225,90 @@ Page content START -->
 
 						</div>
 					</div> -->
-					<!-- Chart END -->
+          <!-- Chart END -->
 
-					<!-- Course List table START -->
-					<div class="row">
-						<div class="col-12">
-							<div class="card border bg-transparent rounded-3 mt-5">
-								<!-- Card header START -->
+          <!-- Course List table START -->
+          <div class="row">
+            <div class="col-12">
+              <div class="card border bg-transparent rounded-3 mt-5">
+                <!-- Card header START -->
 
-								<!-- Card header END -->
+                <!-- Card header END -->
 
-								<!-- Card body START -->
-								<div class="card-body">
-									<div class="table-responsive border-0 rounded-3">
-										<!-- Table START -->
-										<table class="table table-dark-gray align-middle p-4 mb-0">
-											<!-- Table head -->
-											<thead>
-												<tr>
-													<th scope="col" class="border-0 rounded-start">Category</th>
-													<th scope="col" class="border-0">Description</th>
+                <!-- Card body START -->
+                <div class="card-body">
+                  <div class="table-responsive border-0 rounded-3">
+                    <!-- Table START -->
+                    <table class="table table-dark-gray align-middle p-4 mb-0">
+                      <!-- Table head -->
+                      <thead>
+                        <tr>
+                          <th scope="col" class="border-0 rounded-start">
+                            Category
+                          </th>
+                          <th scope="col" class="border-0">Description</th>
 
-													<th scope="col" class="border-0">minimum month</th>
-												</tr>
-											</thead>
-											<!-- Table body START -->
-											<tbody>
-
-												<!-- Table item -->
-												<tr *ngFor="let item of offers">
-													<!-- Course item -->
-													<td>
-														<div class="d-flex align-items-center">
-															<!-- Image -->
-															<!-- <div class="w-60px">
+                          <th scope="col" class="border-0">minimum month</th>
+                        </tr>
+                      </thead>
+                      <!-- Table body START -->
+                      <tbody>
+                        <!-- Table item -->
+                        <tr *ngFor="let item of offers">
+                          <!-- Course item -->
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <!-- Image -->
+                              <!-- <div class="w-60px">
 																<img src="../../../assets/HomeAssets/images/{{ item.categoryimage }}"
 																	class="rounded" alt="">
 															</div> -->
-															<!-- Title -->
-															<h6 class="mb-0 ms-2 table-responsive-title">
-																<a>{{ item.categoryname }}</a>
-															</h6>
-														</div>
-													</td>
-													<!-- Selling item -->
-													<td>{{ item.descriptions }}</td>
-													<!-- Amount item -->
+                              <!-- Title -->
+                              <h6 class="mb-0 ms-2 table-responsive-title">
+                                <a>{{ item.categoryname }}</a>
+                              </h6>
+                            </div>
+                          </td>
+                          <!-- Selling item -->
+                          <td>{{ item.descriptions }}</td>
+                          <!-- Amount item -->
 
-													<!-- Period item -->
-													<td>
-														<span class="badge bg-danger bg-opacity-10 text-danger">{{
-															item.minmonth }} month/s</span>
-													</td>
-												</tr>
-											</tbody>
-											<!-- Table body END -->
-										</table>
-										<!-- Table END -->
-									</div>
+                          <!-- Period item -->
+                          <td>
+                            <span
+                              class="badge bg-danger bg-opacity-10 text-danger"
+                              >{{ item.minmonth }} month/s</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                      <!-- Table body END -->
+                    </table>
+                    <!-- Table END -->
+                  </div>
 
-									<!-- Pagination -->
-
-								</div>
-								<!-- Card body START -->
-							</div>
-						</div>
-					</div>
-					<!-- Course List table END -->
-				</div>
-				<!-- Main content END -->
-			</div><!-- Row END -->
-		</div>
-	</section>
-	<!-- =======================
+                  <!-- Pagination -->
+                </div>
+                <!-- Card body START -->
+              </div>
+            </div>
+          </div>
+          <!-- Course List table END -->
+        </div>
+        <!-- Main content END -->
+      </div>
+      <!-- Row END -->
+    </div>
+  </section>
+  <!-- =======================
 Page content END -->
-
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 
 <!-- =======================
 Footer START -->
 <footer class="footer">
-	<app-lender-footer></app-lender-footer>
+  <app-lender-footer></app-lender-footer>
 </footer>
 <!-- =======================
 Footer END -->

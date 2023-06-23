@@ -38,7 +38,7 @@ export class ManageLenderComplaintsComponent {
   async ngOnInit() {
     await this.adminService.GetLendeComplaints()
     await this.adminService.GetComplaintsStatistics()
-    
+
     this.complaints = this.adminService.Lendercomplaints;
 
     this.Length = this.complaints.Length
@@ -47,7 +47,7 @@ export class ManageLenderComplaintsComponent {
     this.FromLender = this.adminService.ComplaintsStats.lendertoloaneecount
     this.FromSystem = this.adminService.ComplaintsStats.systemtoloaneecount
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.adminService.progressBarVisible = true
   }
   deleteComplaintId: any
@@ -88,7 +88,7 @@ export class ManageLenderComplaintsComponent {
     this.dialog.closeAll();
     this.adminService.DeleteComplaint(this.deleteComplaintId)
     await this.dialog.closeAll()
-await this.ngOnInit()
+    await this.ngOnInit()
   }
   async sendEmail(email: string, receiver: string, mess: string, sub: string) {
     const emailParams = {

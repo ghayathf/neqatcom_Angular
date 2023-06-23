@@ -3,129 +3,174 @@
 </div>
 <app-lender-header></app-lender-header>
 <section class="pt-0 justify-content-center">
-<div class="container">
+  <div class="container">
     <div class="row">
+      <div class="row mt-4">
+        <!-- Left sidebar START -->
 
-        <div class="row mt-4" >
+        <!-- Left sidebar END -->
 
-            <!-- Left sidebar START -->
+        <!-- Main content START -->
+        <!-- Edit profile START -->
+        <div
+          class="card bg-transparent border rounded-3"
+          style="width: 70%; margin-left: 250px"
+        >
+          <!-- Card header -->
+          <div class="card-header bg-transparent border-bottom">
+            <h1 class="card-header-title mb-0">Edit Profile</h1>
+          </div>
+          <!-- Card body START -->
+          <div class="card-body">
+            <!-- Form -->
 
-            <!-- Left sidebar END -->
+            <!-- Profile picture -->
+            <div class="col-12 justify-content-center align-items-center">
+              <div class="d-flex align-items-center justify-content-center">
+                <label
+                  class="position-relative me-4"
+                  for="uploadfile-1"
+                  title="Replace this pic"
+                >
+                  <!-- Avatar place holder -->
+                  <span class="avatar avatar-xl">
+                    <img
+                      id="uploadfile-1-preview"
+                      class="avatar-img rounded-circle border border-white border-3 shadow"
+                      src="{{ userImage }}"
+                      alt=""
+                    />
+                  </span>
 
-            <!-- Main content START -->
-            <!-- Edit profile START -->
-            <div class="card bg-transparent border rounded-3" style="width: 70%; margin-left: 250px;">
-                <!-- Card header -->
-                <div class="card-header bg-transparent border-bottom ">
-                    <h1 class="card-header-title mb-0 ">Edit Profile</h1>
-                </div>
-                <!-- Card body START -->
-                <div class="card-body">
-                    <!-- Form -->
-
-
-                    <!-- Profile picture -->
-                    <div class="col-12 justify-content-center align-items-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
-                                <!-- Avatar place holder -->
-                                <span class="avatar avatar-xl">
-                                  <img id="uploadfile-1-preview"
-                                    class="avatar-img rounded-circle border border-white border-3 shadow"
-                                    src="{{ userImage }}"
-                                    alt="">
-                                </span>
-
-
-
-                                <!-- Remove btn -->
-                                <!--<input type="file" class="uploadremove"><i class="bi bi-x text-white"  accept="image/gif, image/jpeg, image/png"
+                  <!-- Remove btn -->
+                  <!--<input type="file" class="uploadremove"><i class="bi bi-x text-white"  accept="image/gif, image/jpeg, image/png"
                     (change)="UploadImage(file)" #file ></i>-->
-
-                            </label>
-                            <!-- Upload button -->
-                            <input id="uploadfile-1" class="form-control d-none" type="file"
-                                (change)="UploadImage(file)" #file>
-                        </div>
-                    </div>
-                    <form [formGroup]="UpdateForm" class="row g-4">
-                        <div class="row g-4 justify-content-center">
-
-                            <div class="col-lg-4">
-                                <label class="form-label">User name</label>
-                                <input type="text" class="form-control" placeholder="Site Copyrights"
-                                    formControlName="username">
-                                <div class="form-text text-danger"
-                                    *ngIf="UserName.errors?.['required'] && UserName.touched">
-                                    User Name is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-4 justify-content-center">
-
-                            <div class="col-lg-4">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Email" formControlName="email">
-
-
-                                <div class="form-text text-danger"
-                                    *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
-                                    Email is required
-                                </div>
-                                <div class="form-text text-danger"
-                                    *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
-                                    Email is Invalid
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <label class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" placeholder="Phone Number"
-                                    formControlName="phonenum">
-                                <div class="form-text text-danger"
-                                    *ngIf="PhoneNumber.errors?.['required'] && PhoneNumber.touched">
-                                    Phone Number is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row g-4 justify-content-center">
-
-                            <div class="col-lg-4">
-                                <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" placeholder="First Name"
-                                    formControlName="firstname">
-                                <div class="form-text text-danger"
-                                    *ngIf="FirstName.errors?.['required'] && FirstName.touched">
-                                    First Name is required
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name"
-                                    formControlName="lastname">
-                                <div class="form-text text-danger"
-                                    *ngIf="LastName.errors?.['required'] && LastName.touched">
-                                    Last Name is required
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- Education -->
-
-
-                        <!-- Save button -->
-                        <div class="d-sm-flex justify-content-center">
-                            <button mat-dialog-close class="btn btn-primary next-btn m-2"
-                                (click)="updateInfo()">Update</button>
-                            <button mat-dialog-close class="btn btn-primary next-btn m-2"
-                                routerLink="/lenderstore/SecurityEdit">Change Password</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- Card body END -->
+                </label>
+                <!-- Upload button -->
+                <input
+                  id="uploadfile-1"
+                  class="form-control d-none"
+                  type="file"
+                  (change)="UploadImage(file)"
+                  #file
+                />
+              </div>
             </div>
-            <!-- Edit profile END -->
+            <form [formGroup]="UpdateForm" class="row g-4">
+              <div class="row g-4 justify-content-center">
+                <div class="col-lg-4">
+                  <label class="form-label">User name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Site Copyrights"
+                    formControlName="username"
+                  />
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="UserName.errors?.['required'] && UserName.touched"
+                  >
+                    User Name is required
+                  </div>
+                </div>
+              </div>
+              <div class="row g-4 justify-content-center">
+                <div class="col-lg-4">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    formControlName="email"
+                  />
 
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)"
+                  >
+                    Email is required
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)"
+                  >
+                    Email is Invalid
+                  </div>
+                </div>
+
+                <div class="col-lg-4">
+                  <label class="form-label">Phone Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Phone Number"
+                    formControlName="phonenum"
+                  />
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="PhoneNumber.errors?.['required'] && PhoneNumber.touched"
+                  >
+                    Phone Number is required
+                  </div>
+                </div>
+              </div>
+              <div class="row g-4 justify-content-center">
+                <div class="col-lg-4">
+                  <label class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First Name"
+                    formControlName="firstname"
+                  />
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="FirstName.errors?.['required'] && FirstName.touched"
+                  >
+                    First Name is required
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last Name"
+                    formControlName="lastname"
+                  />
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="LastName.errors?.['required'] && LastName.touched"
+                  >
+                    Last Name is required
+                  </div>
+                </div>
+              </div>
+              <!-- Education -->
+
+              <!-- Save button -->
+              <div class="d-sm-flex justify-content-center">
+                <button
+                  mat-dialog-close
+                  class="btn btn-primary next-btn m-2"
+                  (click)="updateInfo()"
+                >
+                  Update
+                </button>
+                <button
+                  mat-dialog-close
+                  class="btn btn-primary next-btn m-2"
+                  routerLink="/lenderstore/SecurityEdit"
+                >
+                  Change Password
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- Card body END -->
         </div>
-    </div></div>
+        <!-- Edit profile END -->
+      </div>
+    </div>
+  </div>
 </section>

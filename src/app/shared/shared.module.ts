@@ -23,7 +23,12 @@ import { LenderBannerComponent } from './lender-banner/lender-banner.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { PhotomodalComponent } from './photomodal/photomodal.component';
-import { JoyrideBackdropService, JoyrideModule, JoyrideService, JoyrideStepService } from 'ngx-joyride';
+import {
+  JoyrideBackdropService,
+  JoyrideModule,
+  JoyrideService,
+  JoyrideStepService,
+} from 'ngx-joyride';
 import { DocumentService } from 'ngx-joyride';
 import { DomRefService } from 'ngx-joyride';
 import { JoyrideOptionsService } from 'ngx-joyride';
@@ -46,7 +51,6 @@ import { ProgressBarModule } from 'primeng/progressbar';
     LenderHeaderComponent,
     LenderBannerComponent,
     PhotomodalComponent,
-
   ],
   imports: [
     CommonModule,
@@ -59,8 +63,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     NgbDropdownModule,
     MatDatepickerModule,
     MatSelectModule,
-    ProgressBarModule ,
-
+    ProgressBarModule,
   ],
   exports: [
     AdminFooterComponent,
@@ -84,11 +87,11 @@ import { ProgressBarModule } from 'primeng/progressbar';
     LenderBannerComponent,
     MatDatepickerModule,
     MatSelectModule,
-    ProgressBarModule ,
-
+    ProgressBarModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [JoyrideService,
+  providers: [
+    JoyrideService,
     JoyrideStepService,
     JoyrideBackdropService,
     DocumentService,
@@ -97,6 +100,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     EventListenerService,
     JoyrideStepsContainerService,
     LoggerService,
-    StepDrawerService]
+    StepDrawerService,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

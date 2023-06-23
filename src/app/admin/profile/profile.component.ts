@@ -36,10 +36,11 @@ export class ProfileComponent {
   )
 
   PasswordForm = new FormGroup(
-    {userid: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^\d+$/),
-    ]),
+    {
+      userid: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d+$/),
+      ]),
       password: new FormControl('', Validators.required)
     }
   )
@@ -64,14 +65,14 @@ export class ProfileComponent {
     await this.UpdateForm.patchValue(this.userService.userById)
     this.userImage = this.userService.userById.userimage
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.userService.progressBarVisible = true
   }
- async updateInfo() {
+  async updateInfo() {
     this.UpdateForm.controls['userid'].setValue(this.userId)
     this.UpdateForm.controls['role'].setValue("Admin")
     this.userService.UpdateUser(this.UpdateForm.value)
-await this.ngOnInit()
+    await this.ngOnInit()
   }
   /* updatePassword(){
     this.PasswordForm.controls['userid'].setValue(this.userId)
@@ -84,7 +85,7 @@ await this.ngOnInit()
       formdata.append('file', uplodedFile);
       this.userService.UploadImage(formdata);
     }
-await this.ngOnInit()
+    await this.ngOnInit()
   }
 
   get UserName(): FormControl {

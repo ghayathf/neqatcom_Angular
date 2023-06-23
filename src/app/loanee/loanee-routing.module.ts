@@ -10,32 +10,33 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
   },
   {
     path: 'EditProfile',
-    component: EditProfileComponent},
+    component: EditProfileComponent,
+  },
   {
     path: 'ChangePassword',
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
   },
   {
     path: 'Myloans',
-    component: MyloansComponent
+    component: MyloansComponent,
   },
 
   {
-    path:'ConfirmLoans',
-    component:ConfirmLoansComponent
+    path: 'ConfirmLoans',
+    component: ConfirmLoansComponent,
   },
   {
-    path: "Testimonial",
-    component: TestimonialComponent
-  }
+    path: 'Testimonial',
+    component: TestimonialComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LoaneeRoutingModule { }
+export class LoaneeRoutingModule {}

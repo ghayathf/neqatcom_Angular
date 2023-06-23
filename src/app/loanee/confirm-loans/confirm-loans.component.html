@@ -1,288 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Neqatcom - Loanee,Confirm Information</title>
+  </head>
 
-<head>
-	<title>Neqatcom - Loanee,Confirm Information</title>
+  <body>
+    <div *ngIf="loaneeService.progressBarVisible" class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <!-- Header START -->
+    <app-loaneeheader></app-loaneeheader>
+    <!-- Header END -->
 
-</head>
+    <!-- **************** MAIN CONTENT START **************** -->
+    <main>
+      <!-- <app-lender-banner></app-lender-banner> -->
 
-<body>
-  <div *ngIf="loaneeService.progressBarVisible" class="progress-container">
-    <div class="progress-bar"></div>
-  </div>
-	<!-- Header START -->
-	<app-loaneeheader></app-loaneeheader>
-	<!-- Header END -->
-
-	<!-- **************** MAIN CONTENT START **************** -->
-	<main>
-
-		<!-- <app-lender-banner></app-lender-banner> -->
-
-		<!-- =======================
+      <!-- =======================
 Page content START -->
-		<section class="pt-0">
-			<div class="container">
-				<div class="row">
-					<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
+      <section class="pt-0">
+        <div class="container">
+          <div class="row">
+            <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party"
         [fullScreen]="true">
       </ngx-spinner> -->
-					<!-- Left sidebar START -->
-					<div class="col-xl-3">
-						<!-- Responsive offcanvas body START -->
-						<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
-							<!-- Offcanvas header -->
-							<div class="offcanvas-header bg-light">
-								<h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-									data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
-							</div>
-							<!-- Offcanvas body -->
-						
-						</div>
-						<!-- Responsive offcanvas body END -->
-					</div>
-					<!-- Left sidebar END -->
+            <!-- Left sidebar START -->
+            <div class="col-xl-3">
+              <!-- Responsive offcanvas body START -->
+              <div
+                class="offcanvas-xl offcanvas-end"
+                tabindex="-1"
+                id="offcanvasSidebar"
+              >
+                <!-- Offcanvas header -->
+                <div class="offcanvas-header bg-light">
+                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                    My profile
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    data-bs-target="#offcanvasSidebar"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <!-- Offcanvas body -->
+              </div>
+              <!-- Responsive offcanvas body END -->
+            </div>
+            <!-- Left sidebar END -->
 
-					<!-- Main content START -->
-					<div class="col-xl-9">
+            <!-- Main content START -->
+            <div class="col-xl-9">
+              <!-- Counter boxes START -->
 
-						<!-- Counter boxes START -->
+              <!-- Counter boxes END -->
+              <div class="card border bg-transparent rounded-3">
+                <!-- Card header START -->
+                <div class="card-header bg-transparent border-bottom">
+                  <h3 class="mb-0">Confirm Loans</h3>
+                </div>
+                <!-- Card header END -->
 
-						<!-- Counter boxes END -->
-						<div class="card border bg-transparent rounded-3">
-							<!-- Card header START -->
-							<div class="card-header bg-transparent border-bottom">
-								<h3 class="mb-0">Confirm Loans</h3>
-							</div>
-							<!-- Card header END -->
+                <!-- Card body START -->
+                <div class="card-body">
+                  <!-- Search and select START -->
+                  <div
+                    class="row g-3 align-items-center justify-content-between mb-4"
+                  >
+                    <!-- Search -->
+                    <div class="col-md-8">
+                      <form class="rounded position-relative">
+                        <input
+                          class="form-control pe-5 bg-transparent"
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                        />
+                        <button
+                          class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset"
+                          type="submit"
+                        >
+                          <i class="fas fa-search fs-6"></i>
+                        </button>
+                      </form>
+                    </div>
 
-							<!-- Card body START -->
-							<div class="card-body">
+                    <!-- Select option -->
+                    <div class="col-md-3">
+                      Short by filter
+                      <form>
+                        <select
+                          class="form-select js-choice border-0 z-index-9 bg-transparent"
+                          aria-label=".form-select-sm"
+                        >
+                          <option value="">Sort by</option>
+                          <option>Free</option>
+                          <option>Newest</option>
+                          <option>Oldest</option>
+                        </select>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- Search and select END -->
 
-								<!-- Search and select START -->
-								<div class="row g-3 align-items-center justify-content-between mb-4">
-									<!-- Search -->
-									<div class="col-md-8">
-										<form class="rounded position-relative">
-											<input class="form-control pe-5 bg-transparent" type="search"
-												placeholder="Search" aria-label="Search">
-											<button
-												class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset"
-												type="submit">
-												<i class="fas fa-search fs-6 "></i>
-											</button>
-										</form>
-									</div>
+                  <!-- Student list table START -->
+                  <div class="table-responsive border-0">
+                    <table
+                      class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+                    >
+                      <!-- Table head -->
+                      <thead>
+                        <tr>
+                          <th scope="col" class="border-0 rounded-start">
+                            LenderStore
+                          </th>
 
-									<!-- Select option -->
-									<div class="col-md-3">
-										Short by filter
-										<form>
-											<select class="form-select js-choice border-0 z-index-9 bg-transparent"
-												aria-label=".form-select-sm">
-												<option value="">Sort by</option>
-												<option>Free</option>
-												<option>Newest</option>
-												<option>Oldest</option>
-											</select>
-										</form>
-									</div>
-								</div>
-								<!-- Search and select END -->
+                          <th scope="col" class="border-0">Offer</th>
 
-								<!-- Student list table START -->
-								<div class="table-responsive border-0">
-									<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-										<!-- Table head -->
-										<thead>
-											<tr >
-												<th scope="col" class="border-0 rounded-start">LenderStore </th>
+                          <th scope="col" class="border-0 rounded-end"></th>
+                        </tr>
+                      </thead>
 
-												<th scope="col" class="border-0">Offer </th>
-
-												<th scope="col" class="border-0 rounded-end"> </th>
-											
-											</tr>
-										</thead>
-
-										<!-- Table body START -->
-										<tbody>
-											<!-- Table item -->
-											<tr *ngFor="let item of ConfirmationLoans">
-												<!-- Table data -->
-												<td>
-													<div class="d-flex align-items-center position-relative">
-														<!-- Image -->
-														<!-- <div class="avatar avatar-md mb-2 mb-md-0">
+                      <!-- Table body START -->
+                      <tbody>
+                        <!-- Table item -->
+                        <tr *ngFor="let item of ConfirmationLoans">
+                          <!-- Table data -->
+                          <td>
+                            <div
+                              class="d-flex align-items-center position-relative"
+                            >
+                              <!-- Image -->
+                              <!-- <div class="avatar avatar-md mb-2 mb-md-0">
 															<img src="assets/images/avatar/01.jpg" class="rounded"
 																alt="">
 														</div> -->
-														<div class="mb-0 ms-2">
-															<!-- Title -->
-															<h6 class="mb-0"><a  class="stretched-link">{{ item.firstname }} </a></h6>
-															<!-- Address -->
-															<!-- <span class="text-body small"><i
+                              <div class="mb-0 ms-2">
+                                <!-- Title -->
+                                <h6 class="mb-0">
+                                  <a class="stretched-link"
+                                    >{{ item.firstname }}
+                                  </a>
+                                </h6>
+                                <!-- Address -->
+                                <!-- <span class="text-body small"><i
 																	class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>Mumbai</span> -->
-														</div>
-													</div>
-												</td>
+                              </div>
+                            </div>
+                          </td>
 
-												<!-- Table data -->
-												<td >
-													<div class="d-flex align-items-center position-relative">
-													<div class="cols-3" style="word-break: break-all;">{{item.descriptions}}</div>
-												</div>
-													</td>
-                                              
-												<!-- Table data -->
-												<td>
-													<div style="display: flex; flex-direction: row;">
-													<a class="btn btn-success-soft btn-round me-1 mb-0"
-														data-bs-toggle="tooltip" data-bs-placement="top" 
-														title="Loans for this loanee" (click)="openDetails(item.email,item.firstname,item.monthlyamount,item.startdate,item.enddate,item.loanid,item.meetingid)" ><i class="fa fa-info-circle"></i></a>
-														
-													</div>	
-												</td>
-											</tr>
-										</tbody>
-										<!-- Table body END -->
-									</table>
-								</div>
-								<!-- Student list table END -->
+                          <!-- Table data -->
+                          <td>
+                            <div
+                              class="d-flex align-items-center position-relative"
+                            >
+                              <div class="cols-3" style="word-break: break-all">
+                                {{ item.descriptions }}
+                              </div>
+                            </div>
+                          </td>
 
-								<!-- Pagination START -->
-								<div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
-									<!-- Content -->
-									<p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-									<!-- Pagination -->
-									<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-										<ul
-											class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-											<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i
-														class="fas fa-angle-left"></i></a></li>
-											<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-											<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-											<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-											<li class="page-item mb-0"><a class="page-link" href="#"><i
-														class="fas fa-angle-right"></i></a></li>
-										</ul>
-									</nav>
-								</div>
-								<!-- Pagination END -->
-							</div>
-							<!-- Card body START -->
-						</div>
-						<!-- Chart START -->
+                          <!-- Table data -->
+                          <td>
+                            <div style="display: flex; flex-direction: row">
+                              <a
+                                class="btn btn-success-soft btn-round me-1 mb-0"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="Loans for this loanee"
+                                (click)="
+                                  openDetails(
+                                    item.email,
+                                    item.firstname,
+                                    item.monthlyamount,
+                                    item.startdate,
+                                    item.enddate,
+                                    item.loanid,
+                                    item.meetingid
+                                  )
+                                "
+                                ><i class="fa fa-info-circle"></i
+                              ></a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <!-- Table body END -->
+                    </table>
+                  </div>
+                  <!-- Student list table END -->
 
-						<!-- Chart END -->
+                  <!-- Pagination START -->
+                  <div
+                    class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3"
+                  >
+                    <!-- Content -->
+                    <p class="mb-0 text-center text-sm-start">
+                      Showing 1 to 8 of 20 entries
+                    </p>
+                    <!-- Pagination -->
+                    <nav
+                      class="d-flex justify-content-center mb-0"
+                      aria-label="navigation"
+                    >
+                      <ul
+                        class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0"
+                      >
+                        <li class="page-item mb-0">
+                          <a class="page-link" href="#" tabindex="-1"
+                            ><i class="fas fa-angle-left"></i
+                          ></a>
+                        </li>
+                        <li class="page-item mb-0">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item mb-0 active">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item mb-0">
+                          <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item mb-0">
+                          <a class="page-link" href="#"
+                            ><i class="fas fa-angle-right"></i
+                          ></a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <!-- Pagination END -->
+                </div>
+                <!-- Card body START -->
+              </div>
+              <!-- Chart START -->
 
-						<!-- Course List table START -->
+              <!-- Chart END -->
 
-						<!-- Course List table END -->
-					</div>
-					<!-- Main content END -->
-				</div><!-- Row END -->
-			</div>
-		</section>
-		<!-- =======================
+              <!-- Course List table START -->
+
+              <!-- Course List table END -->
+            </div>
+            <!-- Main content END -->
+          </div>
+          <!-- Row END -->
+        </div>
+      </section>
+      <!-- =======================
 Page content END -->
+    </main>
 
-	</main>
-
-	<app-lender-footer></app-lender-footer>
-
-
-
-</body>
-
+    <app-lender-footer></app-lender-footer>
+  </body>
 </html>
-<ng-template #ViewLoanDetails >
-	<section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
-		style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
-		<!-- Main banner background image -->
-		<div class="container">
-			<div class="row">
-				<div class="col-12 text-center">
-					<!-- Title -->
-					<h1 class="text-white">Loan Details</h1>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section  style="background-color: #3e3e40;">
-		<div class="container">
-			<div class="card bg-transparent border rounded-3 mb-5">
-				<div id="stepper" class="bs-stepper stepper-outline">
-					<div class="card-body">
-						<div class="bs-stepper-content">
-							<!-- Card body START -->
-							<div class="card-body">
-								<div class="row">
-									<div class="col-md-9">
-										<h3 class="mb-3"> Monthly Amount: {{monthlyAmount}}</h3>
-										
-									</div>
-									
-								</div>
-								<div class="row">
-									
-									<div class="col-md-9">
-										<h3 class="mb-3">End Date: {{EndDate | slice: 0:10}}</h3>
-										
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-9">
-										<h3 class="mb-3">Start Date: {{startDate | slice: 0:10}}</h3>
-									
-									</div>
-									</div>
-								<div class="row">
-									<div class="col-md-6">
-										<button type="button" (click)="openRejectDialog()"
-                                            class="btn btn-danger">Cancle</button>
-									</div>
-									<div class="col-md-6">
-										<button type="submit"  class="btn btn-success" (click)="OpenConfirm()">Confirm </button>
-									</div>
-								</div>
-	
-							</div>
-							
-						</div>
-					</div>
-					
-
-				</div> <!-- Row END -->
-			</div>
-		</div>
-	</section>
+<ng-template #ViewLoanDetails>
+  <section
+    class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+    style="
+      background: url(../../../assets/HomeAssets/images/pattern/04.png)
+        no-repeat center center;
+      background-size: cover;
+    "
+  >
+    <!-- Main banner background image -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <!-- Title -->
+          <h1 class="text-white">Loan Details</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="background-color: #3e3e40">
+    <div class="container">
+      <div class="card bg-transparent border rounded-3 mb-5">
+        <div id="stepper" class="bs-stepper stepper-outline">
+          <div class="card-body">
+            <div class="bs-stepper-content">
+              <!-- Card body START -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-9">
+                    <h3 class="mb-3">Monthly Amount: {{ monthlyAmount }}</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <h3 class="mb-3">
+                      End Date: {{ EndDate | slice : 0 : 10 }}
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <h3 class="mb-3">
+                      Start Date: {{ startDate | slice : 0 : 10 }}
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <button
+                      type="button"
+                      (click)="openRejectDialog()"
+                      class="btn btn-danger"
+                    >
+                      Cancle
+                    </button>
+                  </div>
+                  <div class="col-md-6">
+                    <button
+                      type="submit"
+                      class="btn btn-success"
+                      (click)="OpenConfirm()"
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row END -->
+      </div>
+    </div>
+  </section>
 </ng-template>
 <ng-template #Reject>
-    <div style="background-color: #3e3e40;">
-    <h2 mat-dialog-content style="color: white;">Cancle Loan ?</h2>
-	<div mat-dialog-actions>
-		<input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="RejectLoan()">
-		<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
-	</div></div>
+  <div style="background-color: #3e3e40">
+    <h2 mat-dialog-content style="color: white">Cancle Loan ?</h2>
+    <div mat-dialog-actions>
+      <input
+        type="button"
+        mat-dialog-close
+        class="btn btn-danger"
+        value="Yes"
+        (click)="RejectLoan()"
+      />
+      <input
+        type="button"
+        mat-dialog-close
+        class="btn btn-error"
+        style="color: white"
+        value="No"
+      />
+    </div>
+  </div>
 </ng-template>
 <ng-template #Confirm>
-    <div style="background-color: #3e3e40;">
-    <h2 mat-dialog-content style="color: white;">Confirm Loan ?</h2>
-	<div mat-dialog-actions>
-		<input type="button" mat-dialog-close class="btn btn-success" value="Yes" (click)="ConfirmLoan()">
-		<input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
-	</div></div>
+  <div style="background-color: #3e3e40">
+    <h2 mat-dialog-content style="color: white">Confirm Loan ?</h2>
+    <div mat-dialog-actions>
+      <input
+        type="button"
+        mat-dialog-close
+        class="btn btn-success"
+        value="Yes"
+        (click)="ConfirmLoan()"
+      />
+      <input
+        type="button"
+        mat-dialog-close
+        class="btn btn-error"
+        style="color: white"
+        value="No"
+      />
+    </div>
+  </div>
 </ng-template>
 <ng-template #Feedback>
-    <div style="background-color: #3e3e40; text-align: center;">
-		<h2 mat-dialog-content style="color: white;">Do you want to share your feedback for this LenderStore</h2>
-		<ngb-rating style="color: yellow; font-size: 30px; display: inline-block;" [max]="5" [(rate)]="feedbackk" [readonly]="false" [(ngModel)]="feedbackk"></ngb-rating>
-		<div style="margin-top: 20px;">
-		  <input type="button" mat-dialog-close class="btn btn-success" value="Done" (click)="Givefeedback(feedbackk)">
-		  <input type="button" mat-dialog-close class="btn btn-error" style="color: white;" value="No">
-		</div>
-	  </div>
-	  
+  <div style="background-color: #3e3e40; text-align: center">
+    <h2 mat-dialog-content style="color: white">
+      Do you want to share your feedback for this LenderStore
+    </h2>
+    <ngb-rating
+      style="color: yellow; font-size: 30px; display: inline-block"
+      [max]="5"
+      [(rate)]="feedbackk"
+      [readonly]="false"
+      [(ngModel)]="feedbackk"
+    ></ngb-rating>
+    <div style="margin-top: 20px">
+      <input
+        type="button"
+        mat-dialog-close
+        class="btn btn-success"
+        value="Done"
+        (click)="Givefeedback(feedbackk)"
+      />
+      <input
+        type="button"
+        mat-dialog-close
+        class="btn btn-error"
+        style="color: white"
+        value="No"
+      />
+    </div>
+  </div>
 </ng-template>

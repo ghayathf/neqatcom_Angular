@@ -1,25 +1,43 @@
-
 <nav class="navbar top-bar navbar-light border-bottom py-0 py-xl-3">
   <div class="container-fluid p-0">
     <div class="d-flex align-items-center w-100">
-
       <!-- Logo START -->
 
       <!-- Logo END -->
 
       <!-- Toggler for sidebar START -->
       <div class="navbar-expand-xl sidebar-offcanvas-menu">
-        <button class="navbar-toggler me-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar" aria-expanded="false" aria-label="Toggle navigation" data-bs-auto-close="outside">
-          <i class="bi bi-text-right fa-fw h2 lh-0 mb-0 rtl-flip" data-bs-target="#offcanvasMenu"> </i>
+        <button
+          class="navbar-toggler me-auto"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasSidebar"
+          aria-controls="offcanvasSidebar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          data-bs-auto-close="outside"
+        >
+          <i
+            class="bi bi-text-right fa-fw h2 lh-0 mb-0 rtl-flip"
+            data-bs-target="#offcanvasMenu"
+          >
+          </i>
         </button>
       </div>
       <!-- Toggler for sidebar END -->
 
       <!-- Top bar left -->
       <div class="navbar-expand-lg ms-auto ms-xl-0">
-
         <!-- Toggler for menubar START -->
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTopContent" aria-controls="navbarTopContent" aria-expanded="true" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTopContent"
+          aria-controls="navbarTopContent"
+          aria-expanded="true"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-animation">
             <span></span>
             <span></span>
@@ -41,39 +59,78 @@
       <!-- Top bar right START -->
       <div class="ms-xl-auto">
         <ul class="navbar-nav flex-row align-items-center">
-
           <!-- Notification dropdown START -->
 
           <!-- Notification dropdown END -->
 
           <!-- Profile dropdown START -->
-          <li class="nav-item ms-2 ms-md-3 "ngbDropdown>
+          <li class="nav-item ms-2 ms-md-3" ngbDropdown>
             <!-- Avatar -->
-            <a dropdownMenuButton class="avatar avatar-sm p-0" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="true">
-              <img ngbDropdownToggle class="avatar-img rounded-circle" src="{{this.userImage}}" alt="avatar">
+            <a
+              dropdownMenuButton
+              class="avatar avatar-sm p-0"
+              id="profileDropdown"
+              role="button"
+              data-bs-auto-close="outside"
+              data-bs-display="static"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <img
+                ngbDropdownToggle
+                class="avatar-img rounded-circle"
+                src="{{ this.userImage }}"
+                alt="avatar"
+              />
             </a>
 
             <!-- Profile dropdown START -->
-            <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton" class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
+            <ul
+              ngbDropdownMenu
+              aria-labelledby="dropdownMenuButton"
+              class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3"
+              aria-labelledby="profileDropdown"
+            >
               <!-- Profile info -->
               <li class="px-3">
                 <div class="d-flex align-items-center">
                   <!-- Avatar -->
                   <div class="avatar me-3 mb-3">
-                    <img class="avatar-img rounded-circle shadow" src="{{this.userImage}}" alt="avatar">
+                    <img
+                      class="avatar-img rounded-circle shadow"
+                      src="{{ this.userImage }}"
+                      alt="avatar"
+                    />
                   </div>
                   <div>
-                    <a class="h6 mt-2 mt-sm-0" href="#">{{ firstName }} {{ lastName }}</a>
+                    <a class="h6 mt-2 mt-sm-0" href="#"
+                      >{{ firstName }} {{ lastName }}</a
+                    >
                     <p class="small m-0">{{ Email }}</p>
                   </div>
                 </div>
               </li>
-              <li> <hr class="dropdown-divider"></li>
+              <li><hr class="dropdown-divider" /></li>
               <!-- Links -->
-              <li><a class="dropdown-item" routerLink="/Admin/"><i class="bi bi-house fa-fw me-2"></i>Main</a></li>
-              <li><a class="dropdown-item" routerLink="/Admin/Edit-Profile"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-              <li><a class="dropdown-item bg-danger-soft-hover" style="cursor: pointer;"  (click)="logout()"><i class="bi bi-power fa-fw me-2" ></i>Sign Out</a></li>
-              <li> <hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" routerLink="/Admin/"
+                  ><i class="bi bi-house fa-fw me-2"></i>Main</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/Admin/Edit-Profile"
+                  ><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item bg-danger-soft-hover"
+                  style="cursor: pointer"
+                  (click)="logout()"
+                  ><i class="bi bi-power fa-fw me-2"></i>Sign Out</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
 
               <!-- Dark mode options START -->
 

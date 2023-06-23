@@ -1,235 +1,261 @@
 <app-admin-side-bar></app-admin-side-bar>
 
 <div class="page-content">
-    <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+  <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
     </ngx-spinner> -->
-    <!-- <p-progressBar *ngIf="categoriesService.progressBarVisible" mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar> -->
-    <div *ngIf="categoriesService.progressBarVisible" class="progress-container">
-      <div class="progress-bar"></div>
+  <!-- <p-progressBar *ngIf="categoriesService.progressBarVisible" mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar> -->
+  <div *ngIf="categoriesService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- Top bar START -->
+  <app-admin-header></app-admin-header>
+  <!-- Top bar END -->
+
+  <!-- Page main content START -->
+  <div class="page-content-wrapper border">
+    <!-- Title -->
+    <div class="row mb-3">
+      <div class="col-12 d-sm-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-2 mb-sm-0">Categories</h1>
+        <a
+          class="btn btn-sm btn-primary mb-0"
+          (click)="OpenCreateDialog()"
+          style="background-color: #1d3b53"
+          >Create a Category</a
+        >
+      </div>
     </div>
 
-
-    <!-- Top bar START -->
-    <app-admin-header></app-admin-header>
-    <!-- Top bar END -->
-
-    <!-- Page main content START -->
-    <div class="page-content-wrapper border">
-
-        <!-- Title -->
-        <div class="row mb-3">
-            <div class="col-12 d-sm-flex justify-content-between align-items-center">
-                <h1 class="h3 mb-2 mb-sm-0">Categories</h1>
-                <a class="btn btn-sm btn-primary mb-0" (click)="OpenCreateDialog()"
-                    style=" background-color:#1d3b53 ;">Create a Category</a>
-            </div>
+    <!-- Course boxes START -->
+    <div class="row g-4 mb-4">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3"
+        >
+          <h5>Total Offers</h5>
+          <h2 class="mb-0 fs-1 text-primary">{{ offers }}</h2>
         </div>
+      </div>
 
-        <!-- Course boxes START -->
-        <div class="row g-4 mb-4">
-            <!-- Course item -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
-                    <h5>Total Offers</h5>
-                    <h2 class="mb-0 fs-1 text-primary">{{ offers }}</h2>
-                </div>
-            </div>
-
-            <!-- Course item -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3">
-                    <h6>Total Categories</h6>
-                    <h2 class="mb-0 fs-1 text-success">{{categories}}</h2>
-                </div>
-            </div>
-
-            <!-- Course item -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="text-center p-4  bg-warning bg-opacity-15 border border-warning rounded-3">
-                    <h6>Total Loans</h6>
-                    <h2 class="mb-0 fs-1 text-warning">{{loans}}</h2>
-                </div>
-            </div>
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3"
+        >
+          <h6>Total Categories</h6>
+          <h2 class="mb-0 fs-1 text-success">{{ categories }}</h2>
         </div>
-        <!-- Course boxes END -->
+      </div>
 
-        <!-- Card START -->
-        <div class="card bg-transparent border">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-warning bg-opacity-15 border border-warning rounded-3"
+        >
+          <h6>Total Loans</h6>
+          <h2 class="mb-0 fs-1 text-warning">{{ loans }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Course boxes END -->
 
-            <!-- Card header START -->
-            <div class="card-header bg-light border-bottom">
-                <!-- Search and select START -->
-                <div class="row g-3 align-items-center justify-content-between">
-                    <!-- Search bar -->
+    <!-- Card START -->
+    <div class="card bg-transparent border">
+      <!-- Card header START -->
+      <div class="card-header bg-light border-bottom">
+        <!-- Search and select START -->
+        <div class="row g-3 align-items-center justify-content-between">
+          <!-- Search bar -->
 
+          <!-- Select option -->
+          <div class="col-md-3"></div>
+        </div>
+        <!-- Search and select END -->
+      </div>
+      <!-- Card header END -->
 
-                    <!-- Select option -->
-                    <div class="col-md-3">
+      <!-- Card body START -->
+      <div class="card-body">
+        <!-- Course table START -->
+        <div class="table-responsive border-0 rounded-3">
+          <!-- Table START -->
+          <table
+            class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+          >
+            <!-- Table head -->
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  class="border-0"
+                  style="background-color: #1d3b53"
+                >
+                  Category Name
+                </th>
 
-                    </div>
-                </div>
-                <!-- Search and select END -->
-            </div>
-            <!-- Card header END -->
+                <th
+                  scope="col"
+                  class="border-0 rounded-end"
+                  style="background-color: #1d3b53"
+                >
+                  Action
+                </th>
+              </tr>
+            </thead>
 
-            <!-- Card body START -->
-            <div class="card-body">
-                <!-- Course table START -->
-                <div class="table-responsive border-0 rounded-3">
-                    <!-- Table START -->
-                    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-                        <!-- Table head -->
-                        <thead>
-                            <tr>
-                                <th scope="col" class="border-0" style=" background-color:#1d3b53 ;">Category Name</th>
-
-                                <th scope="col" class="border-0 rounded-end" style=" background-color:#1d3b53 ;">Action
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <!-- Table body START -->
-                        <tbody>
-
-                            <!-- Table row -->
-                            <tr *ngFor="let item of cats">
-                                <!-- Table data -->
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <!-- <div class="col-md-6">
+            <!-- Table body START -->
+            <tbody>
+              <!-- Table row -->
+              <tr *ngFor="let item of cats">
+                <!-- Table data -->
+                <td>
+                  <div class="d-flex align-items-center position-relative">
+                    <!-- <div class="col-md-6">
                                             <img src="../../../assets/HomeAssets/images/courses/4by3/01.jpg" class="rounded" alt="">
                                         </div> -->
-                                        <!-- Title -->
+                    <!-- Title -->
 
-                                        <br>
-                                        <div></div>
-                                        <h4 class="table-responsive-title mb-0 ms-2">
-                                            <a class="stretched-link">{{ item.categoryname }}</a>
-                                        </h4>
-                                    </div>
-                                </td>
+                    <br />
+                    <div></div>
+                    <h4 class="table-responsive-title mb-0 ms-2">
+                      <a class="stretched-link">{{ item.categoryname }}</a>
+                    </h4>
+                  </div>
+                </td>
 
+                <td>
+                  <button
+                    class="btn btn-sm btn-danger-soft mb-0"
+                    (click)="openDeleteDialog(item.categoryid)"
+                  >
+                    Delete
+                  </button>
 
-
-
-                                <td>
-
-                                    <button class="btn btn-sm btn-danger-soft mb-0"
-                                        (click)="openDeleteDialog(item.categoryid)">Delete</button>
-
-                                    <button class="btn btn-sm btn-primary-soft mb-0"
-                                        (click)="OpenUpdateCategoryDialog(item.categoryid)">Update</button>
-                                </td>
-                            </tr>
-
-
-                        </tbody>
-                        <!-- Table body END -->
-                    </table>
-                    <!-- Table END -->
-                </div>
-                <!-- Course table END -->
-            </div>
-            <!-- Card body END -->
-
-            <!-- Card footer START -->
-            <div class="card-footer bg-transparent pt-0">
-                <!-- Pagination START -->
-                <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-                    <!-- Content -->
-
-                </div>
-                <!-- Pagination END -->
-            </div>
-            <!-- Card footer END -->
+                  <button
+                    class="btn btn-sm btn-primary-soft mb-0"
+                    (click)="OpenUpdateCategoryDialog(item.categoryid)"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+            <!-- Table body END -->
+          </table>
+          <!-- Table END -->
         </div>
-        <!-- Card END -->
-    </div>
-    <!-- Page main content END -->
+        <!-- Course table END -->
+      </div>
+      <!-- Card body END -->
 
+      <!-- Card footer START -->
+      <div class="card-footer bg-transparent pt-0">
+        <!-- Pagination START -->
+        <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+          <!-- Content -->
+        </div>
+        <!-- Pagination END -->
+      </div>
+      <!-- Card footer END -->
+    </div>
+    <!-- Card END -->
+  </div>
+  <!-- Page main content END -->
 </div>
 
-
 <ng-template #UpdateForm>
-    <div style="background-color: #3e3e40;">
-        <section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
-            style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
-            <!-- Main banner background image -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <!-- Title -->
-                        <h1 class="text-white">Update Category</h1>
-                    </div>
+  <div style="background-color: #3e3e40">
+    <section
+      class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+      style="
+        background: url(../../../assets/HomeAssets/images/pattern/04.png)
+          no-repeat center center;
+        background-size: cover;
+      "
+    >
+      <!-- Main banner background image -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <!-- Title -->
+            <h1 class="text-white">Update Category</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="card bg-transparent border rounded-3 mb-5">
+          <div id="stepper" class="bs-stepper stepper-outline">
+            <!-- Card body START -->
+            <div class="card-body">
+              <!-- Step content START -->
+              <div class="bs-stepper-content">
+                <!-- Step 1 content START -->
+                <div
+                  id="step-1"
+                  role="tabpanel"
+                  class="content"
+                  aria-labelledby="steppertrigger1"
+                >
+                  <!-- Basic information START -->
+                  <!-- Course title -->
+                  <div class="col-12">
+                    <form [formGroup]="UpdateCategoryForm" class="example-form">
+                      <div class="input-group input-group-lg">
+                        <span
+                          class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                        ></span>
+                        <input
+                          type="text"
+                          class="form-control border-0 bg-light rounded-end ps-1"
+                          id="exampleInputEmail1"
+                          formControlName="categoryname"
+                          placeholder="Category Name"
+                        />
+                      </div>
+                      <div
+                        class="form-text text-danger"
+                        *ngIf="CategoryName.errors?.['required'] && CategoryName.touched"
+                      >
+                        Category Name is required
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- Upload image END -->
+
+                  <!-- Step 1 button -->
+                  <div class="d-flex justify-content-end mt-3">
+                    <button
+                      mat-dialog-close
+                      class="btn btn-primary next-btn mb-0"
+                      [disabled]="UpdateCategoryForm.invalid"
+                      (click)="UpdateCategory()"
+                      style="background-color: #1d3b53"
+                    >
+                      Update
+                    </button>
+                  </div>
+
+                  <!-- Basic information START -->
                 </div>
+                <!-- Step 1 content END -->
+              </div>
             </div>
-        </section>
-
-        <section>
-            <div class="container">
-
-
-                <div class="card bg-transparent border rounded-3 mb-5">
-                    <div id="stepper" class="bs-stepper stepper-outline">
-
-
-                        <!-- Card body START -->
-                        <div class="card-body">
-                            <!-- Step content START -->
-                            <div class="bs-stepper-content">
-
-
-                                <!-- Step 1 content START -->
-                                <div id="step-1" role="tabpanel" class="content" aria-labelledby="steppertrigger1">
-
-                                    <!-- Basic information START -->
-                                    <!-- Course title -->
-                                    <div class="col-12">
-                                        <form [formGroup]="UpdateCategoryForm" class="example-form">
-                                            <div class="input-group input-group-lg">
-                                                <span
-                                                    class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
-                                                <input type="text"
-                                                    class="form-control border-0 bg-light rounded-end ps-1"
-                                                    id="exampleInputEmail1" formControlName="categoryname"
-                                                    placeholder="Category Name">
-                                            </div>
-                                            <div class="form-text text-danger"
-                                                *ngIf="CategoryName.errors?.['required'] && CategoryName.touched">
-                                                Category Name is required
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-
-
-                                    <!-- Upload image END -->
-
-
-                                    <!-- Step 1 button -->
-                                    <div class="d-flex justify-content-end mt-3">
-                                        <button mat-dialog-close class="btn btn-primary next-btn mb-0"
-                                            [disabled]="UpdateCategoryForm.invalid" (click)="UpdateCategory()"
-                                            style=" background-color:#1d3b53 ;">Update</button>
-                                    </div>
-
-                                    <!-- Basic information START -->
-                                </div>
-                                <!-- Step 1 content END -->
-
-                            </div>
-                        </div>
-                        <!-- Card body END -->
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+            <!-- Card body END -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </ng-template>
 
 <ng-template #DeleteForm>
-    <!-- <div style="background-color: #3e3e40;">
+  <!-- <div style="background-color: #3e3e40;">
         <h2 mat-dialog-content style="color: white;">Would you like to Delete this Offer ?</h2>
         <div mat-dialog-actions>
             <input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="DeleteCategory()">
@@ -238,88 +264,99 @@
     </div> -->
 </ng-template>
 <ng-template #CreateForm>
-    <div style="background-color: #3e3e40;">
-        <app-admin-side-bar></app-admin-side-bar>
-        <section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
-            style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
-            <!-- Main banner background image -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <!-- Title -->
-                        <h1 class="text-white">Create a new Category</h1>
-                    </div>
+  <div style="background-color: #3e3e40">
+    <app-admin-side-bar></app-admin-side-bar>
+    <section
+      class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+      style="
+        background: url(../../../assets/HomeAssets/images/pattern/04.png)
+          no-repeat center center;
+        background-size: cover;
+      "
+    >
+      <!-- Main banner background image -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <!-- Title -->
+            <h1 class="text-white">Create a new Category</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mx-auto text-center">
+            <!-- Content -->
+          </div>
+        </div>
+
+        <div class="card bg-transparent border rounded-3 mb-5">
+          <div id="stepper" class="bs-stepper stepper-outline">
+            <!-- Card body START -->
+            <div class="card-body">
+              <!-- Step content START -->
+              <div class="bs-stepper-content">
+                <!-- Step 1 content START -->
+                <div
+                  id="step-1"
+                  role="tabpanel"
+                  class="content"
+                  aria-labelledby="steppertrigger1"
+                >
+                  <!-- Title -->
+
+                  <!-- Course title -->
+                  <div class="col-12">
+                    <form [formGroup]="CreateCategoryForm" class="example-form">
+                      <div class="input-group input-group-lg">
+                        <span
+                          class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
+                        ></span>
+                        <input
+                          type="text"
+                          class="form-control border-0 bg-light rounded-end ps-1"
+                          id="exampleInputEmail1"
+                          formControlName="categoryname"
+                          placeholder="Category Name"
+                        />
+                      </div>
+                      <div
+                        class="form-text text-danger"
+                        *ngIf="CategoryName.errors?.['required'] && CategoryName.touched"
+                      >
+                        Category Name is required
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- Upload image END -->
+
+                  <!-- Step 1 button -->
+                  <div class="d-flex justify-content-end mt-3">
+                    <button
+                      class="btn btn-primary next-btn mb-0"
+                      mat-dialog-close
+                      (click)="CreateCategory()"
+                      style="background-color: #1d3b53"
+                    >
+                      Create
+                    </button>
+                  </div>
+
+                  <!-- Basic information START -->
                 </div>
+                <!-- Step 1 content END -->
+              </div>
             </div>
-        </section>
-
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 mx-auto text-center">
-                        <!-- Content -->
-                    </div>
-                </div>
-
-                <div class="card bg-transparent border rounded-3 mb-5">
-                    <div id="stepper" class="bs-stepper stepper-outline">
-
-
-                        <!-- Card body START -->
-                        <div class="card-body">
-                            <!-- Step content START -->
-                            <div class="bs-stepper-content">
-
-
-                                <!-- Step 1 content START -->
-                                <div id="step-1" role="tabpanel" class="content" aria-labelledby="steppertrigger1">
-                                    <!-- Title -->
-
-
-                                    <!-- Course title -->
-                                    <div class="col-12">
-                                        <form [formGroup]="CreateCategoryForm" class="example-form">
-                                            <div class="input-group input-group-lg">
-                                                <span
-                                                    class="input-group-text bg-light rounded-start border-0 text-secondary px-3"></span>
-                                                <input type="text"
-                                                    class="form-control border-0 bg-light rounded-end ps-1"
-                                                    id="exampleInputEmail1" formControlName="categoryname"
-                                                    placeholder="Category Name">
-                                            </div>
-                                            <div class="form-text text-danger"
-                                                *ngIf="CategoryName.errors?.['required'] && CategoryName.touched">
-                                                Category Name is required
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-
-
-                                    <!-- Upload image END -->
-
-
-                                    <!-- Step 1 button -->
-                                    <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary next-btn mb-0" mat-dialog-close
-                                            (click)="CreateCategory()"
-                                            style=" background-color:#1d3b53 ;">Create</button>
-                                    </div>
-
-                                    <!-- Basic information START -->
-                                </div>
-                                <!-- Step 1 content END -->
-
-                            </div>
-                        </div>
-                        <!-- Card body END -->
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    </div>
-    <!-- =======================
+            <!-- Card body END -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- =======================
 Steps END -->
 </ng-template>

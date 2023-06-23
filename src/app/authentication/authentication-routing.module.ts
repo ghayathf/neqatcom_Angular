@@ -10,32 +10,32 @@ import { LoaneeComponent } from './loanee/loanee.component';
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'type',
-    component: TypeOfuserComponent
+    component: TypeOfuserComponent,
   },
   {
     path: 'lender',
-    component: LenderComponent
+    component: LenderComponent,
   },
   {
     path: 'lender2',
-    component: Lender2Component
+    component: Lender2Component,
   },
   {
     path: 'loanee',
-    component: LoaneeComponent
+    component: LoaneeComponent,
   },
   {
     path: 'loaneeInfo',
-    component: Loanee2Component
-  }
+    component: Loanee2Component,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthenticationRoutingModule { }
+export class AuthenticationRoutingModule {}

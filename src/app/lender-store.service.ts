@@ -6,230 +6,233 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '.././environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LenderStoreService {
-
-  constructor(public http: HttpClient, public router: Router, private spinner: NgxSpinnerService, public toastr: ToastrService) { }
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    private spinner: NgxSpinnerService,
+    public toastr: ToastrService
+  ) {}
   progressBarVisible: boolean = true;
-  Requests: any = []
+  Requests: any = [];
   GetLenderStoreRequest() {
-    this.spinner.show()
+    this.spinner.show();
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/LenderStore/GetAllLenderUser`).subscribe(
-        {
+      this.http
+        .get(`${environment.apiUrl}/LenderStore/GetAllLenderUser`)
+        .subscribe({
           next: (res) => {
-            this.Requests = res
-            this.spinner.hide()
-            resolve()
+            this.Requests = res;
+            this.spinner.hide();
+            resolve();
           },
           error: (err) => {
-            this.spinner.hide()
-            ;
-          }
-        }
-      )
-    }
-    )
+            this.spinner.hide();
+          },
+        });
+    });
   }
 
   DeleteLenderStore(LID: any) {
-    this.spinner.show()
+    this.spinner.show();
     return new Promise<void>((resolve, reject) => {
-      this.http.delete(`${environment.apiUrl}/LenderStore/DeleteLenderStore/` + LID).subscribe(
-        {
+      this.http
+        .delete(`${environment.apiUrl}/LenderStore/DeleteLenderStore/` + LID)
+        .subscribe({
           next: (res) => {
-            this.spinner.hide()
-            resolve()
+            this.spinner.hide();
+            resolve();
           },
           error: (err) => {
-            this.spinner.hide()
-          }
-        }
-      )
-    }
-    )
+            this.spinner.hide();
+          },
+        });
+    });
   }
   // RequestFlag: any = false;
   CRR: any;
-  check: any
-  flag: any
+  check: any;
+  flag: any;
   GetallCommercialRegister(CR: any) {
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/Admin/GetAllCommercialRegistres`).subscribe({
-        next: (res) => {
-          this.CRR = res;
-          this.check = this.CRR.find((x: { commercialcode: number; }) => x.commercialcode == CR);
+      this.http
+        .get(`${environment.apiUrl}/Admin/GetAllCommercialRegistres`)
+        .subscribe({
+          next: (res) => {
+            this.CRR = res;
+            this.check = this.CRR.find(
+              (x: { commercialcode: number }) => x.commercialcode == CR
+            );
 
-          if (this.check != null) {
-            this.toastr.success("Valid Company")
-            this.flag = true;
-          }
-          else {
-            this.toastr.error("Not a valid company")
-            this.flag = false;
-          }
+            if (this.check != null) {
+              this.toastr.success('Valid Company');
+              this.flag = true;
+            } else {
+              this.toastr.error('Not a valid company');
+              this.flag = false;
+            }
 
-          resolve();
-        },
-        error: (err) => {
-          ;
-        }
-      });
+            resolve();
+          },
+          error: (err) => {},
+        });
     });
   }
-  LenderInfo: any = []
-  GetLenderInfo(LendId:number) {
+  LenderInfo: any = [];
+  GetLenderInfo(LendId: number) {
     return new Promise<void>((resolve, reject) => {
       this.spinner.show();
-      this.http.get(`${environment.apiUrl}/LenderStore/GetLenderInfo/`+LendId).subscribe(
-        (res) => {
-          this.LenderInfo = res
-          this.spinner.hide();
-          resolve()
-        },
-        (err) => {
-          ;
-          this.spinner.hide();
-        }
-      )
-    })
+      this.http
+        .get(`${environment.apiUrl}/LenderStore/GetLenderInfo/` + LendId)
+        .subscribe(
+          (res) => {
+            this.LenderInfo = res;
+            this.spinner.hide();
+            resolve();
+          },
+          (err) => {
+            this.spinner.hide();
+          }
+        );
+    });
   }
   async AcceptRequest(LID: any, Cr: any) {
-    this.spinner.show()
+    this.spinner.show();
     await this.GetallCommercialRegister(Cr);
     return new Promise<void>((resolve, reject) => {
-      this.http.put(`${environment.apiUrl}/Admin/AcceptLenderRegistration/` + LID, {}).subscribe(
-        {
+      this.http
+        .put(`${environment.apiUrl}/Admin/AcceptLenderRegistration/` + LID, {})
+        .subscribe({
           next: (res) => {
-            this.spinner.hide()
-            if (this.flag)
-              this.toastr.success("Register Request Accepted")
-            else
-              this.toastr.error("Invalid Commercial Register")
+            this.spinner.hide();
+            if (this.flag) this.toastr.success('Register Request Accepted');
+            else this.toastr.error('Invalid Commercial Register');
 
-            resolve()
+            resolve();
           },
           error: (err) => {
             // this.toastr.error("Something went wrong")
-            this.spinner.hide()
-            ;
-          }
-        }
-      )
-    }
-    )
+            this.spinner.hide();
+          },
+        });
+    });
   }
-  loaneesLender: any
+  loaneesLender: any;
   GetAllLoaneesForLenderStore(id: any) {
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/LenderStore/LoaneesForLenders/` + id).subscribe({
-        next: (res) => {
-          this.loaneesLender = res;
-          this.progressBarVisible = false;
-          resolve();
-        },
-        error: (err) => {
-          this.progressBarVisible = false;
-        }
-      });
+      this.http
+        .get(`${environment.apiUrl}/LenderStore/LoaneesForLenders/` + id)
+        .subscribe({
+          next: (res) => {
+            this.loaneesLender = res;
+            this.progressBarVisible = false;
+            resolve();
+          },
+          error: (err) => {
+            this.progressBarVisible = false;
+          },
+        });
     });
   }
-  Followers: any
+  Followers: any;
   GetAllFollowers(id: any) {
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/User/GetAllFollower/` + id).subscribe({
-        next: (res) => {
-          this.Followers = res;
-          this.progressBarVisible = false;
-          resolve();
-        },
-        error: (err) => {
-          this.progressBarVisible = false;
-        }
-      });
+      this.http
+        .get(`${environment.apiUrl}/User/GetAllFollower/` + id)
+        .subscribe({
+          next: (res) => {
+            this.Followers = res;
+            this.progressBarVisible = false;
+            resolve();
+          },
+          error: (err) => {
+            this.progressBarVisible = false;
+          },
+        });
     });
   }
 
-  loansoffer: any
+  loansoffer: any;
   GetAllGetAllLoanOffer(lenderid: any, id: any) {
-    this.spinner.show()
+    this.spinner.show();
 
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/LenderStore/GetAllLoanOffer/` + lenderid + "/" + id).subscribe({
-        next: (res) => {
-          this.loansoffer = res;
-          this.spinner.hide()
-          resolve();
-        },
-        error: (err) => {
-          ;
-          this.spinner.hide()
-        }
-      });
+      this.http
+        .get(
+          `${environment.apiUrl}/LenderStore/GetAllLoanOffer/` +
+            lenderid +
+            '/' +
+            id
+        )
+        .subscribe({
+          next: (res) => {
+            this.loansoffer = res;
+            this.spinner.hide();
+            resolve();
+          },
+          error: (err) => {
+            this.spinner.hide();
+          },
+        });
     });
   }
 
-
-  GiveComplaintForLoanee(Complaint:any) {
-    Complaint.leid = parseInt(Complaint.leid)
+  GiveComplaintForLoanee(Complaint: any) {
+    Complaint.leid = parseInt(Complaint.leid);
     return new Promise<void>((resolve, reject) => {
       this.spinner.show();
-      this.http.post(`${environment.apiUrl}/LenderStore/giveComplaintForLoanee`,Complaint).subscribe(
-        () => {
-          this.spinner.hide();
-          resolve()
-        },
-        (err) => {
-          this.spinner.hide();
-        }
-      )
-    })
+      this.http
+        .post(
+          `${environment.apiUrl}/LenderStore/giveComplaintForLoanee`,
+          Complaint
+        )
+        .subscribe(
+          () => {
+            this.spinner.hide();
+            resolve();
+          },
+          (err) => {
+            this.spinner.hide();
+          }
+        );
+    });
   }
-  LenderPayments:any=[]
-  GetLenderPayments(lenderid:any){
-    this.spinner.show()
+  LenderPayments: any = [];
+  GetLenderPayments(lenderid: any) {
+    this.spinner.show();
     return new Promise<void>((resolve, reject) => {
-    this.http.get(`${environment.apiUrl}/LenderStore/GetLenderPayments/`+lenderid).subscribe(
-      {
-        next:(res)=>{
-          this.LenderPayments=res
-        this.spinner.hide()
-        resolve()
-                    },
-        error:(err)=>{
-        this.spinner.hide()
-
-          }
-        }
-      )
-    }
-  )
-}
-LenderCounters:any=[]
-GetLenderCounters(lenderid:any){
+      this.http
+        .get(`${environment.apiUrl}/LenderStore/GetLenderPayments/` + lenderid)
+        .subscribe({
+          next: (res) => {
+            this.LenderPayments = res;
+            this.spinner.hide();
+            resolve();
+          },
+          error: (err) => {
+            this.spinner.hide();
+          },
+        });
+    });
+  }
+  LenderCounters: any = [];
+  GetLenderCounters(lenderid: any) {
     return new Promise<void>((resolve, reject) => {
-    this.http.get(`${environment.apiUrl}/LenderStore/GetLenderCounters/`+lenderid).subscribe(
-      {
+      this.http
+        .get(`${environment.apiUrl}/LenderStore/GetLenderCounters/` + lenderid)
+        .subscribe({
+          next: (res) => {
+            this.LenderCounters = res;
 
-        next:(res)=>{
-          this.LenderCounters=res
-
-        this.progressBarVisible=false
-        resolve()
-                    },
-        error:(err)=>{
-        this.progressBarVisible=false
-
-          }
-        }
-      )
-    }
-  )
-}
-
-
-
-
-
+            this.progressBarVisible = false;
+            resolve();
+          },
+          error: (err) => {
+            this.progressBarVisible = false;
+          },
+        });
+    });
+  }
 }

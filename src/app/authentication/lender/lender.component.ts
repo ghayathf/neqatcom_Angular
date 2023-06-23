@@ -13,14 +13,14 @@ enum CompanySize {
   styleUrls: ['./lender.component.css']
 })
 export class LenderComponent {
-  constructor(public registerService: RegisterService,private router: Router) {
+  constructor(public registerService: RegisterService, private router: Router) {
 
-   }
-  companySizes: string[]= Object.values(CompanySize) as string[];
+  }
+  companySizes: string[] = Object.values(CompanySize) as string[];
 
   CreateLenderStore = new FormGroup(
     {
-      commercialregister: new FormControl('', [Validators.required,Validators.maxLength(14),Validators.minLength(14)]),
+      commercialregister: new FormControl('', [Validators.required, Validators.maxLength(14), Validators.minLength(14)]),
       companysize: new FormControl('', Validators.required),
       siteurl: new FormControl('', Validators.required),
       lenderuserid: new FormControl(''),
@@ -33,7 +33,7 @@ export class LenderComponent {
     console.log(this.registerService.lastid);
 
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.registerService.progressBarVisible = true;
   }
 

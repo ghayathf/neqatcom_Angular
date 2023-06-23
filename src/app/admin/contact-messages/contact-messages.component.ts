@@ -18,7 +18,7 @@ export class ContactMessagesComponent {
     this.AllContacts = this.contactService.AllContactUs
     this.Length = this.AllContacts.length
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.contactService.progressBarVisible = true
   }
   selectedItem = 0

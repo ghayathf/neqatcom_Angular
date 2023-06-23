@@ -10,16 +10,16 @@ import { RegisterService } from 'src/app/register.service';
   styleUrls: ['./loanee.component.css']
 })
 export class LoaneeComponent {
-  @ViewChild("ViewUsermanual") Usermanual:any
+  @ViewChild("ViewUsermanual") Usermanual: any
 
   constructor(public userService: RegisterService, private router: Router, private dialog: MatDialog) { }
   CreateUserForm = new FormGroup(
     {
       username: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, this.checkPassword.bind(this)]),
-      email: new FormControl('', [Validators.required, Validators.email,this.checkEmailExists.bind(this)]),
+      email: new FormControl('', [Validators.required, Validators.email, this.checkEmailExists.bind(this)]),
       phonenum: new FormControl('', [Validators.required, Validators.minLength(9),
-        Validators.maxLength(10),Validators.pattern('^[0-9]+$')]),
+      Validators.maxLength(10), Validators.pattern('^[0-9]+$')]),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
@@ -55,16 +55,15 @@ export class LoaneeComponent {
   async CreateUser() {
     debugger
     this.CreateUserForm.controls['userimage'].setValue('451-4517876_default-profile-hd-png-download (1).png');
-debugger
-   await this.userService.CreateLoaneeUser(this.CreateUserForm.value);
-   debugger
+    debugger
+    await this.userService.CreateLoaneeUser(this.CreateUserForm.value);
+    debugger
 
   }
-  async ngOnInit()
-  {
+  async ngOnInit() {
     this.userService.getAllUsers();
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.userService.progressBarVisible = true;
   }
   checkEmailExists(control: AbstractControl): ValidationErrors | null {
@@ -82,27 +81,27 @@ debugger
     dialogConfig.backdropClass = 'backdropBackground';
     dialogConfig.width = '800px'; // Adjust the width as per your requirement
 
-   await this.dialog.open(this.Usermanual, dialogConfig);
+    await this.dialog.open(this.Usermanual, dialogConfig);
   }
   checkPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.value;
-    
+
     if (password.length < 8) {
       return { passwordTooShort: true };
     }
-  
+
     if (!/[A-Z]/.test(password)) {
       return { passwordNoCapitalLetter: true };
     }
-  
+
     if (!/[a-z]/.test(password)) {
       return { passwordNoSmallLetter: true };
     }
-  
+
     if (!/\d/.test(password)) {
       return { passwordNoDigit: true };
     }
-  
+
     return null; // Password is valid
   }
 }

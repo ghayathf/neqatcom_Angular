@@ -1,66 +1,96 @@
-<nav class="navbar sidebar navbar-expand-xl" style=" background-color:#1d3b53 ;">
+<nav class="navbar sidebar navbar-expand-xl" style="background-color: #1d3b53">
+  <div class="d-flex align-items-center">
+    <a class="navbar-brand" href="index.html">
+      <img
+        class="light-mode-item h-40px"
+        src="../../../assets/HomeAssets/images/506.png"
+        alt="logo"
+      />
+      <img
+        class="dark-mode-item h-40px"
+        src="a../../../assets/HomeAssets/images/506.png"
+        alt="logo"
+      />
+    </a>
+  </div>
 
-	<div class="d-flex align-items-center">
-		<a class="navbar-brand" href="index.html">
-			<img class="light-mode-item h-40px" src="../../../assets/HomeAssets/images/506.png" alt="logo">
-			<img class="dark-mode-item h-40px" src="a../../../assets/HomeAssets/images/506.png" alt="logo">
-		</a>
-	</div>
+  <div
+    class="offcanvas offcanvas-start flex-row custom-scrollbar h-100"
+    data-bs-backdrop="true"
+    tabindex="-1"
+    id="offcanvasSidebar"
+  >
+    <div class="offcanvas-body sidebar-content d-flex flex-column">
+      <ul class="navbar-nav flex-column" id="navbar-sidebar">
+        <li class="nav-item">
+          <a routerLink="/Admin" class="nav-link"
+            ><i class="bi bi-house fa-fw me-2"></i>Dashboard</a
+          >
+        </li>
 
-	<div class="offcanvas offcanvas-start flex-row custom-scrollbar h-100" data-bs-backdrop="true" tabindex="-1"
-		id="offcanvasSidebar">
-		<div class="offcanvas-body sidebar-content d-flex flex-column ">
+        <li class="nav-item ms-2 my-2">Pages</li>
 
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          routerLink="/Admin/loanees"
+          role="button"
+          aria-expanded="true"
+          aria-controls="collapsepage"
+        >
+          <i class="fa fa-users fa-fw me-2"></i>Loanees
+        </a>
 
-			<ul class="navbar-nav flex-column" id="navbar-sidebar">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Admin/LenderStoreRequest">
+            <i class="fa-solid fa-user-plus fa-fw me-2" aria-hidden=" true"></i
+            >Lender Store Requests</a
+          >
+        </li>
 
-				<li class="nav-item"><a routerLink="/Admin" class="nav-link"><i
-							class="bi bi-house fa-fw me-2"></i>Dashboard</a></li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Admin/Categories">
+            <i class="fas fa-tag fa-fw me-2" aria-hidden=" true"></i>
+            Categories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Admin/testimonials"
+            ><i class="fas fa-quote-left fa-fw me-2" aria-hidden="true"></i>
+            Testimonials</a
+          >
+        </li>
 
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Admin/ContactMessages"
+            ><i class="fa fa-comment fa-fw me-2"></i>Messages</a
+          >
+        </li>
 
-				<li class="nav-item ms-2 my-2">Pages</li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Admin/lenderComplaints"
+            ><i class="fas fa fa-flag fa-fw me-2"></i>Manage Lender
+            Complaints</a
+          >
+        </li>
 
-
-				<a class="nav-link" data-bs-toggle="collapse" routerLink="/Admin/loanees" role="button"
-					aria-expanded="true" aria-controls="collapsepage">
-					<i class="fa fa-users fa-fw me-2"></i>Loanees
-				</a>
-
-				<li class="nav-item"> <a class="nav-link" routerLink="/Admin/LenderStoreRequest">
-						<i class="fa-solid fa-user-plus fa-fw me-2" aria-hidden=" true"></i>Lender Store Requests</a>
-				</li>
-
-
-
-
-				<li class="nav-item"> <a class="nav-link" routerLink="/Admin/Categories">
-						<i class="fas fa-tag fa-fw me-2" aria-hidden=" true"></i>
-						Categories</a></li>
-				<li class="nav-item"> <a class="nav-link" routerLink="/Admin/testimonials"><i
-							class="fas fa-quote-left  fa-fw me-2" aria-hidden="true"></i>
-						Testimonials</a></li>
-
-
-
-				<li class="nav-item"> <a class="nav-link" routerLink="/Admin/ContactMessages"><i
-							class="fa fa-comment fa-fw me-2"></i>Messages</a></li>
-
-				<li class="nav-item"> <a class="nav-link" routerLink="/Admin/lenderComplaints"><i
-							class="fas fa fa-flag fa-fw me-2"></i>Manage Lender Complaints</a></li>
-
-				<a class="nav-link" data-bs-toggle="collapse" routerLink="/Admin/loaneeComplaints" role="button"
-					aria-expanded="false" aria-controls="collapseinstructors">
-					<i class="fas fa fa-flag fa-fw me-2"></i>Manage Loanee's Complaints
-				</a>
-				<li class="nav-item"> <a class="nav-link" routerLink="/Admin/EditHome">
-						<i class="fa fa-comments" aria-hidden="true"></i>
-						Manage Home</a></li>
-
-
-
-
-			</ul>
-
-		</div>
-	</div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          routerLink="/Admin/loaneeComplaints"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseinstructors"
+        >
+          <i class="fas fa fa-flag fa-fw me-2"></i>Manage Loanee's Complaints
+        </a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Admin/EditHome">
+            <i class="fa fa-comments" aria-hidden="true"></i>
+            Manage Home</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

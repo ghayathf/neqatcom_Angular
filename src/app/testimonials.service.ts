@@ -6,143 +6,124 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '.././environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestimonialsService {
-
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService, private router: Router, private toaster: ToastrService) { }
+  constructor(
+    private http: HttpClient,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private toaster: ToastrService
+  ) {}
   progressBarVisible: boolean = true;
-  Testimonials: any
+  Testimonials: any;
   GetAllTestimonials() {
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/Testimonial/GetAllTestimonials`).subscribe(
-        {
+      this.http
+        .get(`${environment.apiUrl}/Testimonial/GetAllTestimonials`)
+        .subscribe({
           next: (res) => {
-            this.Testimonials = res
-            this.progressBarVisible = false
-            resolve()
-
+            this.Testimonials = res;
+            this.progressBarVisible = false;
+            resolve();
           },
           error: (err) => {
-            this.progressBarVisible = false
-          }
-        }
-      )
-    }
-    )
-
-
+            this.progressBarVisible = false;
+          },
+        });
+    });
   }
 
-
-
-  AccetpedTestimonialsHome: any
+  AccetpedTestimonialsHome: any;
   GetAcceptedTestimonialsHome() {
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/Testimonial/GetTestimonialAccepted`).subscribe(
-        {
-
+      this.http
+        .get(`${environment.apiUrl}/Testimonial/GetTestimonialAccepted`)
+        .subscribe({
           next: (res) => {
-            this.AccetpedTestimonialsHome = res
-            this.progressBarVisible = false
+            this.AccetpedTestimonialsHome = res;
+            this.progressBarVisible = false;
 
-            resolve()
-
+            resolve();
           },
           error: (err) => {
-            this.progressBarVisible = false
-          }
-        }
-      )
-    }
-    )
-
-
+            this.progressBarVisible = false;
+          },
+        });
+    });
   }
 
-
-
-  AccetpedTestimonials: any
+  AccetpedTestimonials: any;
   GetAcceptedTestimonials() {
-    this.spinner.show()
+    this.spinner.show();
     return new Promise<void>((resolve, reject) => {
-      this.http.get(`${environment.apiUrl}/Testimonial/AccpetedTestimonial`).subscribe(
-        {
-
+      this.http
+        .get(`${environment.apiUrl}/Testimonial/AccpetedTestimonial`)
+        .subscribe({
           next: (res) => {
-            this.AccetpedTestimonials = res
-            this.spinner.hide()
+            this.AccetpedTestimonials = res;
+            this.spinner.hide();
 
-            resolve()
-
+            resolve();
           },
           error: (err) => {
-            this.spinner.hide()
-          }
-        }
-      )
-    }
-    )
-
-
+            this.spinner.hide();
+          },
+        });
+    });
   }
-
-
-
 
   async UpdateRequest(Request: any) {
     this.spinner.show();
     return new Promise<void>((resolve, reject) => {
       Request.testimonialstatus = 1;
-      this.http.put(`${environment.apiUrl}/Testimonial/UpdateTestimonial`, Request).subscribe(
-        {
+      this.http
+        .put(`${environment.apiUrl}/Testimonial/UpdateTestimonial`, Request)
+        .subscribe({
           next: () => {
             this.spinner.hide();
             resolve();
           },
           error: () => {
             this.spinner.hide();
-          }
-        }
-      )
-    }
-    )
+          },
+        });
+    });
   }
-
 
   DeleteMessage(messageId: number) {
     this.spinner.show();
     return new Promise<void>((resolve, reject) => {
-      this.http.delete(`${environment.apiUrl}/Testimonial/DeleteTestimonial/` + messageId).subscribe(
-        {
+      this.http
+        .delete(
+          `${environment.apiUrl}/Testimonial/DeleteTestimonial/` + messageId
+        )
+        .subscribe({
           next: () => {
             this.spinner.hide();
             resolve();
           },
           error: () => {
             this.spinner.hide();
-          }
-        }
-      )
-    })
+          },
+        });
+    });
   }
-
-
 
   CreateTestimonial(message: any) {
     message.testimonialstatus = 0;
     return new Promise<void>((resolve, reject) => {
-      this.http.post(`${environment.apiUrl}/Testimonial/CreateTestimonial`, message).subscribe(
-        {
+      this.http
+        .post(`${environment.apiUrl}/Testimonial/CreateTestimonial`, message)
+        .subscribe({
           next: () => {
-            this.progressBarVisible = false
+            this.progressBarVisible = false;
             resolve();
           },
           error: () => {
-            this.progressBarVisible = false
-          }
-        }
-      )
-    })
+            this.progressBarVisible = false;
+          },
+        });
+    });
   }
 }

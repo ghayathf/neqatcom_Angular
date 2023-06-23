@@ -5,156 +5,192 @@
   <div class="progress-bar"></div>
 </div>
 <div class="page-content">
+  <!-- Top bar START -->
+  <app-admin-header></app-admin-header>
+  <!-- Top bar END -->
 
-	<!-- Top bar START -->
-	<app-admin-header></app-admin-header>
-	<!-- Top bar END -->
+  <!-- Page main content START -->
+  <div class="page-content-wrapper border">
+    <!-- Course boxes START -->
+    <div class="row g-4 mb-4">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3"
+        >
+          <h5>From Loanee To Lender</h5>
+          <h2 class="mb-0 fs-1 text-primary">{{ this.loaneetoLender }}</h2>
+        </div>
+      </div>
 
-	<!-- Page main content START -->
-	<div class="page-content-wrapper border">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3"
+        >
+          <h6>From Lender To Loanee</h6>
+          <h2 class="mb-0 fs-1 text-success">{{ this.FromLender }}</h2>
+        </div>
+      </div>
 
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-warning bg-opacity-15 border border-warning rounded-3"
+        >
+          <h6>From System To Loanee</h6>
+          <h2 class="mb-0 fs-1 text-warning">{{ this.FromSystem }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Course boxes END -->
 
+    <!-- Card START -->
+    <div class="card bg-transparent border">
+      <!-- Card header START -->
 
-		<!-- Course boxes START -->
-		<div class="row g-4 mb-4">
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
-					<h5>From Loanee To Lender</h5>
-					<h2 class="mb-0 fs-1 text-primary">{{ this.loaneetoLender }}</h2>
-				</div>
-			</div>
+      <!-- Card header END -->
 
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3">
-					<h6>From Lender To Loanee</h6>
-					<h2 class="mb-0 fs-1 text-success">{{this.FromLender}}</h2>
-				</div>
-			</div>
+      <!-- Card body START -->
+      <div class="card-body">
+        <button (click)="exportexcel()" class="btn btn-success">
+          <i class="bi bi-file-earmark-excel-fill"></i>Export Lonaee Information
+        </button>
+        <!-- Course table START -->
+        <div class="table-responsive border-0 rounded-3">
+          <!-- Table START -->
+          <table
+            class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+          >
+            <!-- Table head -->
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  class="border-0"
+                  style="background-color: #1d3b53"
+                >
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  class="border-0"
+                  style="background-color: #1d3b53"
+                >
+                  Note
+                </th>
+                <th
+                  scope="col"
+                  class="border-0"
+                  style="background-color: #1d3b53"
+                >
+                  From
+                </th>
+                <th
+                  scope="col"
+                  class="border-0"
+                  style="background-color: #1d3b53"
+                >
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <!-- Table body START -->
 
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4  bg-warning bg-opacity-15 border border-warning rounded-3">
-					<h6>From System To Loanee</h6>
-					<h2 class="mb-0 fs-1 text-warning">{{this.FromSystem}}</h2>
-				</div>
-			</div>
-		</div>
-		<!-- Course boxes END -->
+            <!-- Table row -->
+            <tr *ngFor="let item of complaints">
+              <!-- Table data -->
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link">{{ item.firstname }}</a>
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link">{{ item.compliantnotes }}</a>
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link">{{
+                      ComplaintStatus[item.managestatus]
+                    }}</a>
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title m-0 ms-2">
+                    <a (click)="OpenDeleteDialog(item.complaintsid)"
+                      ><i class="bi bi-x-lg"></i
+                    ></a>
+                    <a
+                      style="margin-left: 10px"
+                      (click)="
+                        OpenManageDialog(
+                          item.lenderid,
+                          item.email,
+                          item.firstname,
+                          item.loaneeid,
+                          item.complaintsid,
+                          item.warncounter,
+                          item.userid
+                        )
+                      "
+                      ><i class="bi bi-gear"></i
+                    ></a>
+                  </h4>
+                </div>
+              </td>
+            </tr>
 
-		<!-- Card START -->
-		<div class="card bg-transparent border">
+            <!-- Table body END -->
+          </table>
 
-			<!-- Card header START -->
+          <table hidden id="excel-table">
+            <thead>
+              <tr>
+                <th>firstname</th>
 
-			<!-- Card header END -->
+                <th>lastname</th>
+                <th>Caomplaint</th>
+                <th>Creidt Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of complaints">
+                <td>{{ item.firstname }}</td>
+                <td>{{ item.lastname }}</td>
+                <td>{{ item.compliantnotes }}</td>
+                <td>{{ item.creditscore }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Table END -->
+        </div>
+        <!-- Course table END -->
+      </div>
+      <!-- Card body END -->
 
-			<!-- Card body START -->
-			<div class="card-body">
-				<button (click)="exportexcel()" class="btn btn-success"> <i
-						class="bi bi-file-earmark-excel-fill"></i>Export Lonaee
-					Information</button>
-				<!-- Course table START -->
-				<div class="table-responsive border-0 rounded-3">
-					<!-- Table START -->
-					<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-						<!-- Table head -->
-						<thead>
-							<tr>
+      <!-- Card footer START -->
 
-								<th scope="col" class="border-0" style=" background-color:#1d3b53 ;">Name</th>
-								<th scope="col" class="border-0" style=" background-color:#1d3b53 ;">Note</th>
-								<th scope="col" class="border-0" style=" background-color:#1d3b53 ;">From</th>
-								<th scope="col" class="border-0" style=" background-color:#1d3b53 ;">Action</th>
-
-							</tr>
-						</thead>
-						<!-- Table body START -->
-
-						<!-- Table row -->
-						<tr *ngFor="let item of complaints">
-							<!-- Table data -->
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ item.firstname }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ item.compliantnotes }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ ComplaintStatus[item.managestatus] }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title m-0 ms-2">
-										<a (click)="OpenDeleteDialog(item.complaintsid)"><i class="bi bi-x-lg"></i></a>
-										<a style="margin-left: 10px;"
-											(click)="OpenManageDialog(item.lenderid,item.email,item.firstname,item.loaneeid,item.complaintsid,item.warncounter,item.userid)"><i
-												class="bi bi-gear"></i></a>
-									</h4>
-								</div>
-							</td>
-						</tr>
-
-
-
-						<!-- Table body END -->
-					</table>
-
-					<table hidden id="excel-table">
-						<thead>
-							<tr>
-								<th>firstname</th>
-
-								<th>lastname</th>
-								<th>Caomplaint</th>
-								<th>Creidt Score</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let item of complaints">
-								<td>{{item.firstname}}</td>
-								<td>{{item.lastname}}</td>
-								<td>{{item.compliantnotes}}</td>
-								<td>{{item.creditscore}}</td>
-
-							</tr>
-						</tbody>
-					</table>
-					<!-- Table END -->
-				</div>
-				<!-- Course table END -->
-			</div>
-			<!-- Card body END -->
-
-			<!-- Card footer START -->
-
-			<!-- Card footer END -->
-		</div>
-		<!-- Card END -->
-	</div>
-	<!-- Page main content END -->
-
+      <!-- Card footer END -->
+    </div>
+    <!-- Card END -->
+  </div>
+  <!-- Page main content END -->
 </div>
 <ng-template #DeleteForm>
-	<!-- <div style="background-color: #3e3e40;">
+  <!-- <div style="background-color: #3e3e40;">
 		<h2 mat-dialog-content style="color:white">Are you sure you don't want to manage this complaint ?</h2>
 		<div mat-dialog-actions>
 			<input type="button" mat-dialog-close class="btn btn-danger" value="Yes" (click)="DeleteComplaint()">
@@ -164,7 +200,7 @@
 </ng-template>
 
 <ng-template #ManageComplaintForm>
-	<!-- <div style="background-color: #3e3e40;">
+  <!-- <div style="background-color: #3e3e40;">
 		<h2 mat-dialog-content style="color:white">By managing this complaint the loanee's credit score will be affected
 			negativily</h2>
 		<div mat-dialog-actions>

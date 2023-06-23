@@ -9,9 +9,15 @@ import { SearchComponent } from './search/search.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { MyloansComponent } from './myloans/myloans.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ProgressbarComponent } from './progressbar/progressbar.component'; import { ConfirmLoansComponent } from './confirm-loans/confirm-loans.component';
+import { ProgressbarComponent } from './progressbar/progressbar.component';
+import { ConfirmLoansComponent } from './confirm-loans/confirm-loans.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
-import { JoyrideBackdropService, JoyrideModule, JoyrideService, JoyrideStepService } from 'ngx-joyride';
+import {
+  JoyrideBackdropService,
+  JoyrideModule,
+  JoyrideService,
+  JoyrideStepService,
+} from 'ngx-joyride';
 import { DocumentService } from 'ngx-joyride';
 import { DomRefService } from 'ngx-joyride';
 import { JoyrideOptionsService } from 'ngx-joyride';
@@ -20,7 +26,6 @@ import { JoyrideStepsContainerService } from 'ngx-joyride';
 import { LoggerService } from 'ngx-joyride';
 import { StepDrawerService } from 'ngx-joyride';
 @NgModule({
-
   declarations: [
     MainComponent,
     EditProfileComponent,
@@ -29,9 +34,7 @@ import { StepDrawerService } from 'ngx-joyride';
     MyloansComponent,
     ProgressbarComponent,
     ConfirmLoansComponent,
-    TestimonialComponent
-
-
+    TestimonialComponent,
   ],
   imports: [
     CommonModule,
@@ -39,9 +42,10 @@ import { StepDrawerService } from 'ngx-joyride';
     SharedModule,
     MatProgressBarModule,
     NgbModule,
-    JoyrideModule.forRoot()
+    JoyrideModule.forRoot(),
   ],
-  providers: [JoyrideService,
+  providers: [
+    JoyrideService,
     JoyrideStepService,
     JoyrideBackdropService,
     DocumentService,
@@ -50,6 +54,7 @@ import { StepDrawerService } from 'ngx-joyride';
     EventListenerService,
     JoyrideStepsContainerService,
     LoggerService,
-    StepDrawerService]
+    StepDrawerService,
+  ],
 })
-export class LoaneeModule { }
+export class LoaneeModule {}

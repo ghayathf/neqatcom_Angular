@@ -15,7 +15,6 @@ import { AdminRoutingModule } from '../admin/admin-routing.module';
 import { Lender2Component } from './lender2/lender2.component';
 import { Loanee2Component } from './loanee2/loanee2.component';
 
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -23,7 +22,7 @@ import { Loanee2Component } from './loanee2/loanee2.component';
     LenderComponent,
     LoaneeComponent,
     Lender2Component,
-    Loanee2Component
+    Loanee2Component,
   ],
   imports: [
     CommonModule,
@@ -35,7 +34,7 @@ import { Loanee2Component } from './loanee2/loanee2.component';
     RouterModule,
     AdminModule,
     AdminRoutingModule,
-    MatIconModule
-  ]
+    MatIconModule,
+  ],
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {}

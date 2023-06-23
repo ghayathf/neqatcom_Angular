@@ -4,7 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'app-progressbar',
   templateUrl: './progressbar.component.html',
   styleUrls: ['./progressbar.component.css'],
-  template: `<ng-progress></ng-progress><button (click)="fetchData()">Fetch Data</button>`
+  template: `<ng-progress></ng-progress
+    ><button (click)="fetchData()">Fetch Data</button>`,
 })
 export class ProgressbarComponent {
   @Input() maxValue: number = 100;

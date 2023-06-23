@@ -8,7 +8,7 @@ import { PagesService } from 'src/app/pages.service';
   styleUrls: ['./edit-home.component.css']
 })
 export class EditHomeComponent {
-  constructor(public pagesService:PagesService){}
+  constructor(public pagesService: PagesService) { }
   UpdateData = new FormGroup(
     {
       homeid: new FormControl(''),
@@ -21,11 +21,11 @@ export class EditHomeComponent {
       companyphonenumber: new FormControl('', Validators.required)
     }
   )
-  async ngOnInit(){
+  async ngOnInit() {
     await this.pagesService.GetAllHomeInfo()
     this.UpdateData.patchValue(this.pagesService.Home[0])
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.pagesService.progressBarVisible = true
   }
   async UpdateHome() {
