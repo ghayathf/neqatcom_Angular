@@ -25,3 +25,63 @@
     width: 0%;
   }
 }
+
+@media (min-width: 300px) {
+  .x {
+      margin-left: 30px;
+  }
+}
+
+@media (min-width: 500px) {
+  .x {
+      margin-left: 100px;
+  }
+}
+
+@media (min-width: 600px) {
+  .x {
+      margin-left: 100px;
+  }
+}
+
+@media (min-width: 700px) {
+  .x {
+      margin-left: 120px;
+  }
+}
+
+@media (min-width: 780px) {
+  .x {
+      margin-left: 140px;
+  }
+}
+
+@media (min-width: 800px) {
+  .x {
+      margin-left: 160px;
+  }
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 900x) {
+  .x {
+      margin-left: 290px;
+  }
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1362px) {
+  .x {
+      margin-left: 70px;
+  }
+}
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .x {
+      margin-left: 100px;
+  }
+}
