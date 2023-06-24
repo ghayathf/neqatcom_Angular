@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { NgChartsModule } from 'ng2-charts';
 import { AdminService } from 'src/app/admin.service';
+import { BackgroundServiceService } from 'src/app/background-service.service';
 import { LoaneeService } from 'src/app/loanee.service';
 import { TestimonialsService } from 'src/app/testimonials.service';
 
@@ -15,7 +16,9 @@ import { TestimonialsService } from 'src/app/testimonials.service';
 })
 export class MainComponent {
 
-  constructor(public adminService: AdminService, public loaneeService: LoaneeService, public testimonialService: TestimonialsService) { }
+  constructor(public adminService: AdminService, public loaneeService: LoaneeService, public testimonialService: TestimonialsService,
+    private backgroundService: BackgroundServiceService
+    ) { }
   Actors: any
   credit: any = 0
   creditmap?: any
@@ -28,6 +31,7 @@ export class MainComponent {
   lenders: any
   complaintsLength: any
   async ngAfterViewInit() {
+    await this.backgroundService.startBackgroundTask();
     await this.adminService.GetCreditScoreCounterCharts();
     await this.adminService.GetActorCounterCharts();
     await this.loaneeService.GetAllLoanees()

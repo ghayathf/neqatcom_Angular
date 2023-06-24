@@ -10,6 +10,7 @@ import { JoyrideService } from 'ngx-joyride';
 import { DocumentService } from 'ngx-joyride';
 import { DomRefService } from 'ngx-joyride';
 import { AdminService } from 'src/app/admin.service';
+import { BackgroundServiceService } from 'src/app/background-service.service';
 // import { SpeechClient } from '@google-cloud/speech';
 // const client = new SpeechClient({
 //   keyFilename: '/path/to/service-account-key.json' // Replace with the path to your service account key file
@@ -34,7 +35,9 @@ export class MainComponent {
     public loanservice: LoanService,
     public lenderService: LenderStoreService,
     public userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private backgroundService: BackgroundServiceService
+
   ) {
     this.recognition = new webkitSpeechRecognition();
     this.recognition.lang = 'en-US';
@@ -50,6 +53,7 @@ export class MainComponent {
   Offers: any;
   loaneeid: any;
   async ngOnInit() {
+    await this.backgroundService.startBackgroundTask();
     await this.adminService.CheckFiveDays();
     await this.offerService.GetOffersForMain();
     this.Offers = this.offerService.MainOffers;

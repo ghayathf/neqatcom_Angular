@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EmailsService } from 'src/app/emails.service';
 import { PurchasingService } from 'src/app/purchasing.service';
 import { UserService } from 'src/app/user.service';
+import { BackgroundServiceService } from 'src/app/background-service.service';
 
 @Component({
   selector: 'app-main',
@@ -32,7 +33,9 @@ export class MainComponent {
     public dialog: MatDialog,
     public purchasingService: PurchasingService,
     public EmailService: EmailsService,
-    public userService: UserService
+    public userService: UserService,
+    private backgroundService: BackgroundServiceService
+
   ) {}
   LenderPayments?: any;
   lenderID: any;
@@ -42,6 +45,7 @@ export class MainComponent {
   Followers: any;
   length: any;
   async ngOnInit() {
+    await this.backgroundService.startBackgroundTask();
     await this.offerService.GetOffersForLenderMain(
       localStorage.getItem('Lenderid')
     );
