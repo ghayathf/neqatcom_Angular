@@ -55,7 +55,8 @@ export class AuthService {
 
                 this.router.navigate(['Admin/']);
               }
-              if (data.Role == 'Lender') {
+              if (data.Role == 'Lender' && JSON.parse(data.RegisterStatus)==1) {
+                debugger
                 localStorage.setItem('Lenderid', JSON.parse(data.Lenderid));
                 localStorage.setItem(
                   'lenderName',

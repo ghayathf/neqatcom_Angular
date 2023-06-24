@@ -27,7 +27,7 @@ export class LoginComponent {
   LoginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    recaptcha: new FormControl('', [Validators.required]),
+    // recaptcha: new FormControl('', [Validators.required]),
   });
 
   FactorForm: FormGroup = new FormGroup({

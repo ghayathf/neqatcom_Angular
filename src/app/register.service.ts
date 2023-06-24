@@ -31,7 +31,7 @@ export class RegisterService {
         next: async (res) => {
           this.spinner.hide();
           await this.getAllUsers();
-          this.router.navigate(['/login']);
+          this.router.navigate(['/lender']);
         },
         error: () => {
           this.spinner.hide();
@@ -99,12 +99,14 @@ export class RegisterService {
       });
     } else {
       this.toaster.error('Your National number does not exist !');
-      this.filterUsers();
+      await this.getAllUsers2();
+      await this.filterUsers2();
       const maxId = Math.max(
-        ...this.tr.map((user: { userid: any }) => user.userid)
+        ...this.tr2.map((user: { userid: any }) => user.userid)
       );
       this.lastidd = maxId;
-      this.userService.DeleteUser(this.lastidd);
+      debugger
+      await this.userService.DeleteUser(this.lastidd);
     }
   }
 
