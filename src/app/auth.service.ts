@@ -37,12 +37,14 @@ export class AuthService {
         .subscribe({
           next: (res: any) => {
             let data: any = jwt_decode(res);
-            localStorage.setItem('token', res);
-            localStorage.setItem('user', JSON.stringify(data));
+            // localStorage.setItem('token', res);
+            // localStorage.setItem('user', JSON.stringify(data));
 
             this.progressBarVisible = false;
             if (randomsystem == randomuser) {
               if (data.Role == 'Admin') {
+                localStorage.setItem('token', res);
+                localStorage.setItem('user', JSON.stringify(data));
                 localStorage.setItem(
                   'AdminFname',
                   JSON.stringify(data.Firstname)
@@ -56,6 +58,8 @@ export class AuthService {
                 this.router.navigate(['Admin/']);
               }
               if (data.Role == 'Lender' && JSON.parse(data.RegisterStatus)==1) {
+                localStorage.setItem('token', res);
+                localStorage.setItem('user', JSON.stringify(data));
                 debugger
                 localStorage.setItem('Lenderid', JSON.parse(data.Lenderid));
                 localStorage.setItem(
@@ -73,8 +77,14 @@ export class AuthService {
                 );
                 this.router.navigate(['lenderstore/']);
               }
+              else{
+              this.toastr.error('Pending Request');
+
+              }
 
               if (data.Role == 'Loanee') {
+                localStorage.setItem('token', res);
+                localStorage.setItem('user', JSON.stringify(data));
                 localStorage.setItem(
                   'LoaneeName',
                   JSON.stringify(data.Firstname)
