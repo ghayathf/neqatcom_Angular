@@ -35,18 +35,20 @@ export class MainComponent {
     await this.offerService.GetRandomlyOffer();
     await this.pagesService.CalculateCreditScores();
     await this.pagesService.GetLoaneestoRemind();
-    await this.pagesService.UpdateBeforeReminder();
+    // await this.pagesService.UpdateBeforeReminder();
     await this.adminService.CheckFiveDays();
     await this.pagesService.GetLoaneesInPayDaytoRemind();
-    await this.pagesService.UpdateInPayDateReminder();
+    // await this.pagesService.UpdateInPayDateReminder();
     await this.pagesService.GetLoaneeslatePayDaytoRemind();
-    await this.pagesService.UpdateLatePayDateReminder();
+    // await this.pagesService.UpdateLatePayDateReminder();
     await this.pagesService.CancleLoanAutomatically();
-
+    const currentDate = new Date();
     this.Accepted = this.Testimonials.AccetpedTestimonials;
     console.log(this.Accepted);
 
     this.Offers = this.offerService.Randomlyoffers;
+
+    if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
 
     for (var i = 0; i < this.pagesService.BeforeReminder.length; i++) {
       console.log(new Date());
@@ -78,6 +80,10 @@ export class MainComponent {
         console.log('some error occure !');
       }
     }
+    await this.pagesService.UpdateBeforeReminder();
+
+  }
+    if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
 
     for (var i = 0; i < this.pagesService.InPayDayReminder.length; i++) {
       console.log(new Date());
@@ -109,9 +115,11 @@ export class MainComponent {
         console.log('some error occure !');
       }
     }
+    await this.pagesService.UpdateInPayDateReminder();
 
+  }
     console.log(this.pagesService.LateDayReminder);
-    const currentDate = new Date();
+   
 
     // Check if it's 12 PM
     if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
@@ -146,6 +154,7 @@ export class MainComponent {
         }
       }
     }
+    await this.pagesService.UpdateLatePayDateReminder();
 
     for (var i = 0; i < this.pagesService.CancleAuto.length; i++) {
       this.s = 'Automatic Loan Cancelation ';

@@ -57,7 +57,9 @@ export class AuthService {
 
                 this.router.navigate(['Admin/']);
               }
-              if (data.Role == 'Lender' && JSON.parse(data.RegisterStatus)==1) {
+             else if (data.Role == 'Lender' ) {
+              if(JSON.parse(data.RegisterStatus)==1)
+              {
                 localStorage.setItem('token', res);
                 localStorage.setItem('user', JSON.stringify(data));
                 debugger
@@ -75,14 +77,15 @@ export class AuthService {
                   'lenderImage',
                   JSON.stringify(data.Imagename)
                 );
-                this.router.navigate(['lenderstore/']);
-              }
-              else{
-              this.toastr.error('Pending Request');
+                this.router.navigate(['lenderstore/']);}
+                else{
+              this.toastr.error('Still Pending');
 
+                }
               }
+              
 
-              if (data.Role == 'Loanee') {
+              else if (data.Role == 'Loanee') {
                 localStorage.setItem('token', res);
                 localStorage.setItem('user', JSON.stringify(data));
                 localStorage.setItem(
