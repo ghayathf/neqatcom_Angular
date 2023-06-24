@@ -34,12 +34,12 @@ export class MainComponent {
     await this.Testimonials.GetAcceptedTestimonials();
     await this.offerService.GetRandomlyOffer();
     await this.pagesService.CalculateCreditScores();
-    await this.pagesService.GetLoaneestoRemind();
+    // await this.pagesService.GetLoaneestoRemind();
     // await this.pagesService.UpdateBeforeReminder();
     await this.adminService.CheckFiveDays();
-    await this.pagesService.GetLoaneesInPayDaytoRemind();
+    // await this.pagesService.GetLoaneesInPayDaytoRemind();
     // await this.pagesService.UpdateInPayDateReminder();
-    await this.pagesService.GetLoaneeslatePayDaytoRemind();
+    // await this.pagesService.GetLoaneeslatePayDaytoRemind();
     // await this.pagesService.UpdateLatePayDateReminder();
     await this.pagesService.CancleLoanAutomatically();
     const currentDate = new Date();
@@ -48,7 +48,15 @@ export class MainComponent {
 
     this.Offers = this.offerService.Randomlyoffers;
 
-    if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
+    if (  currentDate.getHours() === 10 &&
+    currentDate.getMinutes() >= 0 &&
+    currentDate.getMinutes() <= 59 &&
+    localStorage.getItem('reminderDate') !== new Date().toLocaleDateString()) {
+
+      localStorage.setItem('reminderDate', new Date().toLocaleDateString());
+
+
+      await this.pagesService.GetLoaneestoRemind();
 
     for (var i = 0; i < this.pagesService.BeforeReminder.length; i++) {
       console.log(new Date());
@@ -83,7 +91,14 @@ export class MainComponent {
     await this.pagesService.UpdateBeforeReminder();
 
   }
-    if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
+    if (  currentDate.getHours() === 10 &&
+    currentDate.getMinutes() >= 0 &&
+    currentDate.getMinutes() <= 59 &&
+    localStorage.getItem('reminderDate') !== new Date().toLocaleDateString()) {
+
+      localStorage.setItem('reminderDate', new Date().toLocaleDateString());
+
+      await this.pagesService.GetLoaneesInPayDaytoRemind();
 
     for (var i = 0; i < this.pagesService.InPayDayReminder.length; i++) {
       console.log(new Date());
@@ -122,7 +137,17 @@ export class MainComponent {
    
 
     // Check if it's 12 PM
-    if (currentDate.getHours() === 12 && currentDate.getMinutes() === 0) {
+    if (
+      currentDate.getHours() === 10 &&
+      currentDate.getMinutes() >= 0 &&
+      currentDate.getMinutes() <= 59 &&
+      localStorage.getItem('reminderDate') !== new Date().toLocaleDateString()
+    ) {
+      // Set the reminder date to current date
+      localStorage.setItem('reminderDate', new Date().toLocaleDateString());
+    
+      await this.pagesService.GetLoaneeslatePayDaytoRemind();
+    
       for (let i = 0; i < this.pagesService.LateDayReminder.length; i++) {
         console.log(new Date());
         const date = new Date(this.pagesService.LateDayReminder[i].startdate);
@@ -134,13 +159,13 @@ export class MainComponent {
         const formattedDate = `${day} ${dayOfMonth} ${month} ${year}`;
         this.s = 'Reminder Payment Email';
         this.m =
-          'Please note that your repayment date for this loan #' +
+          'Please note that your repayment date for loan #' +
           this.pagesService.LateDayReminder[i].loanid +
-          ' that was on ' +
+          ' was on ' +
           formattedDate +
-          ' with ' +
+          ' with an amount of ' +
           this.pagesService.LateDayReminder[i].monthlyamount +
-          ' amount, has passed. Hurry up and pay it off!';
+          '. Please make the payment as soon as possible!';
         try {
           await this.sendEmail(
             this.pagesService.LateDayReminder[i].email,
@@ -153,8 +178,11 @@ export class MainComponent {
           console.log('Some error occurred!');
         }
       }
+    
+      await this.pagesService.UpdateLatePayDateReminder();
     }
-    await this.pagesService.UpdateLatePayDateReminder();
+    
+    
 
     for (var i = 0; i < this.pagesService.CancleAuto.length; i++) {
       this.s = 'Automatic Loan Cancelation ';
