@@ -265,8 +265,7 @@ export class ManageMeetingsComponent {
     );
 
     let adjustedMaxPayment = maxPayment;
-    let paymentAdjustment =
-      paymentIncreasePercent * parseInt(familymembers) * maxPayment;
+    let paymentAdjustment = paymentIncreasePercent * parseInt(familymembers) * maxPayment;
     adjustedMaxPayment -= paymentAdjustment;
 
     console.log(paymentAdjustment);

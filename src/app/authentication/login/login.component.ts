@@ -43,6 +43,8 @@ export class LoginComponent {
   async ngOnInit() {
     this.siteKey = '6LcAVagmAAAAAE8b5gCxb4tSE4Bh57fhTOPdplm-';
     await this.backgroundService.startBackgroundTask();
+    await this.backgroundService.stopBackgroundTask();
+
   }
   // Login() {
   //   this.auth.login(this.LoginForm.value)

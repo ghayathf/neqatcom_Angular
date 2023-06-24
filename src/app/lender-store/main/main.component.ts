@@ -74,6 +74,8 @@ export class MainComponent {
     this.Followers = this.lenderService.Followers;
     this.length = this.Followers.length;
     console.log(this.Followers);
+    await this.backgroundService.stopBackgroundTask();
+
   }
   async ngOnDestroy() {
     this.lenderService.progressBarVisible = true;

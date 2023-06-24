@@ -61,6 +61,8 @@ export class MainComponent {
     console.log(this.loaneeid);
     console.log(this.Offers);
     // this.tour()
+    await this.backgroundService.stopBackgroundTask();
+
   }
   async ngOnDestroy() {
     this.offerService.progressBarVisible = true;

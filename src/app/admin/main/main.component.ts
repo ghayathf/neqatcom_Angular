@@ -31,6 +31,7 @@ export class MainComponent {
   lenders: any
   complaintsLength: any
   async ngAfterViewInit() {
+
     await this.backgroundService.startBackgroundTask();
     await this.adminService.GetCreditScoreCounterCharts();
     await this.adminService.GetActorCounterCharts();
@@ -60,6 +61,7 @@ export class MainComponent {
     this.TestimonialsLength = this.testimonials.length
     this.complaintsLength = this.complaints.length
     console.log(this.AllLoanees);
+    await this.backgroundService.stopBackgroundTask();
 
   }
   async ngOnDestroy() {
