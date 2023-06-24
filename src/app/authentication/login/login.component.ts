@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth.service';
+import { BackgroundServiceService } from 'src/app/background-service.service';
 import { EmailsService } from 'src/app/emails.service';
 
 @Component({
@@ -21,7 +22,9 @@ export class LoginComponent {
     private EmailService: EmailsService,
     public auth: AuthService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private backgroundService: BackgroundServiceService
+
   ) { }
 
   LoginForm: FormGroup = new FormGroup({
@@ -37,8 +40,9 @@ export class LoginComponent {
 
   siteKey: any;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.siteKey = '6LcAVagmAAAAAE8b5gCxb4tSE4Bh57fhTOPdplm-';
+    await this.backgroundService.startBackgroundTask();
   }
   // Login() {
   //   this.auth.login(this.LoginForm.value)
