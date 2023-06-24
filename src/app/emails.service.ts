@@ -24,10 +24,10 @@ export class EmailsService {
     return new Promise<void>((resolve, reject) => {
       emailjs
         .send(
-          'service_x4si89o',
-          'template_yw6n7gv',
+          'service_e1yzb1k',
+          'template_savkm4f',
           object,
-          'uQNPmbMJbnsEgcVAf'
+          'FMr12smS_od34cunp'
         )
         .then(
           (response: any) => {

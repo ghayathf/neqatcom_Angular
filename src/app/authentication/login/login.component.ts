@@ -97,7 +97,7 @@ export class LoginComponent {
   }
 
   async CheckUser() {
-    // this.code = this.FactorForm.get('code')?.value;
+    this.code = this.FactorForm.get('code')?.value;
     await this.auth.login(this.LoginForm.value, this.random, this.code);
     await this.ngOnInit();
     await this.dialog.closeAll();
