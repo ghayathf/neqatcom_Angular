@@ -17,14 +17,15 @@ export class TestimonialsComponent {
     await this.TestimonialService.GetAllTestimonials();
     this.testimonials = await this.TestimonialService.Testimonials;
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.TestimonialService.progressBarVisible = true;
   }
   async ChangeStatus(message: any) {
     await this.TestimonialService.UpdateRequest(message);
     await this.TestimonialService.GetAllTestimonials();
     await this.dialog.closeAll()
-    await this.ngOnInit()  }
+    await this.ngOnInit()
+  }
 
   selectedItem = 0;
   openDeleteDialog(messageId: number) {

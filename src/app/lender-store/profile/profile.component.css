@@ -1,13 +1,13 @@
 .page-content {
-    min-height: calc(100vh - (headerHeight + footerHeight));
-    /* Adjust the header and footer heights accordingly */
+  min-height: calc(100vh - (headerHeight + footerHeight));
+  /* Adjust the header and footer heights accordingly */
 }
 
 .footer {
-    /* Add appropriate styling for your footer */
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  /* Add appropriate styling for your footer */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 .progress-container {
   position: relative;
@@ -36,4 +36,3 @@
     width: 0%;
   }
 }
-

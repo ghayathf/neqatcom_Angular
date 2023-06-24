@@ -13,24 +13,24 @@ enum CreditScoreAVG {
   styleUrls: ['./all-loanees.component.css']
 })
 export class AllLoaneesComponent {
-constructor(public loaneeService:LoaneeService,public adminService:AdminService){}
-AllLoanees:any
-Loanees:any
-avg:any
-loans:any
-async ngOnInit(){
-await this.loaneeService.GetAllLoanees();
-await this.adminService.GetLoaneesStatistics();
+  constructor(public loaneeService: LoaneeService, public adminService: AdminService) { }
+  AllLoanees: any
+  Loanees: any
+  avg: any
+  loans: any
+  async ngOnInit() {
+    await this.loaneeService.GetAllLoanees();
+    await this.adminService.GetLoaneesStatistics();
 
-this.AllLoanees = this.loaneeService.Loanees
-this.Loanees = this.adminService.LoaneeStats.loaneescount
-this.avg = this.adminService.LoaneeStats.averagecreditscore
-this.loans = this.adminService.LoaneeStats.totalloanscount
-}
-async ngOnDestroy(){
-  this.adminService.progressBarVisible = true;
-}
-fileName = 'ExcelSheet.xlsx';
+    this.AllLoanees = this.loaneeService.Loanees
+    this.Loanees = this.adminService.LoaneeStats.loaneescount
+    this.avg = this.adminService.LoaneeStats.averagecreditscore
+    this.loans = this.adminService.LoaneeStats.totalloanscount
+  }
+  async ngOnDestroy() {
+    this.adminService.progressBarVisible = true;
+  }
+  fileName = 'ExcelSheet.xlsx';
   exportexcel() {
     /* pass here the table id */
     let element = document.getElementById('excel-table');
@@ -44,14 +44,15 @@ fileName = 'ExcelSheet.xlsx';
     XLSX.writeFile(wb, this.fileName);
   }
 
- getCreditScoreAvgLabel(score: number): string {
-  if (score >= 1 && score <= 3) {
-    return CreditScoreAVG.Low;
-  } else if (score >= 4 && score <= 7) {
-    return CreditScoreAVG.Medium;
-  } else if (score >= 8 && score <= 10) {
-    return CreditScoreAVG.High;
-  } else {
-    return "Unknown";
+  getCreditScoreAvgLabel(score: number): string {
+    if (score >= 1 && score <= 3) {
+      return CreditScoreAVG.Low;
+    } else if (score >= 4 && score <= 7) {
+      return CreditScoreAVG.Medium;
+    } else if (score >= 8 && score <= 10) {
+      return CreditScoreAVG.High;
+    } else {
+      return "Unknown";
+    }
   }
-}}
+}

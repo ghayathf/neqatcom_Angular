@@ -57,7 +57,7 @@ export class CategoriesComponent {
     this.categories = this.adminService.CategoriesStats.totalcategories
     this.loans = this.adminService.CategoriesStats.totalloans
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.adminService.progressBarVisible = true
   }
   SelectedForDelete: any
@@ -94,8 +94,8 @@ export class CategoriesComponent {
     this.ngOnInit()
     this.dialog.closeAll();
     await this.categoriesService.DeleteCategory(this.SelectedForDelete)
-await this.dialog.closeAll()
-await this.ngOnInit()
+    await this.dialog.closeAll()
+    await this.ngOnInit()
   }
   async OpenUpdateCategoryDialog(catId: number) {
     await this.categoriesService.GetCategoryById(catId)
@@ -118,7 +118,7 @@ await this.ngOnInit()
   async UpdateCategory() {
     await this.categoriesService.updateCategory(this.UpdateCategoryForm.value)
     await this.dialog.closeAll()
-await this.ngOnInit()
+    await this.ngOnInit()
   }
   async CreateCategory() {
     await this.categoriesService.CreateCategory(this.CreateCategoryForm.value);
@@ -132,7 +132,7 @@ await this.ngOnInit()
 
     }
     await this.dialog.closeAll()
-await this.ngOnInit()
+    await this.ngOnInit()
   }
   UploadImage(input: any) {
     if (input.files[0] != null) {

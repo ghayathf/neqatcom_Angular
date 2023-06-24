@@ -5,48 +5,46 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
-  constructor(public userService: UserService, public router: Router) { }
-  UpdateForm = new FormGroup(
-    {
-      userid: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d+$/),
-      ]),
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      phonenum: new FormControl('', Validators.required),
-      firstname: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      role: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d+$/),
-      ]),
-      userimage: new FormControl('')
-    }
-  )
-  userId: any
-  userImage: any
+  constructor(public userService: UserService, public router: Router) {}
+  UpdateForm = new FormGroup({
+    userid: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phonenum: new FormControl('', Validators.required),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    role: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
+    userimage: new FormControl(''),
+  });
+  userId: any;
+  userImage: any;
   async ngOnInit() {
-    let user: any = await localStorage.getItem('user')
-    user = await JSON.parse(user)
-    this.userId = await parseInt(user.Userid)
-    await this.userService.GetUserById(this.userId)
-    await this.UpdateForm.patchValue(this.userService.userById)
-    this.userImage = this.userService.userById.userimage
+    let user: any = await localStorage.getItem('user');
+    user = await JSON.parse(user);
+    this.userId = await parseInt(user.Userid);
+    await this.userService.GetUserById(this.userId);
+    await this.UpdateForm.patchValue(this.userService.userById);
+    this.userImage = this.userService.userById.userimage;
   }
   async ngOnDestroy() {
     this.userService.progressBarVisible = true;
   }
   updateInfo() {
-    this.UpdateForm.controls['userid'].setValue(this.userId)
-    this.UpdateForm.controls['role'].setValue("Lender")
-    this.userService.UpdateUser(this.UpdateForm.value)
-    this.ngOnInit()
+    this.UpdateForm.controls['userid'].setValue(this.userId);
+    this.UpdateForm.controls['role'].setValue('Lender');
+    this.userService.UpdateUser(this.UpdateForm.value);
+    this.ngOnInit();
   }
   UploadImage(input: any) {
     if (input.files[0] != null) {
@@ -55,7 +53,7 @@ export class ProfileComponent {
       formdata.append('file', uplodedFile);
       this.userService.UploadImage(formdata);
     }
-    this.ngOnInit()
+    this.ngOnInit();
   }
   get UserName(): FormControl {
     return this.UpdateForm.get('username') as FormControl;

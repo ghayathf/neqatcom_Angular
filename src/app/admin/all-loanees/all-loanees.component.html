@@ -5,169 +5,174 @@
   <div class="progress-bar"></div>
 </div>
 <div class="page-content">
+  <!-- Top bar START -->
+  <app-admin-header></app-admin-header>
+  <!-- Top bar END -->
 
-	<!-- Top bar START -->
-	<app-admin-header></app-admin-header>
-	<!-- Top bar END -->
+  <!-- Page main content START -->
+  <div class="page-content-wrapper border">
+    <!-- Title -->
+    <div class="row mb-3">
+      <div class="col-12 d-sm-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-2 mb-sm-0">Loanees</h1>
+      </div>
+    </div>
 
-	<!-- Page main content START -->
-	<div class="page-content-wrapper border">
+    <!-- Course boxes START -->
+    <div class="row g-4 mb-4">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3"
+        >
+          <h5>Total Loanees</h5>
+          <h2 class="mb-0 fs-1 text-primary">{{ this.Loanees }}</h2>
+        </div>
+      </div>
 
-		<!-- Title -->
-		<div class="row mb-3">
-			<div class="col-12 d-sm-flex justify-content-between align-items-center">
-				<h1 class="h3 mb-2 mb-sm-0">Loanees</h1>
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3"
+        >
+          <h6>Credit score AVG</h6>
+          <h2 class="mb-0 fs-1 text-success">{{ this.avg }}</h2>
+        </div>
+      </div>
 
-			</div>
-		</div>
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-warning bg-opacity-15 border border-warning rounded-3"
+        >
+          <h6>Total Loans</h6>
+          <h2 class="mb-0 fs-1 text-warning">{{ this.loans }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Course boxes END -->
 
-		<!-- Course boxes START -->
-		<div class="row g-4 mb-4">
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
-					<h5>Total Loanees</h5>
-					<h2 class="mb-0 fs-1 text-primary">{{ this.Loanees }}</h2>
-				</div>
-			</div>
+    <!-- Card START -->
+    <div class="card bg-transparent border">
+      <!-- Card header START -->
 
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3">
-					<h6>Credit score AVG</h6>
-					<h2 class="mb-0 fs-1 text-success">{{this.avg}}</h2>
-				</div>
-			</div>
+      <!-- Card header END -->
 
-			<!-- Course item -->
-			<div class="col-sm-6 col-lg-4">
-				<div class="text-center p-4  bg-warning bg-opacity-15 border border-warning rounded-3">
-					<h6>Total Loans</h6>
-					<h2 class="mb-0 fs-1 text-warning">{{this.loans}}</h2>
-				</div>
-			</div>
-		</div>
-		<!-- Course boxes END -->
+      <!-- Card body START -->
+      <div class="card-body">
+        <button (click)="exportexcel()" class="btn btn-success">
+          <i class="bi bi-file-earmark-excel-fill"></i>Export Lonaee Information
+        </button>
+        <!-- Course table START -->
+        <div class="table-responsive border-0 rounded-3">
+          <!-- Table START -->
+          <table
+            class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+          >
+            <!-- Table head -->
+            <tr>
+              <th>Name</th>
+              <th>Num Of Members</th>
+              <th>Email</th>
+              <th>Phone number</th>
+              <th>Credit Score</th>
+            </tr>
 
-		<!-- Card START -->
-		<div class="card bg-transparent border">
+            <!-- Table body START -->
 
-			<!-- Card header START -->
+            <!-- Table row -->
+            <tr *ngFor="let item of AllLoanees">
+              <!-- Table data -->
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link"
+                      >{{ item.firstname }} {{ item.lastname }}</a
+                    >
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link">{{ item.numoffamily }}</a>
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link">{{ item.email }}</a>
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a class="stretched-link">{{ item.phonenum }}</a>
+                  </h4>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center position-relative">
+                  <!-- Title -->
+                  <h4 class="table-responsive-title mb-0 ms-2">
+                    <a
+                      class="stretched-link"
+                      [ngClass]="{
+                        'green-text': item.creditscore >= 8,
+                        'yellow-text':
+                          item.creditscore >= 4 && item.creditscore <= 7,
+                        'red-text': item.creditscore <= 3
+                      }"
+                      >{{ getCreditScoreAvgLabel(item.creditscore) }}</a
+                    >
+                  </h4>
+                </div>
+              </td>
+            </tr>
 
-			<!-- Card header END -->
+            <!-- Table body END -->
+          </table>
 
-			<!-- Card body START -->
-			<div class="card-body">
-				<button (click)="exportexcel()" class="btn btn-success"> <i
-						class="bi bi-file-earmark-excel-fill"></i>Export Lonaee
-					Information</button>
-				<!-- Course table START -->
-				<div class="table-responsive border-0 rounded-3">
-					<!-- Table START -->
-					<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-						<!-- Table head -->
-						<tr>
-							<th>Name</th>
-							<th>Num Of Members</th>
-							<th>Email</th>
-							<th>Phone number</th>
-							<th>Credit Score</th>
-						</tr>
+          <table hidden id="excel-table">
+            <thead>
+              <tr>
+                <th>firstname</th>
 
-						<!-- Table body START -->
+                <th>lastname</th>
+                <th>Number of Familly</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Creidt Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of AllLoanees">
+                <td>{{ item.firstname }}</td>
+                <td>{{ item.lastname }}</td>
+                <td>{{ item.numoffamily }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.phonenum }}</td>
+                <td>{{ item.creditscore }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Table END -->
+        </div>
+        <!-- Course table END -->
+      </div>
+      <!-- Card body END -->
 
-						<!-- Table row -->
-						<tr *ngFor="let item of AllLoanees">
-							<!-- Table data -->
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ item.firstname }} {{ item.lastname }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ item.numoffamily }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ item.email }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-										<a class="stretched-link">{{ item.phonenum }}</a>
-									</h4>
-								</div>
-							</td>
-							<td>
-								<div class="d-flex align-items-center position-relative">
-									<!-- Title -->
-									<h4 class="table-responsive-title mb-0 ms-2">
-									  <a class="stretched-link" [ngClass]="{
-										'green-text': item.creditscore >= 8,
-										'yellow-text': item.creditscore >= 4 && item.creditscore <= 7,
-										'red-text': item.creditscore <= 3
-									  }">{{ getCreditScoreAvgLabel(item.creditscore) }}</a>
-									</h4>
-								  </div>
+      <!-- Card footer START -->
 
-
-							</td>
-						</tr>
-
-
-						<!-- Table body END -->
-					</table>
-
-					<table hidden id="excel-table">
-						<thead>
-							<tr>
-								<th>firstname</th>
-
-								<th>lastname</th>
-								<th>Number of Familly</th>
-								<th>Email</th>
-								<th>Phone Number</th>
-								<th>Creidt Score</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let item of AllLoanees">
-								<td>{{item.firstname}}</td>
-								<td>{{item.lastname}}</td>
-								<td>{{item.numoffamily}}</td>
-								<td>{{item.email}}</td>
-								<td>{{item.phonenum}}</td>
-								<td>{{item.creditscore}}</td>
-
-							</tr>
-						</tbody>
-					</table>
-					<!-- Table END -->
-				</div>
-				<!-- Course table END -->
-			</div>
-			<!-- Card body END -->
-
-			<!-- Card footer START -->
-
-			<!-- Card footer END -->
-		</div>
-		<!-- Card END -->
-	</div>
-	<!-- Page main content END -->
-
+      <!-- Card footer END -->
+    </div>
+    <!-- Card END -->
+  </div>
+  <!-- Page main content END -->
 </div>

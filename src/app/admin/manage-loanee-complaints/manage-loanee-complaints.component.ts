@@ -47,7 +47,7 @@ export class ManageLoaneeComplaintsComponent {
     this.FromLender = this.adminService.ComplaintsStats.lendertoloaneecount
     this.FromSystem = this.adminService.ComplaintsStats.systemtoloaneecount
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.adminService.progressBarVisible = true;
   }
   CreateNotificationForm = new FormGroup(

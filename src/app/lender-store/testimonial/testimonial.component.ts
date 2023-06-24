@@ -8,17 +8,20 @@ import { UserService } from 'src/app/user.service';
 @Component({
   selector: 'app-testimonial',
   templateUrl: './testimonial.component.html',
-  styleUrls: ['./testimonial.component.css']
+  styleUrls: ['./testimonial.component.css'],
 })
 export class TestimonialComponent {
-  constructor(public TestimonialService: TestimonialsService, public userService: UserService, public auth: AuthGuard, public router: Router) { }
-  TestimonialFrom: FormGroup = new FormGroup(
-    {
-      message: new FormControl('', Validators.required),
-      testimonialstatus: new FormControl(''),
-      userid: new FormControl('')
-    })
-
+  constructor(
+    public TestimonialService: TestimonialsService,
+    public userService: UserService,
+    public auth: AuthGuard,
+    public router: Router
+  ) {}
+  TestimonialFrom: FormGroup = new FormGroup({
+    message: new FormControl('', Validators.required),
+    testimonialstatus: new FormControl(''),
+    userid: new FormControl(''),
+  });
 
   userid_: any;
   async ngOnInit() {
@@ -35,7 +38,7 @@ export class TestimonialComponent {
       this.testimonialSent = false;
     }, 3000); // Display the feedback message for 3 seconds
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.TestimonialService.progressBarVisible = true;
   }
 }

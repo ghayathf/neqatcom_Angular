@@ -33,7 +33,6 @@ import { MyFollowersComponent } from './my-followers/my-followers.component';
     TestimonialComponent,
     ChangePassComponent,
     MyFollowersComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -44,6 +43,6 @@ import { MyFollowersComponent } from './my-followers/my-followers.component';
     NgbDropdownModule,
     NgChartsModule,
     NgbDropdownModule,
-  ] 
+  ],
 })
-export class LenderStoreModule { }
+export class LenderStoreModule {}

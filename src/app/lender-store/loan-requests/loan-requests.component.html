@@ -1,122 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Neqatcom - Company,Dashboard</title>
+  </head>
 
-<head>
-  <title>Neqatcom - Company,Dashboard</title>
+  <body>
+    <div *ngIf="loanService.progressBarVisible" class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <!-- Header START -->
+    <app-lender-header></app-lender-header>
+    <!-- Header END -->
 
-</head>
-
-<body>
-  <div *ngIf="loanService.progressBarVisible" class="progress-container">
-    <div class="progress-bar"></div>
-  </div>
-  <!-- Header START -->
-  <app-lender-header></app-lender-header>
-  <!-- Header END -->
-
-  <!-- **************** MAIN CONTENT START **************** -->
-  <main>
-
-    <!-- =======================
+    <!-- **************** MAIN CONTENT START **************** -->
+    <main>
+      <!-- =======================
 Page Banner START -->
-    <app-lender-banner></app-lender-banner><!-- =======================
+      <app-lender-banner></app-lender-banner
+      ><!-- =======================
 Page Banner END -->
 
-    <!-- =======================
+      <!-- =======================
 Page content START -->
-    <section class="pt-0">
-      <div class="container">
-        <div class="row">
-          <!-- Left sidebar START -->
-          <div class="col-xl-3">
-            <!-- Responsive offcanvas body START -->
-            <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
-              <!-- Offcanvas header -->
-              <div class="offcanvas-header bg-light">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar"
-                  aria-label="Close"></button>
-              </div>
-              <!-- Offcanvas body -->
-              <div class="offcanvas-body p-3 p-xl-0">
-                <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
-                  <!-- Dashboard menu -->
-                  <app-lender-side-bar></app-lender-side-bar>
-                </div>
-              </div>
-            </div>
-            <!-- Responsive offcanvas body END -->
-          </div>
-          <!-- Left sidebar END -->
-
-          <!-- Main content START -->
-          <div class="col-xl-9">
-            <div class="card bg-transparent border rounded-3 mb-4">
-              <!-- Card header START -->
+      <section class="pt-0">
+        <div class="container">
+          <div class="row">
+            <!-- Left sidebar START -->
+            <div class="col-xl-3">
+              <!-- Responsive offcanvas body START -->
               <div
-                class="card-header bg-transparent d-sm-flex justify-content-sm-between align-items-center border-bottom">
-                <h3 class="mb-2 mb-sm-0">Loans Requests</h3>
-                <!-- <a href="#" class="btn btn-sm btn-primary-soft mb-0">Add new address</a> -->
-              </div>
-              <!-- Card header END -->
-              <!-- <div id='myChart'><a class="zc-ref" href="https://www.zingchart.com/">Charts by ZingChart</a></div> -->
-
-              <!-- Card body START -->
-              <div class="card-body">
-                <!-- Address 1 START -->
-                <div
-                  class="row bg-body border border-1 p-3 rounded-3 d-sm-flex justify-content-sm-between align-items-center mb-4 "
-                  *ngFor="let item of loanRequests">
-
-                  <!-- Radio button button -->
-                  <div class="form-check col-sm-9">
-                    <!-- <input class="form-check-input mb-1" type="radio" name="address" id="address1" checked> -->
-                    <label class="form-check-label mb-0 h5"
-                      (click)="OpenAccountInfo(item.loaneeid,item.userimage,item.email,item.firstname,item.lastname,item.creditscore,item.address,item.phonenum,item.dateofbirth)">{{item.firstname}}
-                      {{item.lastname}}</label>
-                    <hr>
-                    <h4 class="mb-0">{{ item.categoryname }}</h4>
-                    <p>{{ item.descriptions }}</p>
-
-                  </div>
-
-                  <!-- Button -->
-                  <div class="col-md-3">
-                    <button class="btn btn-sm btn-info-soft me-2 mb-0"
-                      (click)="OpenManageMeetingDialog(item.email,item.firstname,item.lastname,item.loanid,item.userid,item.loaneeid)">Manage</button>
-                    <button class="btn btn-sm btn-danger-soft me-2 mb-0"
-                      (click)="openDeleteDialog(item.loanid,item.firstname,item.email)">Reject</button>
-                  </div>
-
+                class="offcanvas-xl offcanvas-end"
+                tabindex="-1"
+                id="offcanvasSidebar"
+              >
+                <!-- Offcanvas header -->
+                <div class="offcanvas-header bg-light">
+                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                    My profile
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    data-bs-target="#offcanvasSidebar"
+                    aria-label="Close"
+                  ></button>
                 </div>
-                <!-- Address 1 END -->
-
+                <!-- Offcanvas body -->
+                <div class="offcanvas-body p-3 p-xl-0">
+                  <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+                    <!-- Dashboard menu -->
+                    <app-lender-side-bar></app-lender-side-bar>
+                  </div>
+                </div>
               </div>
-              <!-- Card body START -->
+              <!-- Responsive offcanvas body END -->
             </div>
+            <!-- Left sidebar END -->
 
+            <!-- Main content START -->
+            <div class="col-xl-9">
+              <div class="card bg-transparent border rounded-3 mb-4">
+                <!-- Card header START -->
+                <div
+                  class="card-header bg-transparent d-sm-flex justify-content-sm-between align-items-center border-bottom"
+                >
+                  <h3 class="mb-2 mb-sm-0">Loans Requests</h3>
+                  <!-- <a href="#" class="btn btn-sm btn-primary-soft mb-0">Add new address</a> -->
+                </div>
+                <!-- Card header END -->
+                <!-- <div id='myChart'><a class="zc-ref" href="https://www.zingchart.com/">Charts by ZingChart</a></div> -->
+
+                <!-- Card body START -->
+                <div class="card-body">
+                  <!-- Address 1 START -->
+                  <div
+                    class="row bg-body border border-1 p-3 rounded-3 d-sm-flex justify-content-sm-between align-items-center mb-4"
+                    *ngFor="let item of loanRequests"
+                  >
+                    <!-- Radio button button -->
+                    <div class="form-check col-sm-9">
+                      <!-- <input class="form-check-input mb-1" type="radio" name="address" id="address1" checked> -->
+                      <label
+                        class="form-check-label mb-0 h5"
+                        (click)="
+                          OpenAccountInfo(
+                            item.loaneeid,
+                            item.userimage,
+                            item.email,
+                            item.firstname,
+                            item.lastname,
+                            item.creditscore,
+                            item.address,
+                            item.phonenum,
+                            item.dateofbirth
+                          )
+                        "
+                        >{{ item.firstname }} {{ item.lastname }}</label
+                      >
+                      <hr />
+                      <h4 class="mb-0">{{ item.categoryname }}</h4>
+                      <p>{{ item.descriptions }}</p>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="col-md-3">
+                      <button
+                        class="btn btn-sm btn-info-soft me-2 mb-0"
+                        (click)="
+                          OpenManageMeetingDialog(
+                            item.email,
+                            item.firstname,
+                            item.lastname,
+                            item.loanid,
+                            item.userid,
+                            item.loaneeid
+                          )
+                        "
+                      >
+                        Manage
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger-soft me-2 mb-0"
+                        (click)="
+                          openDeleteDialog(
+                            item.loanid,
+                            item.firstname,
+                            item.email
+                          )
+                        "
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Address 1 END -->
+                </div>
+                <!-- Card body START -->
+              </div>
+            </div>
+            <!-- Main content END -->
           </div>
-          <!-- Main content END -->
-        </div><!-- Row END -->
-      </div>
-    </section>
-    <!-- =======================
+          <!-- Row END -->
+        </div>
+      </section>
+      <!-- =======================
 Page content END -->
+    </main>
+    <!-- **************** MAIN CONTENT END **************** -->
 
-  </main>
-  <!-- **************** MAIN CONTENT END **************** -->
-
-  <!-- =======================
+    <!-- =======================
 Footer START -->
-  <footer class="footer">
-    <app-lender-footer></app-lender-footer>
-  </footer>
-  <!-- =======================
+    <footer class="footer">
+      <app-lender-footer></app-lender-footer>
+    </footer>
+    <!-- =======================
 Footer END -->
-
-
-</body>
-
+  </body>
 </html>
 
 <ng-template #DeleteRequest>
@@ -129,45 +169,58 @@ Footer END -->
   </div> -->
 </ng-template>
 <ng-template #ViewLoaneeDetials>
-  <div style="background-color: #3e3e40; overflow-x: hidden; padding: 1%;">
+  <div style="background-color: #3e3e40; overflow-x: hidden; padding: 1%">
     <div class="d-flex flex-column align-items-center">
       <div>
         <span class="avatar avatar-xl">
-					<img src="{{LoaneeImage}}" class="avatar-img rounded-circle border border-white border-3 shadow" alt="Card image">
-				</span>
+          <img
+            src="{{ LoaneeImage }}"
+            class="avatar-img rounded-circle border border-white border-3 shadow"
+            alt="Card image"
+          />
+        </span>
       </div>
       <div class="text-center mt-3">
-        <h2 class="h1 mb-3">{{LoaneeFname}} {{LoaneeLname}}</h2>
-        <div *ngIf="LoaneeCreditScoreStatus" class="text text-warning"><span>New</span></div>
+        <h2 class="h1 mb-3">{{ LoaneeFname }} {{ LoaneeLname }}</h2>
+        <div *ngIf="LoaneeCreditScoreStatus" class="text text-warning">
+          <span>New</span>
+        </div>
 
         <div id="myChart" class="chart"></div>
       </div>
     </div>
-    <div class="row ">
-
+    <div class="row">
       <!-- Live support box -->
       <div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
-        <div class="card card-body shadow ">
+        <div class="card card-body shadow">
           <div
-            class="icon-lg bg-success text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5">
+            class="icon-lg bg-success text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5"
+          >
             <i class="fas fa-envelope"></i>
           </div>
           <h6>Email</h6>
-          <p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{LoaneeEmail}}</a></p>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              LoaneeEmail
+            }}</a>
+          </p>
         </div>
       </div>
 
-
-
       <!-- Telephone box -->
-      <div class="col-sm-6 col-lg-12 col-xl-6 mb-5 ">
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
         <div class="card card-body shadow">
           <div
-            class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
+            class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6"
+          >
             <i class="fas fa-tty"></i>
           </div>
           <h6>Telephone</h6>
-          <p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ Loaneephone }}</a></p>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              Loaneephone
+            }}</a>
+          </p>
         </div>
       </div>
 
@@ -175,121 +228,176 @@ Footer END -->
       <div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
         <div class="card card-body shadow">
           <div
-            class="icon-lg bg-orange text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
-
+            class="icon-lg bg-orange text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6"
+          >
             <i class="fas fa-map-marker"></i>
           </div>
           <h6>Address</h6>
-          <p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ Loaneeaddress }}</a></p>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              Loaneeaddress
+            }}</a>
+          </p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
         <div class="card card-body shadow">
           <div
-            class="icon-lg bg-blue text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
-
+            class="icon-lg bg-blue text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6"
+          >
             <i class="fas fa-calendar-alt"></i>
-
           </div>
           <h6>Date Of Birth</h6>
-          <p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ LoaneeBirth| slice: 0:10
-              }}</a></p>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              LoaneeBirth | slice : 0 : 10
+            }}</a>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
 <ng-template #MeetingDialog>
-  <div style="overflow-x: hidden; background-color: #3e3e40;">
-    <div class="row" style="margin:4%">
-
-
-      <div class="col-6 ">
-        <div class="card card-body bg-light p-4 h-100 stretched-link" (click)="ManageOnlineMeeting()"
-          style="cursor:pointer ;">
+  <div style="overflow-x: hidden; background-color: #3e3e40">
+    <div class="row" style="margin: 4%">
+      <div class="col-6">
+        <div
+          class="card card-body bg-light p-4 h-100 stretched-link"
+          (click)="ManageOnlineMeeting()"
+          style="cursor: pointer"
+        >
           <figure>
-            <svg class="fill-primary" width="63.28px" height="47.41px" viewBox="0 0 63.28 47.41">
+            <svg
+              class="fill-primary"
+              width="63.28px"
+              height="47.41px"
+              viewBox="0 0 63.28 47.41"
+            >
               <!-- SVG path data -->
               <path
-                d="M61.99,43.13c-0.11,0-0.22-0.02-0.32-0.05l-13.04-4.35c-0.42-0.14-0.7-0.53-0.7-0.97V24.41c0-0.44,0.28-0.83,0.7-0.97 l13.04-4.35c0.31-0.11,0.66-0.05,0.93,0.14c0.27,0.19,0.43,0.5,0.43,0.83V42.1c0,0.33-0.16,0.64-0.43,0.83 C62.41,43.06,62.2,43.13,61.99,43.13z M49.97,37.01l10.99,3.66V21.49l-10.99,3.66V37.01z" />
+                d="M61.99,43.13c-0.11,0-0.22-0.02-0.32-0.05l-13.04-4.35c-0.42-0.14-0.7-0.53-0.7-0.97V24.41c0-0.44,0.28-0.83,0.7-0.97 l13.04-4.35c0.31-0.11,0.66-0.05,0.93,0.14c0.27,0.19,0.43,0.5,0.43,0.83V42.1c0,0.33-0.16,0.64-0.43,0.83 C62.41,43.06,62.2,43.13,61.99,43.13z M49.97,37.01l10.99,3.66V21.49l-10.99,3.66V37.01z"
+              />
               <path
-                d="M41.25,37.73H2.4c-0.57,0-1.03-0.46-1.03-1.03v-5.28c0-0.57,0.46-1.03,1.03-1.03h38.85c2.02,0,3.67,1.65,3.67,3.67 S43.27,37.73,41.25,37.73z M3.43,35.68h37.82c0.89,0,1.62-0.72,1.62-1.62c0-0.89-0.72-1.62-1.62-1.62H3.43V35.68z" />
+                d="M41.25,37.73H2.4c-0.57,0-1.03-0.46-1.03-1.03v-5.28c0-0.57,0.46-1.03,1.03-1.03h38.85c2.02,0,3.67,1.65,3.67,3.67 S43.27,37.73,41.25,37.73z M3.43,35.68h37.82c0.89,0,1.62-0.72,1.62-1.62c0-0.89-0.72-1.62-1.62-1.62H3.43V35.68z"
+              />
               <path
-                d="M57.02,33.7c-0.57,0-1.03-0.46-1.03-1.03V21.72c0-0.57,0.46-1.03,1.03-1.03c0.57,0,1.03,0.46,1.03,1.03v10.95 C58.05,33.24,57.59,33.7,57.02,33.7z" />
+                d="M57.02,33.7c-0.57,0-1.03-0.46-1.03-1.03V21.72c0-0.57,0.46-1.03,1.03-1.03c0.57,0,1.03,0.46,1.03,1.03v10.95 C58.05,33.24,57.59,33.7,57.02,33.7z"
+              />
               <path
-                d="M15.11,24.9c-6.2,0-11.24-5.04-11.24-11.24S8.91,2.41,15.11,2.41s11.24,5.04,11.24,11.24S21.3,24.9,15.11,24.9z  M15.11,4.47c-5.07,0-9.19,4.12-9.19,9.19c0,5.07,4.12,9.19,9.19,9.19s9.19-4.12,9.19-9.19C24.29,8.59,20.17,4.47,15.11,4.47z" />
+                d="M15.11,24.9c-6.2,0-11.24-5.04-11.24-11.24S8.91,2.41,15.11,2.41s11.24,5.04,11.24,11.24S21.3,24.9,15.11,24.9z  M15.11,4.47c-5.07,0-9.19,4.12-9.19,9.19c0,5.07,4.12,9.19,9.19,9.19s9.19-4.12,9.19-9.19C24.29,8.59,20.17,4.47,15.11,4.47z"
+              />
               <path
-                d="M15.11,18.8c-2.84,0-5.14-2.31-5.14-5.14c0-2.84,2.31-5.14,5.14-5.14c2.84,0,5.14,2.31,5.14,5.14 C20.25,16.49,17.94,18.8,15.11,18.8z M15.11,10.57c-1.7,0-3.09,1.39-3.09,3.09c0,1.7,1.39,3.09,3.09,3.09 c1.7,0,3.09-1.39,3.09-3.09C18.19,11.95,16.81,10.57,15.11,10.57z" />
+                d="M15.11,18.8c-2.84,0-5.14-2.31-5.14-5.14c0-2.84,2.31-5.14,5.14-5.14c2.84,0,5.14,2.31,5.14,5.14 C20.25,16.49,17.94,18.8,15.11,18.8z M15.11,10.57c-1.7,0-3.09,1.39-3.09,3.09c0,1.7,1.39,3.09,3.09,3.09 c1.7,0,3.09-1.39,3.09-3.09C18.19,11.95,16.81,10.57,15.11,10.57z"
+              />
               <path
-                d="M35.54,18.8c-2.84,0-5.14-2.31-5.14-5.14c0-2.84,2.31-5.14,5.14-5.14c2.84,0,5.14,2.31,5.14,5.14 C40.68,16.49,38.37,18.8,35.54,18.8z M35.54,10.57c-1.7,0-3.09,1.39-3.09,3.09c0,1.7,1.39,3.09,3.09,3.09 c1.7,0,3.09-1.39,3.09-3.09C38.62,11.95,37.24,10.57,35.54,10.57z" />
+                d="M35.54,18.8c-2.84,0-5.14-2.31-5.14-5.14c0-2.84,2.31-5.14,5.14-5.14c2.84,0,5.14,2.31,5.14,5.14 C40.68,16.49,38.37,18.8,35.54,18.8z M35.54,10.57c-1.7,0-3.09,1.39-3.09,3.09c0,1.7,1.39,3.09,3.09,3.09 c1.7,0,3.09-1.39,3.09-3.09C38.62,11.95,37.24,10.57,35.54,10.57z"
+              />
               <path
-                d="M35.54,24.9c-6.2,0-11.24-5.04-11.24-11.24S29.34,2.41,35.54,2.41s11.24,5.04,11.24,11.24S41.73,24.9,35.54,24.9z  M35.54,4.47c-5.07,0-9.19,4.12-9.19,9.19c0,5.07,4.12,9.19,9.19,9.19s9.19-4.12,9.19-9.19C44.72,8.59,40.6,4.47,35.54,4.47z" />
+                d="M35.54,24.9c-6.2,0-11.24-5.04-11.24-11.24S29.34,2.41,35.54,2.41s11.24,5.04,11.24,11.24S41.73,24.9,35.54,24.9z  M35.54,4.47c-5.07,0-9.19,4.12-9.19,9.19c0,5.07,4.12,9.19,9.19,9.19s9.19-4.12,9.19-9.19C44.72,8.59,40.6,4.47,35.54,4.47z"
+              />
               <path
-                d="M47.15,44.93H4.2c-1.56,0-2.83-1.27-2.83-2.83V20.06c0-1.56,1.27-2.83,2.83-2.83H6c0.57,0,1.03,0.46,1.03,1.03 c0,0.57-0.46,1.03-1.03,1.03H4.2c-0.43,0-0.77,0.35-0.77,0.77V42.1c0,0.43,0.35,0.77,0.77,0.77h42.95c0.43,0,0.77-0.35,0.77-0.77 V20.06c0-0.43-0.35-0.77-0.77-0.77h-2.51c-0.57,0-1.03-0.46-1.03-1.03c0-0.57,0.46-1.03,1.03-1.03h2.51c1.56,0,2.83,1.27,2.83,2.83 V42.1C49.97,43.66,48.71,44.93,47.15,44.93z" />
-
+                d="M47.15,44.93H4.2c-1.56,0-2.83-1.27-2.83-2.83V20.06c0-1.56,1.27-2.83,2.83-2.83H6c0.57,0,1.03,0.46,1.03,1.03 c0,0.57-0.46,1.03-1.03,1.03H4.2c-0.43,0-0.77,0.35-0.77,0.77V42.1c0,0.43,0.35,0.77,0.77,0.77h42.95c0.43,0,0.77-0.35,0.77-0.77 V20.06c0-0.43-0.35-0.77-0.77-0.77h-2.51c-0.57,0-1.03-0.46-1.03-1.03c0-0.57,0.46-1.03,1.03-1.03h2.51c1.56,0,2.83,1.27,2.83,2.83 V42.1C49.97,43.66,48.71,44.93,47.15,44.93z"
+              />
             </svg>
           </figure>
           <h5>Online Meeting</h5>
-          <p class="mb-0">For convenient and streamlined discussions with the loanee regarding the loan offer's
-            information.</p>
+          <p class="mb-0">
+            For convenient and streamlined discussions with the loanee regarding
+            the loan offer's information.
+          </p>
         </div>
       </div>
-      <div class="col-6 ">
-        <div class="card card-body bg-light p-4 h-100" (click)="ManageFaceToFaceMeeting()" style="cursor:pointer ;">
+      <div class="col-6">
+        <div
+          class="card card-body bg-light p-4 h-100"
+          (click)="ManageFaceToFaceMeeting()"
+          style="cursor: pointer"
+        >
           <figure>
-            <svg class="fill-orange" width="54.22px" height="58.19px" viewBox="0 0 54.22 58.19">
+            <svg
+              class="fill-orange"
+              width="54.22px"
+              height="58.19px"
+              viewBox="0 0 54.22 58.19"
+            >
               <!-- SVG path data -->
               <path
-                d="M27.11,9.75c-2.32,0-4.21-1.89-4.21-4.21c0-2.32,1.89-4.21,4.21-4.21c2.32,0,4.21,1.89,4.21,4.21 C31.32,7.86,29.43,9.75,27.11,9.75z M27.11,3.05c-1.37,0-2.49,1.12-2.49,2.49s1.12,2.49,2.49,2.49s2.49-1.12,2.49-2.49 S28.48,3.05,27.11,3.05z" />
+                d="M27.11,9.75c-2.32,0-4.21-1.89-4.21-4.21c0-2.32,1.89-4.21,4.21-4.21c2.32,0,4.21,1.89,4.21,4.21 C31.32,7.86,29.43,9.75,27.11,9.75z M27.11,3.05c-1.37,0-2.49,1.12-2.49,2.49s1.12,2.49,2.49,2.49s2.49-1.12,2.49-2.49 S28.48,3.05,27.11,3.05z"
+              />
               <path
-                d="M31.61,27.21H22.6c-0.48,0-0.86-0.39-0.86-0.86c0-0.48,0.39-0.86,0.86-0.86h9.01c0.48,0,0.86,0.39,0.86,0.86 C32.48,26.82,32.09,27.21,31.61,27.21z" />
+                d="M31.61,27.21H22.6c-0.48,0-0.86-0.39-0.86-0.86c0-0.48,0.39-0.86,0.86-0.86h9.01c0.48,0,0.86,0.39,0.86,0.86 C32.48,26.82,32.09,27.21,31.61,27.21z"
+              />
               <path
-                d="M22.31,27.21c-1.51,0-1.68-0.03-1.75-0.05c-1.14-0.22-1.96-1.25-1.96-2.45v-8.63c0-2.79,2.09-5.14,4.87-5.46 c0.85-0.1,2.08-0.14,3.66-0.12c1.55-0.02,2.79,0.02,3.64,0.12c2.78,0.32,4.87,2.66,4.87,5.46v8.63c0,1.2-0.83,2.23-1.96,2.45 c-0.08,0.02-0.26,0.05-2.05,0.05c-0.48,0-0.86-0.39-0.86-0.86v-8.72c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v7.86 c0.44,0,0.81-0.01,0.91-0.02c0.28-0.05,0.52-0.38,0.52-0.75v-8.63c0-1.92-1.44-3.53-3.34-3.75c-0.78-0.09-1.94-0.13-3.44-0.11 c-1.52-0.02-2.68,0.02-3.46,0.11c-1.9,0.22-3.34,1.83-3.34,3.75v8.63c0,0.37,0.24,0.7,0.56,0.76c0.07,0.01,0.43,0.01,0.86,0.01 v-7.86c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v8.72c0,0.48-0.38,0.86-0.86,0.86C22.5,27.21,22.4,27.21,22.31,27.21 z" />
+                d="M22.31,27.21c-1.51,0-1.68-0.03-1.75-0.05c-1.14-0.22-1.96-1.25-1.96-2.45v-8.63c0-2.79,2.09-5.14,4.87-5.46 c0.85-0.1,2.08-0.14,3.66-0.12c1.55-0.02,2.79,0.02,3.64,0.12c2.78,0.32,4.87,2.66,4.87,5.46v8.63c0,1.2-0.83,2.23-1.96,2.45 c-0.08,0.02-0.26,0.05-2.05,0.05c-0.48,0-0.86-0.39-0.86-0.86v-8.72c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v7.86 c0.44,0,0.81-0.01,0.91-0.02c0.28-0.05,0.52-0.38,0.52-0.75v-8.63c0-1.92-1.44-3.53-3.34-3.75c-0.78-0.09-1.94-0.13-3.44-0.11 c-1.52-0.02-2.68,0.02-3.46,0.11c-1.9,0.22-3.34,1.83-3.34,3.75v8.63c0,0.37,0.24,0.7,0.56,0.76c0.07,0.01,0.43,0.01,0.86,0.01 v-7.86c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v8.72c0,0.48-0.38,0.86-0.86,0.86C22.5,27.21,22.4,27.21,22.31,27.21 z"
+              />
               <path
-                d="M13.31,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86s0.86,0.39,0.86,0.86v4.11 C14.17,56.37,13.79,56.75,13.31,56.75z" />
+                d="M13.31,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86s0.86,0.39,0.86,0.86v4.11 C14.17,56.37,13.79,56.75,13.31,56.75z"
+              />
               <path
-                d="M9.51,43.26c-2.27,0-4.12-1.85-4.12-4.12s1.85-4.12,4.12-4.12c2.27,0,4.12,1.85,4.12,4.12S11.78,43.26,9.51,43.26z  M9.51,36.75c-1.32,0-2.39,1.07-2.39,2.39c0,1.32,1.07,2.39,2.39,2.39c1.32,0,2.39-1.07,2.39-2.39 C11.9,37.83,10.83,36.75,9.51,36.75z" />
+                d="M9.51,43.26c-2.27,0-4.12-1.85-4.12-4.12s1.85-4.12,4.12-4.12c2.27,0,4.12,1.85,4.12,4.12S11.78,43.26,9.51,43.26z  M9.51,36.75c-1.32,0-2.39,1.07-2.39,2.39c0,1.32,1.07,2.39,2.39,2.39c1.32,0,2.39-1.07,2.39-2.39 C11.9,37.83,10.83,36.75,9.51,36.75z"
+              />
               <path
-                d="M5.7,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C6.57,56.37,6.18,56.75,5.7,56.75z" />
+                d="M5.7,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C6.57,56.37,6.18,56.75,5.7,56.75z"
+              />
               <path
-                d="M30.91,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C31.77,56.37,31.39,56.75,30.91,56.75z" />
+                d="M30.91,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C31.77,56.37,31.39,56.75,30.91,56.75z"
+              />
               <path
-                d="M27.11,43.26c-2.27,0-4.12-1.85-4.12-4.12s1.85-4.12,4.12-4.12c2.27,0,4.12,1.85,4.12,4.12S29.38,43.26,27.11,43.26z  M27.11,36.75c-1.32,0-2.39,1.07-2.39,2.39c0,1.32,1.07,2.39,2.39,2.39s2.39-1.07,2.39-2.39C29.5,37.83,28.43,36.75,27.11,36.75z" />
+                d="M27.11,43.26c-2.27,0-4.12-1.85-4.12-4.12s1.85-4.12,4.12-4.12c2.27,0,4.12,1.85,4.12,4.12S29.38,43.26,27.11,43.26z  M27.11,36.75c-1.32,0-2.39,1.07-2.39,2.39c0,1.32,1.07,2.39,2.39,2.39s2.39-1.07,2.39-2.39C29.5,37.83,28.43,36.75,27.11,36.75z"
+              />
               <path
-                d="M23.31,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C24.17,56.37,23.78,56.75,23.31,56.75z" />
+                d="M23.31,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C24.17,56.37,23.78,56.75,23.31,56.75z"
+              />
               <path
-                d="M48.51,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C49.38,56.37,48.99,56.75,48.51,56.75z" />
+                d="M48.51,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C49.38,56.37,48.99,56.75,48.51,56.75z"
+              />
               <path
-                d="M44.71,43.26c-2.27,0-4.12-1.85-4.12-4.12s1.85-4.12,4.12-4.12s4.12,1.85,4.12,4.12S46.98,43.26,44.71,43.26z M44.71,36.75 c-1.32,0-2.39,1.07-2.39,2.39c0,1.32,1.07,2.39,2.39,2.39c1.32,0,2.39-1.07,2.39-2.39C47.1,37.83,46.03,36.75,44.71,36.75z" />
+                d="M44.71,43.26c-2.27,0-4.12-1.85-4.12-4.12s1.85-4.12,4.12-4.12s4.12,1.85,4.12,4.12S46.98,43.26,44.71,43.26z M44.71,36.75 c-1.32,0-2.39,1.07-2.39,2.39c0,1.32,1.07,2.39,2.39,2.39c1.32,0,2.39-1.07,2.39-2.39C47.1,37.83,46.03,36.75,44.71,36.75z"
+              />
               <path
-                d="M40.91,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C41.77,56.37,41.38,56.75,40.91,56.75z" />
+                d="M40.91,56.75c-0.48,0-0.86-0.39-0.86-0.86v-4.11c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v4.11 C41.77,56.37,41.38,56.75,40.91,56.75z"
+              />
               <path
-                d="M51.78,31.77H2.44C1.64,31.77,1,31.13,1,30.34v-3.42c0-0.79,0.64-1.44,1.44-1.44h49.35c0.79,0,1.44,0.64,1.44,1.44v3.42 C53.22,31.13,52.57,31.77,51.78,31.77z M2.72,30.05H51.5v-2.84H2.72V30.05z" />
+                d="M51.78,31.77H2.44C1.64,31.77,1,31.13,1,30.34v-3.42c0-0.79,0.64-1.44,1.44-1.44h49.35c0.79,0,1.44,0.64,1.44,1.44v3.42 C53.22,31.13,52.57,31.77,51.78,31.77z M2.72,30.05H51.5v-2.84H2.72V30.05z"
+              />
               <path
-                d="M3.01,38.35c-0.48,0-0.86-0.39-0.86-0.86v-6.58c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v6.58 C3.87,37.97,3.48,38.35,3.01,38.35z" />
+                d="M3.01,38.35c-0.48,0-0.86-0.39-0.86-0.86v-6.58c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v6.58 C3.87,37.97,3.48,38.35,3.01,38.35z"
+              />
               <path
-                d="M51.21,38.35c-0.48,0-0.86-0.39-0.86-0.86v-6.58c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v6.58 C52.07,37.97,51.69,38.35,51.21,38.35z" />
+                d="M51.21,38.35c-0.48,0-0.86-0.39-0.86-0.86v-6.58c0-0.48,0.39-0.86,0.86-0.86c0.48,0,0.86,0.39,0.86,0.86v6.58 C52.07,37.97,51.69,38.35,51.21,38.35z"
+              />
               <path
-                d="M16.95,56.75H2.07c-0.48,0-0.86-0.39-0.86-0.86v-6.5c0-2.73,2.04-5.02,4.75-5.33c0.47-0.06,0.9,0.28,0.95,0.76 s-0.29,0.9-0.76,0.95c-1.84,0.21-3.23,1.77-3.23,3.62v5.63h13.16V49.4c0-1.85-1.39-3.41-3.23-3.62c-0.47-0.05-0.81-0.48-0.76-0.95 c0.05-0.47,0.49-0.81,0.95-0.76c2.71,0.31,4.75,2.6,4.75,5.33v6.5C17.81,56.37,17.42,56.75,16.95,56.75z" />
+                d="M16.95,56.75H2.07c-0.48,0-0.86-0.39-0.86-0.86v-6.5c0-2.73,2.04-5.02,4.75-5.33c0.47-0.06,0.9,0.28,0.95,0.76 s-0.29,0.9-0.76,0.95c-1.84,0.21-3.23,1.77-3.23,3.62v5.63h13.16V49.4c0-1.85-1.39-3.41-3.23-3.62c-0.47-0.05-0.81-0.48-0.76-0.95 c0.05-0.47,0.49-0.81,0.95-0.76c2.71,0.31,4.75,2.6,4.75,5.33v6.5C17.81,56.37,17.42,56.75,16.95,56.75z"
+              />
               <path
-                d="M34.55,56.75H19.67c-0.48,0-0.86-0.39-0.86-0.86v-6.5c0-2.73,2.04-5.02,4.75-5.33c0.47-0.06,0.9,0.28,0.95,0.76 c0.05,0.47-0.29,0.9-0.76,0.95c-1.84,0.21-3.23,1.77-3.23,3.62v5.63h13.16V49.4c0-1.85-1.39-3.41-3.23-3.62 c-0.47-0.05-0.81-0.48-0.76-0.95c0.05-0.47,0.49-0.81,0.95-0.76c2.71,0.31,4.75,2.6,4.75,5.33v6.5 C35.41,56.37,35.02,56.75,34.55,56.75z" />
+                d="M34.55,56.75H19.67c-0.48,0-0.86-0.39-0.86-0.86v-6.5c0-2.73,2.04-5.02,4.75-5.33c0.47-0.06,0.9,0.28,0.95,0.76 c0.05,0.47-0.29,0.9-0.76,0.95c-1.84,0.21-3.23,1.77-3.23,3.62v5.63h13.16V49.4c0-1.85-1.39-3.41-3.23-3.62 c-0.47-0.05-0.81-0.48-0.76-0.95c0.05-0.47,0.49-0.81,0.95-0.76c2.71,0.31,4.75,2.6,4.75,5.33v6.5 C35.41,56.37,35.02,56.75,34.55,56.75z"
+              />
               <path
-                d="M52.15,56.75H37.27c-0.48,0-0.86-0.39-0.86-0.86v-6.5c0-2.73,2.04-5.02,4.75-5.33c0.47-0.06,0.9,0.28,0.95,0.76 s-0.29,0.9-0.76,0.95c-1.84,0.21-3.23,1.77-3.23,3.62v5.63h13.15V49.4c0-1.85-1.39-3.41-3.23-3.62c-0.47-0.05-0.81-0.48-0.76-0.95 c0.05-0.47,0.49-0.81,0.95-0.76c2.71,0.31,4.75,2.6,4.75,5.33v6.5C53.01,56.37,52.63,56.75,52.15,56.75z" />
-
+                d="M52.15,56.75H37.27c-0.48,0-0.86-0.39-0.86-0.86v-6.5c0-2.73,2.04-5.02,4.75-5.33c0.47-0.06,0.9,0.28,0.95,0.76 s-0.29,0.9-0.76,0.95c-1.84,0.21-3.23,1.77-3.23,3.62v5.63h13.15V49.4c0-1.85-1.39-3.41-3.23-3.62c-0.47-0.05-0.81-0.48-0.76-0.95 c0.05-0.47,0.49-0.81,0.95-0.76c2.71,0.31,4.75,2.6,4.75,5.33v6.5C53.01,56.37,52.63,56.75,52.15,56.75z"
+              />
             </svg>
           </figure>
           <h5>Onsite Meeting</h5>
-          <p class="mb-0">For conducting face-to-face meetings with the loanee.</p>
+          <p class="mb-0">
+            For conducting face-to-face meetings with the loanee.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
 <ng-template #OnlineMeetingDialog>
-  <div style="background-color: #3e3e40;">
+  <div style="background-color: #3e3e40">
     <!-- Rest of the content -->
-    <section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
-      style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+    <section
+      class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+      style="
+        background: url(../../../assets/HomeAssets/images/pattern/04.png)
+          no-repeat center center;
+        background-size: cover;
+      "
+    >
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
@@ -299,7 +407,11 @@ Footer END -->
         <div class="row justify-content-center">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
-              <li class="breadcrumb-item"><a>A Zoom link will be generated automatically and sent to both parties.</a>
+              <li class="breadcrumb-item">
+                <a
+                  >A Zoom link will be generated automatically and sent to both
+                  parties.</a
+                >
               </li>
             </ol>
           </nav>
@@ -307,50 +419,77 @@ Footer END -->
       </div>
     </section>
 
-    <br>
-    <br>
+    <br />
+    <br />
     <section>
       <div class="container">
         <form [formGroup]="MeetingForm" class="row justify-content-center">
           <div class="col-6">
             <div class="mb-3">
               <label for="inputPassword5" class="form-label">Date *</label>
-              <input type="date" class="form-control border-0 bg-light rounded-end ps-1" formControlName="startdate"
-                [(ngModel)]='Meetingtdate' name="startDate">
-              <div class="form-text text-danger"
-                *ngIf="MeetingForm.get('startdate')?.errors?.['required'] && MeetingForm.get('startdate')?.touched">
+              <input
+                type="date"
+                class="form-control border-0 bg-light rounded-end ps-1"
+                formControlName="startdate"
+                [(ngModel)]="Meetingtdate"
+                name="startDate"
+              />
+              <div
+                class="form-text text-danger"
+                *ngIf="MeetingForm.get('startdate')?.errors?.['required'] && MeetingForm.get('startdate')?.touched"
+              >
                 Meeting date is required
               </div>
-              <div style="color:red" *ngIf="MeetingForm.get('startdate')?.errors?.['futureDateInvalid']">
+              <div
+                style="color: red"
+                *ngIf="MeetingForm.get('startdate')?.errors?.['futureDateInvalid']"
+              >
                 Please select a date in the future.
               </div>
             </div>
           </div>
           <div class="col-6">
             <label for="inputPassword5" class="form-label">Time *</label>
-            <input type="time" formControlName="meetingtime" id="end-time" name="end-time"
-              class="form-control border-0 bg-light rounded-end ps-1" [(ngModel)]="Meetingtime" step="60">
+            <input
+              type="time"
+              formControlName="meetingtime"
+              id="end-time"
+              name="end-time"
+              class="form-control border-0 bg-light rounded-end ps-1"
+              [(ngModel)]="Meetingtime"
+              step="60"
+            />
           </div>
-
         </form>
 
         <div class="row justify-content-center mt-4">
           <div class="col-6 text-center">
-            <button [disabled]="MeetingForm.invalid" class="btn btn-sm btn-info-soft me-2 mb-0"
-              (click)="CreateOnlineMeeting()">Generate</button>
+            <button
+              [disabled]="MeetingForm.invalid"
+              class="btn btn-sm btn-info-soft me-2 mb-0"
+              (click)="CreateOnlineMeeting()"
+            >
+              Generate
+            </button>
           </div>
         </div>
-
       </div>
     </section>
   </div>
 </ng-template>
 
-
 <ng-template #F2fMeetingDialog>
-  <div style="background-color: #3e3e40; overflow-x: hidden; overflow-y: hidden;">
-    <section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
-      style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
+  <div
+    style="background-color: #3e3e40; overflow-x: hidden; overflow-y: hidden"
+  >
+    <section
+      class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+      style="
+        background: url(../../../assets/HomeAssets/images/pattern/04.png)
+          no-repeat center center;
+        background-size: cover;
+      "
+    >
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -360,8 +499,12 @@ Footer END -->
               <div class="d-flex justify-content-center">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb breadcrumb-dark breadcrumb-dots mb-0">
-                    <li class="breadcrumb-item"><a>When you choose the place to meet, the location will be sent to both
-                        parties.</a></li>
+                    <li class="breadcrumb-item">
+                      <a
+                        >When you choose the place to meet, the location will be
+                        sent to both parties.</a
+                      >
+                    </li>
                   </ol>
                 </nav>
               </div>
@@ -370,46 +513,73 @@ Footer END -->
         </div>
       </div>
     </section>
-    <br>
-    <br>
+    <br />
+    <br />
 
     <div class="row justify-content-center">
       <form [formGroup]="MeetingForm" class="col-lg-8">
         <div class="row">
           <div class="mb-3">
             <label for="inputPassword5" class="form-label">Date *</label>
-            <input type="date" class="form-control border-0 bg-light rounded-end ps-1" formControlName="startdate"
-              [(ngModel)]="Meetingtdate" name="startDate">
-            <div class="form-text text-danger"
-              *ngIf="MeetingForm.get('startdate')?.errors?.['required'] && MeetingForm.get('startdate')?.touched">
+            <input
+              type="date"
+              class="form-control border-0 bg-light rounded-end ps-1"
+              formControlName="startdate"
+              [(ngModel)]="Meetingtdate"
+              name="startDate"
+            />
+            <div
+              class="form-text text-danger"
+              *ngIf="MeetingForm.get('startdate')?.errors?.['required'] && MeetingForm.get('startdate')?.touched"
+            >
               Meeting date is required
             </div>
-            <div style="color:red" *ngIf="MeetingForm.get('startdate')?.errors?.['futureDateInvalid']">
+            <div
+              style="color: red"
+              *ngIf="MeetingForm.get('startdate')?.errors?.['futureDateInvalid']"
+            >
               Please select a date in the future.
             </div>
           </div>
-          <div class=" mb-3">
+          <div class="mb-3">
             <label for="inputPassword5" class="form-label">Time *</label>
-            <input type="time" formControlName="meetingtime" id="end-time" name="end-time"
-              class="form-control border-0 bg-light rounded-end ps-1" [(ngModel)]="Meetingtime" step="60">
+            <input
+              type="time"
+              formControlName="meetingtime"
+              id="end-time"
+              name="end-time"
+              class="form-control border-0 bg-light rounded-end ps-1"
+              [(ngModel)]="Meetingtime"
+              step="60"
+            />
           </div>
         </div>
       </form>
     </div>
 
     <div class="row justify-content-center">
-      <div id="map" style="width: 100%; height: 400px; overflow: hidden; overscroll-behavior-block: block;"></div>
+      <div
+        id="map"
+        style="
+          width: 100%;
+          height: 400px;
+          overflow: hidden;
+          overscroll-behavior-block: block;
+        "
+      ></div>
     </div>
 
-    <div class=" justify-content-center mt-4">
-      <button class="btn btn-sm btn-info-soft me-2 mb-0" [disabled]="MeetingForm.invalid"
-        (click)="CreateOnsilteMeeting()">Organise
+    <div class="justify-content-center mt-4">
+      <button
+        class="btn btn-sm btn-info-soft me-2 mb-0"
+        [disabled]="MeetingForm.invalid"
+        (click)="CreateOnsilteMeeting()"
+      >
+        Organise
       </button>
     </div>
   </div>
 </ng-template>
 
-<ng-template #MapDialig>
-
-</ng-template>
+<ng-template #MapDialig> </ng-template>
 <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true"> -->

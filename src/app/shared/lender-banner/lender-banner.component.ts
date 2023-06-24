@@ -4,7 +4,7 @@ import { LenderStoreService } from 'src/app/lender-store.service';
 @Component({
   selector: 'app-lender-banner',
   templateUrl: './lender-banner.component.html',
-  styleUrls: ['./lender-banner.component.css']
+  styleUrls: ['./lender-banner.component.css'],
 })
 export class LenderBannerComponent {
   id: any;
@@ -31,6 +31,8 @@ export class LenderBannerComponent {
   }
 
   getStarsArray(feedbackNumber: number): number[] {
-    return Array(feedbackNumber).fill(0).map((_, index) => index + 1);
+    return Array(feedbackNumber)
+      .fill(0)
+      .map((_, index) => index + 1);
   }
 }

@@ -5,14 +5,14 @@ import { AuthService } from 'src/app/auth.service';
 @Component({
   selector: 'app-lender-side-bar',
   templateUrl: './lender-side-bar.component.html',
-  styleUrls: ['./lender-side-bar.component.css']
+  styleUrls: ['./lender-side-bar.component.css'],
 })
 export class LenderSideBarComponent {
-  constructor(public router: Router,public auth:AuthService) { }
+  constructor(public router: Router, public auth: AuthService) {}
   GetOffers() {
-    this.router.navigate(['/lenderstore/'])
+    this.router.navigate(['/lenderstore/']);
   }
-  logout(){
-    this.auth.logout()
+  logout() {
+    this.auth.logout();
   }
 }

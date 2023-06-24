@@ -18,15 +18,10 @@ import { LenderStoreModule } from './lender-store/lender-store.module';
 import { ProgressBarModule } from 'primeng/progressbar';
 // import { TestzoomComponent } from './lender/testzoom/testzoom.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     // TestzoomComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -43,7 +38,6 @@ import { ProgressBarModule } from 'primeng/progressbar';
     LenderStoreModule,
     LoaneeModule,
     ProgressBarModule,
-
   ],
   providers: [
     // {
@@ -51,6 +45,6 @@ import { ProgressBarModule } from 'primeng/progressbar';
     //   useFactory: setVariable,
     //   multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

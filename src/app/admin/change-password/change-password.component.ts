@@ -39,9 +39,9 @@ export class ChangePasswordComponent {
     } catch (err) {
       console.error(err);
     }
-await this.ngOnInit()
+    await this.ngOnInit()
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.userService.progressBarVisible = true
   }
 }

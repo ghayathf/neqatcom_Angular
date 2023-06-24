@@ -1,464 +1,522 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Neqatcom - Company,Dashboard</title>
+  </head>
 
-<head>
-	<title>Neqatcom - Company,Dashboard</title>
+  <body>
+    <div *ngIf="lenderService.progressBarVisible" class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <!-- Header START -->
+    <app-lender-header></app-lender-header>
+    <!-- Header END -->
 
-</head>
-
-<body>
-  <div *ngIf="lenderService.progressBarVisible" class="progress-container">
-    <div class="progress-bar"></div>
-  </div>
-	<!-- Header START -->
-	<app-lender-header></app-lender-header>
-	<!-- Header END -->
-
-	<!-- **************** MAIN CONTENT START **************** -->
-	<main>
-
-		<!-- =======================
+    <!-- **************** MAIN CONTENT START **************** -->
+    <main>
+      <!-- =======================
 Page Banner START -->
-		<app-lender-banner></app-lender-banner><!-- =======================
+      <app-lender-banner></app-lender-banner
+      ><!-- =======================
 Page Banner END -->
 
-		<!-- =======================
+      <!-- =======================
 Page content START -->
-		<section class="pt-0">
-			<div class="container">
-				<div class="row">
-					<!-- Left sidebar START -->
-					<div class="col-xl-3">
-						<!-- Responsive offcanvas body START -->
-						<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
-							<!-- Offcanvas header -->
-							<div class="offcanvas-header bg-light">
-								<h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-									data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
-							</div>
-							<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5"
+      <section class="pt-0">
+        <div class="container">
+          <div class="row">
+            <!-- Left sidebar START -->
+            <div class="col-xl-3">
+              <!-- Responsive offcanvas body START -->
+              <div
+                class="offcanvas-xl offcanvas-end"
+                tabindex="-1"
+                id="offcanvasSidebar"
+              >
+                <!-- Offcanvas header -->
+                <div class="offcanvas-header bg-light">
+                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                    My profile
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    data-bs-target="#offcanvasSidebar"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5"
 								type="line-scale-party" [fullScreen]="true">
 							</ngx-spinner> -->
-							<!-- Offcanvas body -->
-							<div class="offcanvas-body p-3 p-xl-0">
-								<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
-									<!-- Dashboard menu -->
-									<app-lender-side-bar></app-lender-side-bar>
-								</div>
-							</div>
-						</div>
-						<!-- Responsive offcanvas body END -->
-					</div>
-					<!-- Left sidebar END -->
+                <!-- Offcanvas body -->
+                <div class="offcanvas-body p-3 p-xl-0">
+                  <div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+                    <!-- Dashboard menu -->
+                    <app-lender-side-bar></app-lender-side-bar>
+                  </div>
+                </div>
+              </div>
+              <!-- Responsive offcanvas body END -->
+            </div>
+            <!-- Left sidebar END -->
 
-					<!-- Main content START -->
-					<div class="col-xl-9">
+            <!-- Main content START -->
+            <div class="col-xl-9">
+              <!-- Counter boxes START -->
 
-						<!-- Counter boxes START -->
+              <!-- Counter boxes END -->
+              <div class="card border bg-transparent rounded-3">
+                <!-- Card header START -->
+                <div class="card-header bg-transparent border-bottom">
+                  <h3 class="mb-0">My Loanees List</h3>
+                </div>
+                <!-- Card header END -->
 
-						<!-- Counter boxes END -->
-						<div class="card border bg-transparent rounded-3">
-							<!-- Card header START -->
-							<div class="card-header bg-transparent border-bottom">
-								<h3 class="mb-0">My Loanees List</h3>
-							</div>
-							<!-- Card header END -->
+                <!-- Card body START -->
+                <div class="card-body">
+                  <!-- Search and select START -->
 
-							<!-- Card body START -->
-							<div class="card-body">
+                  <!-- Search and select END -->
 
-								<!-- Search and select START -->
+                  <!-- Student list table START -->
+                  <div class="table-responsive border-0">
+                    <table
+                      class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+                    >
+                      <!-- Table head -->
+                      <thead>
+                        <tr>
+                          <th scope="col" class="border-0 rounded-start">
+                            Loanee name
+                          </th>
 
-								<!-- Search and select END -->
+                          <th scope="col" class="border-0 rounded-end">
+                            Actions
+                          </th>
+                        </tr>
+                      </thead>
 
-								<!-- Student list table START -->
-								<div class="table-responsive border-0">
-									<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-										<!-- Table head -->
-										<thead>
-											<tr>
-												<th scope="col" class="border-0 rounded-start">Loanee name</th>
-
-
-												<th scope="col" class="border-0 rounded-end">Actions </th>
-
-											</tr>
-										</thead>
-
-										<!-- Table body START -->
-										<tbody>
-											<!-- Table item -->
-											<tr *ngFor="let item of loanees">
-												<!-- Table data -->
-												<td>
-													<div class="d-flex align-items-center position-relative">
-														<!-- Image -->
-														<!-- <div class="avatar avatar-md mb-2 mb-md-0">
+                      <!-- Table body START -->
+                      <tbody>
+                        <!-- Table item -->
+                        <tr *ngFor="let item of loanees">
+                          <!-- Table data -->
+                          <td>
+                            <div
+                              class="d-flex align-items-center position-relative"
+                            >
+                              <!-- Image -->
+                              <!-- <div class="avatar avatar-md mb-2 mb-md-0">
 															<img src="assets/images/avatar/01.jpg" class="rounded"
 																alt="">
 														</div> -->
-														<div class="mb-0 ms-2">
-															<!-- Title -->
-															<h4 class="mb-0"><a
-																	(click)="viewLoaneeDetials(item.userimage,item.email,item.creditscore,item.postponecounter,item.userid,item.firstname,item.lastname,item.address,item.phonenum,item.loaneeid)"
-																	class="stretched-link">{{ item.firstname }} {{
-																	item.lastname }}</a></h4>
+                              <div class="mb-0 ms-2">
+                                <!-- Title -->
+                                <h4 class="mb-0">
+                                  <a
+                                    (click)="
+                                      viewLoaneeDetials(
+                                        item.userimage,
+                                        item.email,
+                                        item.creditscore,
+                                        item.postponecounter,
+                                        item.userid,
+                                        item.firstname,
+                                        item.lastname,
+                                        item.address,
+                                        item.phonenum,
+                                        item.loaneeid
+                                      )
+                                    "
+                                    class="stretched-link"
+                                    >{{ item.firstname }} {{ item.lastname }}</a
+                                  >
+                                </h4>
 
-															<!-- Address -->
-															<!-- <span class="text-body small"><i
+                                <!-- Address -->
+                                <!-- <span class="text-body small"><i
 																	class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>Mumbai</span> -->
-														</div>
-													</div>
-												</td>
+                              </div>
+                            </div>
+                          </td>
 
+                          <!-- Table data -->
+                          <td>
+                            <div style="display: flex; flex-direction: row">
+                              <a
+                                class="btn btn-success-soft btn-round me-1 mb-0"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="القروض لهذا الزبون مع الدفعات"
+                                (click)="openDetails(item.loaneeid)"
+                                ><i class="fa fa-info-circle"></i
+                              ></a>
+                              <a
+                                class="btn btn-danger-soft btn-round me-1 mb-0"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="قدم شكوى بحق هذا الزبون"
+                                (click)="
+                                  OpenCreateDialog(item.lenderid, item.loaneeid)
+                                "
+                                ><i class="fa fa-flag"></i
+                              ></a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <!-- Table body END -->
+                    </table>
+                  </div>
+                  <!-- Student list table END -->
 
-												<!-- Table data -->
-												<td>
-													<div style="display: flex; flex-direction: row;">
-														<a class="btn btn-success-soft btn-round me-1 mb-0"
-															data-bs-toggle="tooltip" data-bs-placement="top"
-															title="القروض لهذا الزبون مع الدفعات"
-															(click)="openDetails(item.loaneeid)"><i
-																class="fa fa-info-circle"></i></a>
-														<a class="btn btn-danger-soft btn-round me-1 mb-0"
-															data-bs-toggle="tooltip" data-bs-placement="top"
-															title="قدم شكوى بحق هذا الزبون"
-															(click)="OpenCreateDialog(item.lenderid,item.loaneeid)"><i
-																class="fa fa-flag"></i></a>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-										<!-- Table body END -->
-									</table>
-								</div>
-								<!-- Student list table END -->
+                  <!-- Pagination START -->
 
-								<!-- Pagination START -->
+                  <!-- Pagination END -->
+                </div>
+                <!-- Card body START -->
+              </div>
+              <!-- Chart START -->
 
-								<!-- Pagination END -->
-							</div>
-							<!-- Card body START -->
-						</div>
-						<!-- Chart START -->
+              <!-- Chart END -->
 
-						<!-- Chart END -->
+              <!-- Course List table START -->
 
-						<!-- Course List table START -->
-
-						<!-- Course List table END -->
-					</div>
-					<!-- Main content END -->
-				</div><!-- Row END -->
-			</div>
-		</section>
-		<!-- =======================
+              <!-- Course List table END -->
+            </div>
+            <!-- Main content END -->
+          </div>
+          <!-- Row END -->
+        </div>
+      </section>
+      <!-- =======================
 Page content END -->
+    </main>
+    <!-- **************** MAIN CONTENT END **************** -->
 
-	</main>
-	<!-- **************** MAIN CONTENT END **************** -->
-
-	<!-- =======================
+    <!-- =======================
 Footer START -->
-	<footer class="footer">
-		<app-lender-footer></app-lender-footer>
-	</footer>
-	<!-- =======================
+    <footer class="footer">
+      <app-lender-footer></app-lender-footer>
+    </footer>
+    <!-- =======================
 Footer END -->
-
-
-</body>
-
+  </body>
 </html>
 <ng-template #DetailsForm>
+  <!-- Student list table START -->
+  <div class="table-responsive border-0" style="background-color: #3e3e40">
+    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+      <!-- Table head -->
+      <thead>
+        <tr>
+          <th scope="col" class="border-0 rounded-start">Total Months</th>
+          <th scope="col" class="border-0">Total Price</th>
+          <th scope="col" class="border-0">Estimate Price</th>
+          <th scope="col" class="border-0">Start Date</th>
+          <th scope="col" class="border-0">End Date</th>
+          <th scope="col" class="border-0">Monthly Amount</th>
+          <th scope="col" class="border-0 rounded-end"></th>
+        </tr>
+      </thead>
 
-	<!-- Student list table START -->
-	<div class="table-responsive border-0" style="background-color: #3e3e40;">
-		<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-			<!-- Table head -->
-			<thead>
-				<tr>
-					<th scope="col" class="border-0 rounded-start">Total Months</th>
-					<th scope="col" class="border-0 ">Total Price</th>
-					<th scope="col" class="border-0 ">Estimate Price</th>
-					<th scope="col" class="border-0 ">Start Date</th>
-					<th scope="col" class="border-0 ">End Date</th>
-					<th scope="col" class="border-0 ">Monthly Amount</th>
-					<th scope="col" class="border-0 rounded-end"></th>
+      <!-- Table body START -->
+      <tbody>
+        <!-- Table item -->
+        <tr *ngFor="let item of loanss">
+          <!-- Table data -->
 
+          <!-- Table data -->
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                {{ item.totalmonths }} month/s
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                ${{ item.totalprice }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                ${{ item.estimatedprice }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                {{ item.startdate | slice : 2 : 10 }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                {{ item.Enddate | slice : 2 : 10 }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                ${{ item.monthlyamount }}
+              </div>
+            </div>
+          </td>
 
-				</tr>
-			</thead>
-
-			<!-- Table body START -->
-			<tbody>
-
-
-
-
-
-				<!-- Table item -->
-				<tr *ngFor="let item of loanss">
-					<!-- Table data -->
-
-					<!-- Table data -->
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								{{ item.totalmonths }} month/s</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								${{ item.totalprice }}</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								${{ item.estimatedprice }}</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								{{item.startdate | slice:2:10}}</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								{{item.Enddate | slice:2:10}}</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								${{item.monthlyamount}}</div>
-						</div>
-					</td>
-
-					<!-- Table data -->
-					<td>
-						<div style="display: flex; flex-direction: row;">
-							<button class="btn btn-sm btn-info-soft me-2 mb-0"
-								(click)="OpenPaymentsDialog(item.loanid,item.loanstatus,item.userid)">Show
-								Payments</button>
-
-						</div>
-					</td>
-				</tr>
-			</tbody>
-			<!-- Table body END -->
-		</table>
-	</div>
-
+          <!-- Table data -->
+          <td>
+            <div style="display: flex; flex-direction: row">
+              <button
+                class="btn btn-sm btn-info-soft me-2 mb-0"
+                (click)="
+                  OpenPaymentsDialog(item.loanid, item.loanstatus, item.userid)
+                "
+              >
+                Show Payments
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <!-- Table body END -->
+    </table>
+  </div>
 </ng-template>
 <ng-template #PaymentsForm>
-	<!-- Student list table START -->
-	<div class="table-responsive border-0" style="background-color: #3e3e40;">
-		<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-			<!-- Table head -->
-			<thead>
-				<tr>
-					<th scope="col" class="border-0 rounded-start">Payment Date</th>
-					<th scope="col" class="border-0 ">Payment Type</th>
+  <!-- Student list table START -->
+  <div class="table-responsive border-0" style="background-color: #3e3e40">
+    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+      <!-- Table head -->
+      <thead>
+        <tr>
+          <th scope="col" class="border-0 rounded-start">Payment Date</th>
+          <th scope="col" class="border-0">Payment Type</th>
+        </tr>
+      </thead>
 
+      <!-- Table body START -->
+      <tbody>
+        <!-- Table item -->
+        <tr *ngFor="let item of payments">
+          <!-- Table data -->
 
-
-				</tr>
-			</thead>
-
-			<!-- Table body START -->
-			<tbody>
-
-
-
-
-
-				<!-- Table item -->
-				<tr *ngFor="let item of payments">
-					<!-- Table data -->
-
-					<!-- Table data -->
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								{{ item.paymentdate | slice:2:10 }}</div>
-						</div>
-					</td>
-					<td>
-						<div class="d-flex align-items-center position-relative">
-							<div class="cols-3" style="word-break: break-all;">
-								{{ PaymentType[item.paymenttype] }}</div>
-						</div>
-					</td>
-
-
-
-				</tr>
-				<div class="row" mat-dialog-actions>
-					<div class="col-lg-6">
-						<button class="btn btn-sm btn-warning-soft me-2 mb-0" *ngIf="this.flag"
-							(click)="PayCash()">Cash</button>
-
-					</div>
-					<div class="col-lg-6">
-						<button class="btn btn-sm btn-success-soft me-2 mb-0" *ngIf="this.flag"
-							(click)="forgiveLoanee()">Forgive</button>
-					</div>
-					<div *ngIf="this.flag==false">
-						This loan has been paid off
-					</div>
-				</div>
-			</tbody>
-			<!-- Table body END -->
-		</table>
-	</div>
-
-
+          <!-- Table data -->
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                {{ item.paymentdate | slice : 2 : 10 }}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                {{ PaymentType[item.paymenttype] }}
+              </div>
+            </div>
+          </td>
+        </tr>
+        <div class="row" mat-dialog-actions>
+          <div class="col-lg-6">
+            <button
+              class="btn btn-sm btn-warning-soft me-2 mb-0"
+              *ngIf="this.flag"
+              (click)="PayCash()"
+            >
+              Cash
+            </button>
+          </div>
+          <div class="col-lg-6">
+            <button
+              class="btn btn-sm btn-success-soft me-2 mb-0"
+              *ngIf="this.flag"
+              (click)="forgiveLoanee()"
+            >
+              Forgive
+            </button>
+          </div>
+          <div *ngIf="this.flag == false">This loan has been paid off</div>
+        </div>
+      </tbody>
+      <!-- Table body END -->
+    </table>
+  </div>
 </ng-template>
 <ng-template #LoaneeDetials>
+  <div style="background-color: #3e3e40; overflow-x: hidden; padding: 2%">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="text-center">
+        <span class="avatar avatar-xl">
+          <img
+            src="{{ loaneeImg }}"
+            class="avatar-img rounded-circle border border-white border-3 shadow"
+            alt="Card image"
+          />
+        </span>
+        <div class="row">
+          <h2 class="h1 mb-3">{{ fname }} {{ lname }}</h2>
+          <div *ngIf="LoaneeCreditScoreStatus" class="text text-warning">
+            <span>New</span>
+          </div>
+          <div id="myChart"></div>
+        </div>
+      </div>
+    </div>
 
+    <div class="row mt-5">
+      <!-- Live support box -->
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
+        <div class="card card-body shadow">
+          <div
+            class="icon-lg bg-success text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5"
+          >
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h6>Email</h6>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              loaneeEmail
+            }}</a>
+          </p>
+        </div>
+      </div>
 
-	<div style="background-color: #3e3e40; overflow-x: hidden; padding: 2%;">
-		<div class="d-flex align-items-center justify-content-center">
-			<div class="text-center">
-				<span class="avatar avatar-xl">
-					<img src="{{loaneeImg}}" class="avatar-img rounded-circle border border-white border-3 shadow" alt="Card image">
-				</span>
-				<div class="row">
-					<h2 class="h1 mb-3">{{fname}} {{lname}}</h2>
-          <div *ngIf="LoaneeCreditScoreStatus" class="text text-warning"><span>New</span></div>
-					<div id='myChart'></div>
-				</div>
-			</div>
-		</div>
+      <!-- Telephone box -->
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
+        <div class="card card-body shadow">
+          <div
+            class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6"
+          >
+            <i class="fas fa-tty"></i>
+          </div>
+          <h6>Telephone</h6>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              Pnumber
+            }}</a>
+          </p>
+        </div>
+      </div>
 
+      <!-- Address box -->
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
+        <div class="card card-body shadow">
+          <div
+            class="icon-lg bg-orange text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6"
+          >
+            <i class="fas fa-map-marker"></i>
+          </div>
+          <h6>Address</h6>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link">{{
+              address
+            }}</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
+        <div class="card card-body shadow">
+          <div
+            class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5"
+          >
+            <i class="fas fa-times">123</i>
+          </div>
 
-		<div class="row mt-5">
-
-			<!-- Live support box -->
-			<div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
-				<div class="card card-body shadow ">
-					<div
-						class="icon-lg bg-success text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5">
-						<i class="fas fa-envelope"></i>
-					</div>
-					<h6>Email</h6>
-					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{loaneeEmail}}</a>
-					</p>
-				</div>
-			</div>
-
-
-
-			<!-- Telephone box -->
-			<div class="col-sm-6 col-lg-12 col-xl-6 mb-5 ">
-				<div class="card card-body shadow">
-					<div
-						class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
-						<i class="fas fa-tty"></i>
-					</div>
-					<h6>Telephone</h6>
-					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ Pnumber }}</a></p>
-				</div>
-			</div>
-
-			<!-- Address box -->
-			<div class="col-sm-6 col-lg-12 col-xl-6 mb-5">
-				<div class="card card-body shadow">
-					<div
-						class="icon-lg bg-orange text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n6">
-
-						<i class="fas fa-map-marker"></i>
-					</div>
-					<h6>Address</h6>
-					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ address }}</a></p>
-				</div>
-			</div>
-			<div class="col-sm-6 col-lg-12 col-xl-6 mb-4">
-				<div class="card card-body shadow">
-					<div
-						class="icon-lg bg-purple text-white rounded-circle position-absolute top-0 start-100 translate-middle ms-n5">
-						<i class="fas fa-times">123</i>
-					</div>
-
-					<h6>Postpone Counter</h6>
-					<p class="h6 mb-0"><a class="text-primary-hover mb-0 fw-light stretched-link">{{ postponecounter }}
-							times</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
+          <h6>Postpone Counter</h6>
+          <p class="h6 mb-0">
+            <a class="text-primary-hover mb-0 fw-light stretched-link"
+              >{{ postponecounter }} times</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #Report>
-	<div class="curved-dialog">
-		<div style="background-color: #3e3e40;">
-			<section class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
-				style="background:url(../../../assets/HomeAssets/images/pattern/04.png) no-repeat center center; background-size:cover;">
-				<!-- Main banner background image -->
-				<div class="container">
-					<div class="row">
-						<div class="col-12 text-center">
-							<!-- Title -->
-							<h1 class="text-white">Report Loanee</h1>
-						</div>
-					</div>
-				</div>
-			</section>
+  <div class="curved-dialog">
+    <div style="background-color: #3e3e40">
+      <section
+        class="py-0 bg-blue h-100px align-items-center d-flex h-200px rounded-0"
+        style="
+          background: url(../../../assets/HomeAssets/images/pattern/04.png)
+            no-repeat center center;
+          background-size: cover;
+        "
+      >
+        <!-- Main banner background image -->
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <!-- Title -->
+              <h1 class="text-white">Report Loanee</h1>
+            </div>
+          </div>
+        </div>
+      </section>
 
-			<section>
-				<div class="container">
-					<div class="card bg-transparent border rounded-3 mb-5">
-						<div id="stepper" class="bs-stepper stepper-outline">
-							<div class="card-body">
-								<div class="bs-stepper-content">
-									<div id="step-1" role="tabpanel" class="content" aria-labelledby="steppertrigger1">
-										<form [formGroup]="GiveComplaintForm">
-
-
-
-											<div class="row">
-
-
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="input-group">
-															<span class="input-group-text bg-light">Send Your Complaint
-																Note</span>
-															<textarea class="form-control rounded-end"
-																aria-label="Send Your Complaint Note"
-																formControlName="compliantnotes"></textarea>
-														</div>
-														<div class="form-text text-danger"
-															*ngIf="compliant.errors?.['required'] && compliant.touched">
-															Compliant is required
-														</div>
-													</div>
-													<div class="d-flex justify-content-end mt-3">
-														<button class="btn btn-primary" mat-dialog-close value="Create"
-															(click)="CreateComplaint()">Send Your Note</button>
-													</div>
-												</div>
-
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
+      <section>
+        <div class="container">
+          <div class="card bg-transparent border rounded-3 mb-5">
+            <div id="stepper" class="bs-stepper stepper-outline">
+              <div class="card-body">
+                <div class="bs-stepper-content">
+                  <div
+                    id="step-1"
+                    role="tabpanel"
+                    class="content"
+                    aria-labelledby="steppertrigger1"
+                  >
+                    <form [formGroup]="GiveComplaintForm">
+                      <div class="row">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="input-group">
+                              <span class="input-group-text bg-light"
+                                >Send Your Complaint Note</span
+                              >
+                              <textarea
+                                class="form-control rounded-end"
+                                aria-label="Send Your Complaint Note"
+                                formControlName="compliantnotes"
+                              ></textarea>
+                            </div>
+                            <div
+                              class="form-text text-danger"
+                              *ngIf="compliant.errors?.['required'] && compliant.touched"
+                            >
+                              Compliant is required
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-end mt-3">
+                            <button
+                              class="btn btn-primary"
+                              mat-dialog-close
+                              value="Create"
+                              (click)="CreateComplaint()"
+                            >
+                              Send Your Note
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </ng-template>

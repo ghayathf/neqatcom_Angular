@@ -1,4 +1,4 @@
-import { Component,ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { LenderStoreService } from 'src/app/lender-store.service';
 import html2canvas from 'html2canvas';
@@ -12,72 +12,79 @@ import { UserService } from 'src/app/user.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
   title = 'ng2-charts-demo';
 
   // Doughnut
-  public doughnutChartLabels: string[] = [  ];
-  public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [
-      { data: [] }
-    ];
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] =
+    [{ data: [] }];
 
   public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
-    responsive: false
+    responsive: false,
   };
 
-  constructor(public offerService:OfferService,public lenderService: LenderStoreService, public dialog: MatDialog,
-    public purchasingService: PurchasingService, public EmailService: EmailsService,
-    public userService : UserService) {
-  }
-  LenderPayments?: any
-  lenderID: any
-  data?: any
-  months?: any
-  offers:any
-  Followers:any
-length:any
+  constructor(
+    public offerService: OfferService,
+    public lenderService: LenderStoreService,
+    public dialog: MatDialog,
+    public purchasingService: PurchasingService,
+    public EmailService: EmailsService,
+    public userService: UserService
+  ) {}
+  LenderPayments?: any;
+  lenderID: any;
+  data?: any;
+  months?: any;
+  offers: any;
+  Followers: any;
+  length: any;
   async ngOnInit() {
-    await this.offerService.GetOffersForLenderMain(localStorage.getItem('Lenderid'))
+    await this.offerService.GetOffersForLenderMain(
+      localStorage.getItem('Lenderid')
+    );
     this.lenderID = localStorage.getItem('Lenderid');
     await this.lenderService.GetLenderPayments(parseInt(this.lenderID));
-    await this.userService.GetFollowers(localStorage.getItem('Lenderid'))
-    await this.lenderService.GetAllFollowers(localStorage.getItem('Lenderid'))
-    await this.lenderService.GetLenderCounters(localStorage.getItem('Lenderid'));
+    await this.userService.GetFollowers(localStorage.getItem('Lenderid'));
+    await this.lenderService.GetAllFollowers(localStorage.getItem('Lenderid'));
+    await this.lenderService.GetLenderCounters(
+      localStorage.getItem('Lenderid')
+    );
 
-    this.offers = this.offerService.LenderOffers
+    this.offers = this.offerService.LenderOffers;
 
     // Extract labels and data from lenderService.LenderPayments
-    this.doughnutChartLabels = this.lenderService.LenderPayments.map((elem: any) => elem.monthName);
+    this.doughnutChartLabels = this.lenderService.LenderPayments.map(
+      (elem: any) => elem.monthName
+    );
     this.doughnutChartDatasets = [
-      { data: this.lenderService.LenderPayments.map((elem: any) => elem.totalPayments) }
+      {
+        data: this.lenderService.LenderPayments.map(
+          (elem: any) => elem.totalPayments
+        ),
+      },
     ];
 
-
-
-    this.Followers = this.lenderService.Followers
-    this.length = this.Followers.length
+    this.Followers = this.lenderService.Followers;
+    this.length = this.Followers.length;
     console.log(this.Followers);
-
-
-
   }
-  async ngOnDestroy(){
+  async ngOnDestroy() {
     this.lenderService.progressBarVisible = true;
   }
-  chartContainer1:any
-chartContainer2:any
- async generatePDF() {
-  const pdf = new jsPDF()
-  this.chartContainer1 = document.getElementById('chartContainer');
+  chartContainer1: any;
+  chartContainer2: any;
+  async generatePDF() {
+    const pdf = new jsPDF();
+    this.chartContainer1 = document.getElementById('chartContainer');
 
-  const canvas1 = await html2canvas(this.chartContainer1);
-  const chartImage1 = canvas1.toDataURL('image/png');
+    const canvas1 = await html2canvas(this.chartContainer1);
+    const chartImage1 = canvas1.toDataURL('image/png');
 
+    pdf.addImage(chartImage1, 'PNG', 10, 10, 300, 200);
 
-  pdf.addImage(chartImage1, 'PNG', 10, 10, 300, 200);
-
-  pdf.save('charts.pdf');
-}
+    pdf.save('charts.pdf');
+  }
 }

@@ -1,146 +1,189 @@
 <app-admin-side-bar></app-admin-side-bar>
 
-
 <div class="page-content">
-    <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
+  <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#76BDF5" type="line-scale-party" [fullScreen]="true">
     </ngx-spinner> -->
 
-    <div *ngIf="adminService.progressBarVisible" class="progress-container">
-      <div class="progress-bar"></div>
+  <div *ngIf="adminService.progressBarVisible" class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+  <!-- Top bar START -->
+
+  <app-admin-header></app-admin-header>
+  <!-- Top bar END -->
+
+  <!-- Page main content START -->
+  <div class="page-content-wrapper border">
+    <div class="row mb-3">
+      <div class="col-12 d-sm-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-2 mb-sm-0">Lender store requests</h1>
+      </div>
     </div>
-    <!-- Top bar START -->
 
-    <app-admin-header></app-admin-header>
-    <!-- Top bar END -->
-
-    <!-- Page main content START -->
-    <div class="page-content-wrapper border">
-
-        <div class="row mb-3">
-            <div class="col-12 d-sm-flex justify-content-between align-items-center">
-                <h1 class="h3 mb-2 mb-sm-0">Lender store requests</h1>
-            </div>
+    <!-- Course boxes START -->
+    <div class="row g-4 mb-4">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3"
+        >
+          <h5>Registered Lenders</h5>
+          <h2 class="mb-0 fs-1 text-primary">{{ this.registerd }}</h2>
         </div>
+      </div>
 
-        <!-- Course boxes START -->
-        <div class="row g-4 mb-4">
-            <!-- Course item -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="text-center p-4 bg-primary bg-opacity-10 border border-primary rounded-3">
-                    <h5>Registered Lenders</h5>
-                    <h2 class="mb-0 fs-1 text-primary">{{ this.registerd}}</h2>
-                </div>
-            </div>
-
-            <!-- Course item -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3">
-                    <h6>UnRegistered Lenders</h6>
-                    <h2 class="mb-0 fs-1 text-success">{{this.Unregistered}}</h2>
-                </div>
-            </div>
-
-            <!-- Course item -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="text-center p-4  bg-warning bg-opacity-15 border border-warning rounded-3">
-                    <h6>Total Lenders</h6>
-                    <h2 class="mb-0 fs-1 text-warning">{{this.Total}}</h2>
-                </div>
-            </div>
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-success bg-opacity-10 border border-success rounded-3"
+        >
+          <h6>UnRegistered Lenders</h6>
+          <h2 class="mb-0 fs-1 text-success">{{ this.Unregistered }}</h2>
         </div>
-        <!-- Course boxes END -->
+      </div>
 
-        <!-- Card START -->
-        <div class="card bg-transparent border">
+      <!-- Course item -->
+      <div class="col-sm-6 col-lg-4">
+        <div
+          class="text-center p-4 bg-warning bg-opacity-15 border border-warning rounded-3"
+        >
+          <h6>Total Lenders</h6>
+          <h2 class="mb-0 fs-1 text-warning">{{ this.Total }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Course boxes END -->
 
-            <!-- Card header START -->
-            <div class="card-header bg-light border-bottom">
-                <!-- Search and select START -->
-                <div class="row g-3 align-items-center justify-content-between">
+    <!-- Card START -->
+    <div class="card bg-transparent border">
+      <!-- Card header START -->
+      <div class="card-header bg-light border-bottom">
+        <!-- Search and select START -->
+        <div class="row g-3 align-items-center justify-content-between">
+          <!-- Card header END -->
 
+          <!-- Card body START -->
+          <div class="card-body">
+            <h2>Pending Lender Request</h2>
+            <!-- Course table START -->
+            <div class="table-responsive border-0 rounded-3">
+              <!-- Table START -->
+              <table
+                class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+              >
+                <!-- Table head -->
+                <thead>
+                  <tr>
+                    <th
+                      scope="col"
+                      class="border-0"
+                      style="background-color: #1d3b53"
+                    >
+                      Name
+                    </th>
+                    <th
+                      scope="col"
+                      class="border-0"
+                      style="background-color: #1d3b53"
+                    >
+                      Action
+                    </th>
+                    <th
+                      scope="col"
+                      class="border-0 rounded-end"
+                      style="background-color: #1d3b53"
+                    ></th>
+                    <th
+                      scope="col"
+                      class="border-0 rounded-end"
+                      style="background-color: #1d3b53"
+                    ></th>
+                  </tr>
+                </thead>
 
+                <!-- Table body START -->
+                <tbody>
+                  <!-- Table row -->
+                  <tr *ngFor="let item of Requests">
+                    <!-- Table data -->
+                    <td>
+                      <div class="d-flex align-items-center position-relative">
+                        <!-- Title -->
+                        <h4 class="table-responsive-title mb-0 ms-2">
+                          <a class="stretched-link">{{
+                            item.commercialregister
+                          }}</a>
+                          <p>{{ item.firstname }}</p>
+                        </h4>
+                      </div>
+                    </td>
 
-                    <!-- Card header END -->
+                    <!-- Table data -->
 
-                    <!-- Card body START -->
-                    <div class="card-body">
-                        <h2>Pending Lender Request</h2>
-                        <!-- Course table START -->
-                        <div class="table-responsive border-0 rounded-3">
-                            <!-- Table START -->
-                            <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-                                <!-- Table head -->
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="border-0" style=" background-color:#1d3b53 ;">Name</th>
-                                        <th scope="col" class="border-0 " style=" background-color:#1d3b53 ;">Action
-                                        </th>
-                                        <th scope="col" class="border-0 rounded-end"
-                                            style=" background-color:#1d3b53 ;"></th>
-                                        <th scope="col" class="border-0 rounded-end"
-                                            style=" background-color:#1d3b53 ;"></th>
-                                    </tr>
-                                </thead>
-
-                                <!-- Table body START -->
-                                <tbody>
-
-                                    <!-- Table row -->
-                                    <tr *ngFor="let item of Requests">
-                                        <!-- Table data -->
-                                        <td>
-                                            <div class="d-flex align-items-center position-relative">
-
-                                                <!-- Title -->
-                                                <h4 class="table-responsive-title mb-0 ms-2">
-                                                    <a  class="stretched-link">{{ item.commercialregister }}</a>
-                                                    <p>{{item.firstname}}</p>
-                                                </h4>
-                                            </div>
-                                        </td>
-
-                                        <!-- Table data -->
-
-
-
-
-                                        <!-- Table data -->
-                                        <td>
-                                            <!-- <a style="color: green; font-size: 18px;cursor: pointer;"
+                    <!-- Table data -->
+                    <td>
+                      <!-- <a style="color: green; font-size: 18px;cursor: pointer;"
                                                 (click)="Validate(item.commercialregister)"> </a> -->
-                                                <button class="btn btn-sm btn-success-soft me-2 mb-0" (click)="Validate(item.commercialregister)">Verify</button>
-
-                                        </td>
-                                        <td>
-                                            <!-- <a style="color: red; font-size: 18px;"
+                      <button
+                        class="btn btn-sm btn-success-soft me-2 mb-0"
+                        (click)="Validate(item.commercialregister)"
+                      >
+                        Verify
+                      </button>
+                    </td>
+                    <td>
+                      <!-- <a style="color: red; font-size: 18px;"
                                                 (click)="DeleteRequest(item.userid,item.lenderid,item.email,item.firstname)">x</a> -->
-                                                <button class="btn btn-sm btn-danger-soft me-2 mb-0" (click)="DeleteRequest(item.userid,item.lenderid,item.email,item.firstname)">
-                                                    Reject
-                                                </button>
-                                        </td>
-                                        <td>
-                                            <a class="button button--effect alt btn btn-info"
-                                                style="display: inline-block; margin-right: 10px;cursor: pointer;"
-                                                (click)="AcceptRequest(item.lenderid,item.email,item.firstname,item.commercialregister)">Accept</a>
-                                        </td>
-                                    </tr>
-
-
-                                </tbody>
-                                <!-- Table body END -->
-                            </table>
-                            <!-- Table END -->
-                        </div>
-                        <!-- Course table END -->
-                    </div>
-                    <!-- Card body END -->
-
-                    <!-- Card footer START -->
-
-                    <!-- Card footer END -->
-                </div>
-                <!-- Card END -->
+                      <button
+                        class="btn btn-sm btn-danger-soft me-2 mb-0"
+                        (click)="
+                          DeleteRequest(
+                            item.userid,
+                            item.lenderid,
+                            item.email,
+                            item.firstname
+                          )
+                        "
+                      >
+                        Reject
+                      </button>
+                    </td>
+                    <td>
+                      <a
+                        class="button button--effect alt btn btn-info"
+                        style="
+                          display: inline-block;
+                          margin-right: 10px;
+                          cursor: pointer;
+                        "
+                        (click)="
+                          AcceptRequest(
+                            item.lenderid,
+                            item.email,
+                            item.firstname,
+                            item.commercialregister
+                          )
+                        "
+                        >Accept</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- Table body END -->
+              </table>
+              <!-- Table END -->
             </div>
-            <!-- Page main content END -->
+            <!-- Course table END -->
+          </div>
+          <!-- Card body END -->
 
+          <!-- Card footer START -->
+
+          <!-- Card footer END -->
         </div>
+        <!-- Card END -->
+      </div>
+      <!-- Page main content END -->
+    </div>
+  </div>
+</div>

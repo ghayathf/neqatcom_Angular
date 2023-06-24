@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { MainComponent } from './main/main.component';
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
 import { LenderStoreRequestComponent } from './lender-store-request/lender-store-request.component';
 import { AllLoaneesComponent } from './all-loanees/all-loanees.component';
 import { ManageLoaneeComplaintsComponent } from './manage-loanee-complaints/manage-loanee-complaints.component';
@@ -17,25 +17,19 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ManageLenderComplaintsComponent } from './manage-lender-complaints/manage-lender-complaints.component';
 
 @NgModule({
-    declarations: [
-        MainComponent,
-        AllLoaneesComponent,
-        LenderStoreRequestComponent,
-        ManageLoaneeComplaintsComponent,
-        ProfileComponent,
-        ContactMessagesComponent,
-        EditHomeComponent,
-        CategoriesComponent,
-        TestimonialsComponent,
-        ChangePasswordComponent,
-        ManageLenderComplaintsComponent
-
-    ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        SharedModule,
-        NgChartsModule
-    ]
+  declarations: [
+    MainComponent,
+    AllLoaneesComponent,
+    LenderStoreRequestComponent,
+    ManageLoaneeComplaintsComponent,
+    ProfileComponent,
+    ContactMessagesComponent,
+    EditHomeComponent,
+    CategoriesComponent,
+    TestimonialsComponent,
+    ChangePasswordComponent,
+    ManageLenderComplaintsComponent,
+  ],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, NgChartsModule],
 })
-export class AdminModule { }
+export class AdminModule {}

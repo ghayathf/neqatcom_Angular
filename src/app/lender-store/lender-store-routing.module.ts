@@ -14,50 +14,50 @@ import { MyFollowersComponent } from './my-followers/my-followers.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
   },
   {
     path: 'createoffer',
-    component: OfferComponent
+    component: OfferComponent,
   },
   {
     path: 'Edit-Profile',
-    component: EditProfileComponent
+    component: EditProfileComponent,
   },
   {
     path: 'myClients',
-    component: MyLoaneesComponent
+    component: MyLoaneesComponent,
   },
 
   {
     path: 'loan-requests',
-    component: LoanRequestsComponent
+    component: LoanRequestsComponent,
   },
   {
     path: 'manage-meetings',
-    component: ManageMeetingsComponent
+    component: ManageMeetingsComponent,
   },
 
   {
     path: 'postpone-requests',
-    component: PostponeRequestsComponent
+    component: PostponeRequestsComponent,
   },
   {
     path: 'Testimonial',
-    component: TestimonialComponent
+    component: TestimonialComponent,
   },
   {
     path: 'SecurityEdit',
-    component: ChangePassComponent
+    component: ChangePassComponent,
   },
   {
     path: 'Followers',
-    component: MyFollowersComponent
+    component: MyFollowersComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class LenderStoreRoutingModule { }
+export class LenderStoreRoutingModule {}
