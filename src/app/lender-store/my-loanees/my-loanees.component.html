@@ -211,7 +211,8 @@ Footer END -->
       <!-- Table head -->
       <thead>
         <tr>
-          <th scope="col" class="border-0 rounded-start">Total Months</th>
+          <th scope="col" class="border-0 rounded-start">Loan#</th>
+          <th scope="col" class="border-0 ">Total Months</th>
           <th scope="col" class="border-0">Total Price</th>
           <th scope="col" class="border-0">Estimate Price</th>
           <th scope="col" class="border-0">Start Date</th>
@@ -228,6 +229,13 @@ Footer END -->
           <!-- Table data -->
 
           <!-- Table data -->
+          <td>
+            <div class="d-flex align-items-center position-relative">
+              <div class="cols-3" style="word-break: break-all">
+                {{ item.loanid }} 
+              </div>
+            </div>
+          </td>
           <td>
             <div class="d-flex align-items-center position-relative">
               <div class="cols-3" style="word-break: break-all">
@@ -293,37 +301,53 @@ Footer END -->
 <ng-template #PaymentsForm>
   <!-- Student list table START -->
   <div class="table-responsive border-0" style="background-color: #3e3e40">
-    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-      <!-- Table head -->
-      <thead>
-        <tr>
-          <th scope="col" class="border-0 rounded-start">Payment Date</th>
-          <th scope="col" class="border-0">Payment Type</th>
-        </tr>
-      </thead>
+    <table
+    class="table table-dark-gray align-middle p-4 mb-0 table-hover"
+    id="excel-table"
+  >
+    <!-- Table head -->
+    <thead>
+      <tr>
+        <th scope="col" class="border-0 rounded-start">Date</th>
+        <th scope="col" class="border-0">Amount</th>
+        <th scope="col" class="border-0">Status</th>
+      </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+      <!-- Table item -->
+      <tr *ngFor="let item of payments">
+        <!-- Date item -->
+        <td>{{ item.paymentdate | slice : 0 : 10 }}</td>
+        <td>{{ item.paymentAmount }}JD</td>
+        <!-- Status item -->
+        <td>
+          <span
+            class="badge bg-success bg-opacity-10 text-success"
+            *ngIf="item.paymenttype == 1"
+            >{{ PaymentType[item.paymenttype] }}</span
+          >
 
-      <!-- Table body START -->
-      <tbody>
-        <!-- Table item -->
-        <tr *ngFor="let item of payments">
-          <!-- Table data -->
+          <span
+            class="badge bg-warning bg-opacity-10 text-warning"
+            *ngIf="item.paymenttype == 2"
+            >{{ PaymentType[item.paymenttype] }}</span
+          >
 
-          <!-- Table data -->
-          <td>
-            <div class="d-flex align-items-center position-relative">
-              <div class="cols-3" style="word-break: break-all">
-                {{ item.paymentdate | slice : 2 : 10 }}
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="d-flex align-items-center position-relative">
-              <div class="cols-3" style="word-break: break-all">
-                {{ PaymentType[item.paymenttype] }}
-              </div>
-            </div>
-          </td>
-        </tr>
+          <span
+            class="badge bg-info bg-opacity-10 text-info"
+            *ngIf="item.paymenttype == 3"
+            >{{ PaymentType[item.paymenttype] }}</span
+          >
+
+          <span
+            class="badge bg-danger bg-opacity-10 text-danger"
+            *ngIf="item.paymenttype == 5"
+            >{{ PaymentType[item.paymenttype] }}</span
+          >
+        </td>
+      </tr>
+ 
         <div class="row" mat-dialog-actions>
           <div class="col-lg-6">
             <button
