@@ -33,10 +33,13 @@ export class MainComponent {
   Accepted: any;
   Offers: any;
   async ngOnInit() {
-   await this.backgroundService.startBackgroundTask();
+   
     await this.Testimonials.GetAcceptedTestimonials();
-    await this.offerService.GetRandomlyOffer();this.Accepted = this.Testimonials.AccetpedTestimonials;
+    await this.offerService.GetRandomlyOffer();
+    this.Offers=this.offerService.Randomlyoffers;
+    this.Accepted = this.Testimonials.AccetpedTestimonials;
     console.log(this.Accepted);
+    await this.backgroundService.startBackgroundTask();
       }
   searchText: string = '';
   onSearchTextEntered(searchValue: string) {
