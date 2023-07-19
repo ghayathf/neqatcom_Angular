@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: "https://neqatcomm.azurewebsites.net/api"
+  apiUrl: "https://neqatapi.azurewebsites.net/api"
 }
 
 // DeleteUser(UID:any){
@@ -22,3 +22,4 @@ export const environment = {
 // )
 //https://neqatcomm.azurewebsites.net/api
 // }
+//https://neqatapi.azurewebsites.net/api
